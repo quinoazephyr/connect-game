@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/whoosh_sound_effect_001.ogg-8f14e169a98234453317c412cce6ef3a.oggstr"
+
+[deps]
+
+source_file="res://assets/sounds/dot_disconnection/whoosh_sound_effect_001.ogg"
+dest_files=[ "res://.import/whoosh_sound_effect_001.ogg-8f14e169a98234453317c412cce6ef3a.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

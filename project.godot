@@ -1,0 +1,396 @@
+; Engine configuration file.
+; It's best edited using the editor UI and not directly,
+; since the parameters that go here are not all obvious.
+;
+; Format:
+;   [section] ; section goes between []
+;   param=value ; assign values to parameters
+
+config_version=4
+
+_global_script_classes=[ {
+"base": "Resource",
+"class": "ActionBase",
+"language": "GDScript",
+"path": "res://source/scripts/quests/action_base.gd"
+}, {
+"base": "Node",
+"class": "AdditionalMovesLabels",
+"language": "GDScript",
+"path": "res://source/scripts/visuals/additional_moves_labels.gd"
+}, {
+"base": "ActionBase",
+"class": "CallMethodAction",
+"language": "GDScript",
+"path": "res://source/scripts/quests/actions/call_method_action.gd"
+}, {
+"base": "QuestGoalBase",
+"class": "ClearAllDotsGoal",
+"language": "GDScript",
+"path": "res://source/scripts/quests/goals/clear_all_dots_goal.gd"
+}, {
+"base": "LabelButtonVisual",
+"class": "ColorblindButtonVisual",
+"language": "GDScript",
+"path": "res://source/scripts/ui/label_buttons/colorblind_button_visual.gd"
+}, {
+"base": "Node",
+"class": "ColorblindMode",
+"language": "GDScript",
+"path": "res://source/scripts/visuals/colorblind_mode.gd"
+}, {
+"base": "ColorsGenerationStrategyBase",
+"class": "ColorsGenerationStrategy0",
+"language": "GDScript",
+"path": "res://source/scripts/color_generation/colors_generation_strategy_0.gd"
+}, {
+"base": "Reference",
+"class": "ColorsGenerationStrategyBase",
+"language": "GDScript",
+"path": "res://source/scripts/color_generation/colors_generation_strategy_base.gd"
+}, {
+"base": "ActionBase",
+"class": "ConnectMovesAction",
+"language": "GDScript",
+"path": "res://source/scripts/quests/actions/connect_moves_action.gd"
+}, {
+"base": "Node",
+"class": "ConnectingLine",
+"language": "GDScript",
+"path": "res://source/scripts/dots/connecting_line.gd"
+}, {
+"base": "ActionBase",
+"class": "DisconnectMovesAction",
+"language": "GDScript",
+"path": "res://source/scripts/quests/actions/disconnect_moves_action.gd"
+}, {
+"base": "Node2D",
+"class": "Dot",
+"language": "GDScript",
+"path": "res://source/scripts/dots/dot.gd"
+}, {
+"base": "Node",
+"class": "DotEffects",
+"language": "GDScript",
+"path": "res://source/scripts/visuals/dot_effects.gd"
+}, {
+"base": "Node",
+"class": "Dots",
+"language": "GDScript",
+"path": "res://source/scripts/dots/dots.gd"
+}, {
+"base": "Resource",
+"class": "DotsColors",
+"language": "GDScript",
+"path": "res://source/scripts/visuals/dots_colors.gd"
+}, {
+"base": "Node",
+"class": "Game",
+"language": "GDScript",
+"path": "res://source/scripts/core/game.gd"
+}, {
+"base": "Node",
+"class": "GameInput",
+"language": "GDScript",
+"path": "res://source/scripts/core/game_input.gd"
+}, {
+"base": "Game",
+"class": "GameYandex",
+"language": "GDScript",
+"path": "res://source/scripts/core/game_yandex.gd"
+}, {
+"base": "Saveable",
+"class": "Highscore",
+"language": "GDScript",
+"path": "res://source/scripts/dots/highscore.gd"
+}, {
+"base": "Node",
+"class": "LabelButtonVisual",
+"language": "GDScript",
+"path": "res://source/scripts/ui/label_buttons/label_button_visual.gd"
+}, {
+"base": "Button",
+"class": "LanguageButton",
+"language": "GDScript",
+"path": "res://source/scripts/ui/language_button.gd"
+}, {
+"base": "Node",
+"class": "LocaleChangeUIEffect",
+"language": "GDScript",
+"path": "res://source/scripts/ui/locale_change_ui_effect.gd"
+}, {
+"base": "QuestGoalBase",
+"class": "LoopConnectedGoal",
+"language": "GDScript",
+"path": "res://source/scripts/quests/goals/loop_connected_goal.gd"
+}, {
+"base": "Node",
+"class": "MenuVisual",
+"language": "GDScript",
+"path": "res://source/scripts/ui/menu_visual.gd"
+}, {
+"base": "Saveable",
+"class": "Moves",
+"language": "GDScript",
+"path": "res://source/scripts/dots/moves.gd"
+}, {
+"base": "Button",
+"class": "PlayGameButton",
+"language": "GDScript",
+"path": "res://source/scripts/ui/play_game_button.gd"
+}, {
+"base": "Node",
+"class": "PlayerPrefs",
+"language": "GDScript",
+"path": "res://source/scripts/core/player_prefs.gd"
+}, {
+"base": "PopupWithBackground",
+"class": "PopupConfirm",
+"language": "GDScript",
+"path": "res://source/scripts/ui/popup_confirm.gd"
+}, {
+"base": "PopupWithBackground",
+"class": "PopupEndGame",
+"language": "GDScript",
+"path": "res://source/scripts/ui/popup_end_game.gd"
+}, {
+"base": "PopupEndGame",
+"class": "PopupEndGameYandex",
+"language": "GDScript",
+"path": "res://source/scripts/ui/popup_end_game_yandex.gd"
+}, {
+"base": "Node",
+"class": "PopupWithBackground",
+"language": "GDScript",
+"path": "res://source/scripts/ui/popup_with_background.gd"
+}, {
+"base": "Resource",
+"class": "QuestBase",
+"language": "GDScript",
+"path": "res://source/scripts/quests/quest_base.gd"
+}, {
+"base": "Resource",
+"class": "QuestGoalBase",
+"language": "GDScript",
+"path": "res://source/scripts/quests/quest_goal_base.gd"
+}, {
+"base": "LabelButtonVisual",
+"class": "RestartButtonVisual",
+"language": "GDScript",
+"path": "res://source/scripts/ui/label_buttons/restart_button_visual.gd"
+}, {
+"base": "Node",
+"class": "Saveable",
+"language": "GDScript",
+"path": "res://source/scripts/core/saveable.gd"
+}, {
+"base": "Saveable",
+"class": "Score",
+"language": "GDScript",
+"path": "res://source/scripts/dots/score.gd"
+}, {
+"base": "Node",
+"class": "Settings",
+"language": "GDScript",
+"path": "res://source/scripts/core/settings.gd"
+}, {
+"base": "Node",
+"class": "SettingsButtonVisual",
+"language": "GDScript",
+"path": "res://source/scripts/ui/settings_button_visual.gd"
+}, {
+"base": "Node",
+"class": "SettingsVisual",
+"language": "GDScript",
+"path": "res://source/scripts/ui/settings_visual.gd"
+}, {
+"base": "Button",
+"class": "SkipTutorialButton",
+"language": "GDScript",
+"path": "res://source/scripts/ui/skip_tutorial_button.gd"
+}, {
+"base": "SkipTutorialButton",
+"class": "SkipTutorialButtonYandex",
+"language": "GDScript",
+"path": "res://source/scripts/ui/skip_tutorial_button_yandex.gd"
+}, {
+"base": "LabelButtonVisual",
+"class": "SoundButtonVisual",
+"language": "GDScript",
+"path": "res://source/scripts/ui/label_buttons/sound_button_visual.gd"
+}, {
+"base": "Node",
+"class": "SoundEffects",
+"language": "GDScript",
+"path": "res://source/scripts/dots/sound_effects.gd"
+}, {
+"base": "Node",
+"class": "SoundsJSWrapper",
+"language": "GDScript",
+"path": "res://source/scripts/sounds_js_wrapper.gd"
+}, {
+"base": "QuestGoalBase",
+"class": "TapAnywhereGoal",
+"language": "GDScript",
+"path": "res://source/scripts/quests/goals/tap_anywhere_goal.gd"
+}, {
+"base": "LabelButtonVisual",
+"class": "ThemeButtonVisual",
+"language": "GDScript",
+"path": "res://source/scripts/ui/label_buttons/theme_button_visual.gd"
+}, {
+"base": "Node",
+"class": "ThemeChanger",
+"language": "GDScript",
+"path": "res://source/scripts/visuals/theme_changer.gd"
+}, {
+"base": "Reference",
+"class": "ThemeColors",
+"language": "GDScript",
+"path": "res://source/scripts/visuals/theme_colors.gd"
+}, {
+"base": "Node",
+"class": "Tutorial",
+"language": "GDScript",
+"path": "res://source/scripts/core/tutorial.gd"
+}, {
+"base": "LabelButtonVisual",
+"class": "TutorialButtonVisual",
+"language": "GDScript",
+"path": "res://source/scripts/ui/label_buttons/tutorial_button_visual.gd"
+}, {
+"base": "Node",
+"class": "TutorialDotEffects",
+"language": "GDScript",
+"path": "res://source/scripts/visuals/tutorial_dot_effects.gd"
+}, {
+"base": "Node",
+"class": "TutorialDots",
+"language": "GDScript",
+"path": "res://source/scripts/dots/tutorial_dots.gd"
+}, {
+"base": "Node",
+"class": "YandexSDK",
+"language": "GDScript",
+"path": "res://addons/yandex_sdk/yandex_sdk.gd"
+}, {
+"base": "Node",
+"class": "YandexSDKWrapper",
+"language": "GDScript",
+"path": "res://source/scripts/yandex_sdk_wrapper.gd"
+} ]
+_global_script_class_icons={
+"ActionBase": "",
+"AdditionalMovesLabels": "",
+"CallMethodAction": "",
+"ClearAllDotsGoal": "",
+"ColorblindButtonVisual": "",
+"ColorblindMode": "",
+"ColorsGenerationStrategy0": "",
+"ColorsGenerationStrategyBase": "",
+"ConnectMovesAction": "",
+"ConnectingLine": "",
+"DisconnectMovesAction": "",
+"Dot": "",
+"DotEffects": "",
+"Dots": "",
+"DotsColors": "",
+"Game": "",
+"GameInput": "",
+"GameYandex": "",
+"Highscore": "",
+"LabelButtonVisual": "",
+"LanguageButton": "",
+"LocaleChangeUIEffect": "",
+"LoopConnectedGoal": "",
+"MenuVisual": "",
+"Moves": "",
+"PlayGameButton": "",
+"PlayerPrefs": "",
+"PopupConfirm": "",
+"PopupEndGame": "",
+"PopupEndGameYandex": "",
+"PopupWithBackground": "",
+"QuestBase": "",
+"QuestGoalBase": "",
+"RestartButtonVisual": "",
+"Saveable": "",
+"Score": "",
+"Settings": "",
+"SettingsButtonVisual": "",
+"SettingsVisual": "",
+"SkipTutorialButton": "",
+"SkipTutorialButtonYandex": "",
+"SoundButtonVisual": "",
+"SoundEffects": "",
+"SoundsJSWrapper": "",
+"TapAnywhereGoal": "",
+"ThemeButtonVisual": "",
+"ThemeChanger": "",
+"ThemeColors": "",
+"Tutorial": "",
+"TutorialButtonVisual": "",
+"TutorialDotEffects": "",
+"TutorialDots": "",
+"YandexSDK": "",
+"YandexSDKWrapper": ""
+}
+
+[application]
+
+config/name="Connect"
+run/main_scene="res://source/nodes/start_screen_yandex.tscn"
+config/icon="res://assets/images/icon.png"
+
+[autoload]
+
+SoundManager="*res://addons/sound_manager/sound_manager.tscn"
+YandexSdkWrapper="*res://source/scripts/yandex_sdk_wrapper.gd"
+YandexSdk="*res://addons/yandex_sdk/yandex_sdk.gd"
+
+[display]
+
+window/size/width=720
+window/size/height=1280
+window/size/always_on_top=true
+window/size/test_width=720
+window/size/test_height=1280
+window/dpi/allow_hidpi=true
+window/handheld/orientation="portrait"
+window/stretch/mode="2d"
+window/stretch/aspect="expand"
+
+[editor_plugins]
+
+enabled=PoolStringArray( "res://addons/sound_manager/plugin.cfg" )
+
+[gui]
+
+common/drop_mouse_on_gui_input_disabled=true
+
+[input]
+
+tap={
+"deadzone": 0.5,
+"events": [ Object(InputEventMouseButton,"resource_local_to_scene":false,"resource_name":"","device":-1,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"button_mask":0,"position":Vector2( 0, 0 ),"global_position":Vector2( 0, 0 ),"factor":1.0,"button_index":1,"pressed":false,"doubleclick":false,"script":null)
+ ]
+}
+
+[locale]
+
+translations=PoolStringArray( "res://assets/localization/localization.en.translation", "res://assets/localization/localization.ru.translation" )
+locale_filter=[ 0, [ "en", "ru" ] ]
+translation_remaps={
+"res://assets/images/ui/uk.png": PoolStringArray( "res://assets/images/ui/russia.png:ru" )
+}
+
+[physics]
+
+common/enable_pause_aware_picking=true
+
+[rendering]
+
+quality/driver/driver_name="GLES2"
+vram_compression/import_etc=true
+vram_compression/import_etc2=false
+environment/default_environment="res://default_env.tres"

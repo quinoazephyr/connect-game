@@ -1,0 +1,9 @@
+[gd_resource type="Resource" load_steps=2 format=2]
+
+[ext_resource path="res://source/scripts/quests/goals/tap_anywhere_goal.gd" type="Script" id=1]
+
+[resource]
+script = ExtResource( 1 )
+_title = ""
+_description = ""
+_input_observer_path = "/root/TutorialScene/Core/Tutorial/CanvasLayer/Control"

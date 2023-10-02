@@ -1,0 +1,19 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://source/nodes/main_scene.tscn" type="PackedScene" id=1]
+[ext_resource path="res://source/scripts/ui/popup_end_game_yandex.gd" type="Script" id=4]
+[ext_resource path="res://source/scripts/core/game_yandex.gd" type="Script" id=5]
+
+[node name="MainSceneYandex" instance=ExtResource( 1 )]
+
+[node name="Game" parent="Core" index="3"]
+script = ExtResource( 5 )
+
+[node name="Tutorial" parent="UI/MenuVisual/Menu/Options" index="1"]
+_tutorial_scene_file_path = "res://source/nodes/tutorial_scene_yandex.tscn"
+
+[node name="PopupEndGame" parent="UI" index="5"]
+script = ExtResource( 4 )
+
+[editable path="Effects/DotEffects/CanvasLayer/Control/AdditionalMovesLabels"]
+[editable path="UI/PopupEndGame"]

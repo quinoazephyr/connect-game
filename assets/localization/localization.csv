@@ -1,0 +1,39 @@
+,en,ru
+KEY_MOVES,Moves,Ходы
+KEY_SCORE,Score,Счёт
+KEY_HIGHSCORE,Highscore,Рекорд
+KEY_QUIT_MENU,Back to game,Назад в игру
+KEY_RESTART,Restart,Заново
+KEY_COLORBLIND_ON,Colorblind mode on,Цветовая слепота вкл.
+KEY_COLORBLIND_OFF,Colorblind mode off,Цветовая слепота выкл.
+KEY_THEME_LIGHT,Light mode,Светлая тема
+KEY_THEME_DARK,Dark mode,Тёмная тема
+KEY_SOUND_ON,Sound on,Звук вкл.
+KEY_SOUND_OFF,Sound off,Звук выкл.
+KEY_TUTORIAL,How to play,Обучение
+KEY_CONFIRM,Confirm,Продолжить
+KEY_CANCEL,Cancel,Отмена
+KEY_PLAY_AGAIN,Play again,Новая игра
+KEY_WATCH_AD,Get 10 moves,Получить\n10 ходов
+KEY_NEW_HIGHSCORE,New highscore!,Новый рекорд!
+KEY_TUTORIAL_START_CONFIRMATION,Do you really want\nto finish this game?,Вы действительно\nхотите закончить игру?
+KEY_RESTART_CONFIRMATION,Do you really\nwant to restart?,Вы действительно\nхотите закончить игру?
+KEY_SKIP_TUTORIAL,Skip tutorial,Пропустить обучение
+KEY_GREETING,Welcome to Connect.,Добро пожаловать в Точки.
+KEY_COMPLIMENT,You've got the right idea.,Всё правильно.
+KEY_VERTICAL_CONNECTIONS,Connection can also be vertical...,Соединения также могут\nбыть вертикальными...
+KEY_DIAGONAL_CONNECTIONS,...AND diagonal.,...И диагональными.
+KEY_SECRET_TRICK,There's also a secret trick.,Ещё есть особый приём.
+KEY_MAKE_YELLOW_SQUARE,Try making a yellow square.,Попробуйте соединить\nжелтые точки\nв замкнутый квадрат.
+KEY_YELLOW_SQUARE_COMPLIMENT,Great! Now you have moves\nto remove other colors.,"Отлично! У Вас появились ходы,\nчтобы убрать остальные точки."
+KEY_READY_FOR_GAME,Superb!\nNow you are ready for a game!,Чудесно!\nТеперь Вы готовы к игре!
+KEY_OUT_OF_MOVES,Out of moves,Конец игры
+KEY_MOVES_SINGULAR,Move,Ход
+KEY_MOVES_2,Moves,Хода
+KEY_MOVES_PLURAL,Moves,Ходов
+KEY_MOVES_SINGULAR_LOWER,move,ход
+KEY_MOVES_2_LOWER,moves,хода
+KEY_MOVES_PLURAL_LOWER,moves,ходов
+KEY_START_GAME,Play,Играть
+KEY_LANGUAGE,English,Русский
+KEY_GAME_TITLE,Connect,Точки

@@ -1,0 +1,7 @@
+[gd_resource type="Resource" load_steps=2 format=2]
+
+[ext_resource path="res://source/scripts/visuals/dots_colors.gd" type="Script" id=1]
+
+[resource]
+script = ExtResource( 1 )
+_colors = [ Color( 0.858824, 0.219608, 0.219608, 1 ), Color( 0, 0.517647, 0.968627, 1 ), Color( 0.996078, 0.8, 0.184314, 1 ), Color( 0.321569, 0.560784, 0.337255, 1 ), Color( 0.92549, 0.537255, 0.686275, 1 ), Color( 0.301961, 0.811765, 0.352941, 1 ), Color( 0.623529, 0.0392157, 0.941176, 1 ) ]

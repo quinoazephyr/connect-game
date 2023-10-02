@@ -1,0 +1,1231 @@
+[gd_scene load_steps=75 format=2]
+
+[ext_resource path="res://source/scripts/visuals/dot_effects.gd" type="Script" id=1]
+[ext_resource path="res://source/scripts/dots/dots.gd" type="Script" id=2]
+[ext_resource path="res://source/nodes/dot.tscn" type="PackedScene" id=3]
+[ext_resource path="res://source/resources/dot_colors_1.tres" type="Resource" id=4]
+[ext_resource path="res://source/resources/fonts/title_font.tres" type="DynamicFont" id=5]
+[ext_resource path="res://assets/images/ui/header_moves.png" type="Texture" id=6]
+[ext_resource path="res://assets/images/ui/settings_icon.png" type="Texture" id=7]
+[ext_resource path="res://source/resources/fonts/digits_font.tres" type="DynamicFont" id=8]
+[ext_resource path="res://source/scripts/dots/score.gd" type="Script" id=9]
+[ext_resource path="res://source/scripts/visuals/theme_changer.gd" type="Script" id=10]
+[ext_resource path="res://source/scripts/dots/moves.gd" type="Script" id=11]
+[ext_resource path="res://source/resources/themes/light_theme.tres" type="Resource" id=12]
+[ext_resource path="res://source/resources/themes/dark_theme.tres" type="Resource" id=13]
+[ext_resource path="res://assets/images/ui/restart_icon.png" type="Texture" id=14]
+[ext_resource path="res://assets/images/ui/colorblind_icon.png" type="Texture" id=15]
+[ext_resource path="res://assets/images/ui/tutorial_icon.png" type="Texture" id=16]
+[ext_resource path="res://source/scripts/ui/label_buttons/restart_button_visual.gd" type="Script" id=17]
+[ext_resource path="res://assets/images/ui/sound_on_icon.png" type="Texture" id=18]
+[ext_resource path="res://source/scripts/core/settings.gd" type="Script" id=19]
+[ext_resource path="res://source/scripts/ui/menu_visual.gd" type="Script" id=20]
+[ext_resource path="res://source/scripts/ui/settings_button_visual.gd" type="Script" id=21]
+[ext_resource path="res://source/scripts/core/player_prefs.gd" type="Script" id=22]
+[ext_resource path="res://source/scripts/dots/highscore.gd" type="Script" id=23]
+[ext_resource path="res://source/scripts/core/game.gd" type="Script" id=24]
+[ext_resource path="res://source/scripts/core/game_input.gd" type="Script" id=25]
+[ext_resource path="res://source/scripts/dots/connecting_line.gd" type="Script" id=26]
+[ext_resource path="res://source/scripts/ui/settings_visual.gd" type="Script" id=27]
+[ext_resource path="res://source/scripts/ui/label_buttons/theme_button_visual.gd" type="Script" id=28]
+[ext_resource path="res://assets/images/ui/theme_dark_icon.png" type="Texture" id=29]
+[ext_resource path="res://assets/images/ui/theme_light_icon.png" type="Texture" id=30]
+[ext_resource path="res://source/resources/fonts/digits_small_font.tres" type="DynamicFont" id=31]
+[ext_resource path="res://source/scripts/visuals/colorblind_mode.gd" type="Script" id=32]
+[ext_resource path="res://assets/images/colorblind/color_2.png" type="Texture" id=33]
+[ext_resource path="res://assets/images/colorblind/color_0.png" type="Texture" id=34]
+[ext_resource path="res://assets/images/colorblind/color_1.png" type="Texture" id=35]
+[ext_resource path="res://assets/images/colorblind/color_3.png" type="Texture" id=36]
+[ext_resource path="res://assets/images/colorblind/color_4.png" type="Texture" id=37]
+[ext_resource path="res://assets/images/colorblind/color_5.png" type="Texture" id=38]
+[ext_resource path="res://assets/images/colorblind/color_6.png" type="Texture" id=39]
+[ext_resource path="res://source/scripts/ui/label_buttons/colorblind_button_visual.gd" type="Script" id=40]
+[ext_resource path="res://source/nodes/popup_confirm.tscn" type="PackedScene" id=41]
+[ext_resource path="res://source/scripts/ui/label_buttons/tutorial_button_visual.gd" type="Script" id=42]
+[ext_resource path="res://source/scripts/dots/sound_effects.gd" type="Script" id=43]
+[ext_resource path="res://addons/sound_manager/sound_manager.tscn" type="PackedScene" id=44]
+[ext_resource path="res://source/nodes/additional_moves_labels.tscn" type="PackedScene" id=45]
+[ext_resource path="res://assets/sounds/dot_connection/footstep_wood_000.ogg" type="AudioStream" id=46]
+[ext_resource path="res://assets/sounds/dot_connection/footstep_wood_001.ogg" type="AudioStream" id=47]
+[ext_resource path="res://assets/sounds/dot_connection/footstep_wood_003.ogg" type="AudioStream" id=48]
+[ext_resource path="res://assets/sounds/dot_connection/footstep_wood_004.ogg" type="AudioStream" id=49]
+[ext_resource path="res://assets/sounds/dot_connection/footstep_wood_002.ogg" type="AudioStream" id=50]
+[ext_resource path="res://assets/sounds/dot_disconnection/whoosh_sound_effect_001.ogg" type="AudioStream" id=51]
+[ext_resource path="res://assets/sounds/dots_removed/pop_001.ogg" type="AudioStream" id=52]
+[ext_resource path="res://assets/sounds/dots_loop_selected/drop_004.ogg" type="AudioStream" id=53]
+[ext_resource path="res://source/scripts/sounds_js_wrapper.gd" type="Script" id=54]
+[ext_resource path="res://source/scripts/ui/label_buttons/sound_button_visual.gd" type="Script" id=55]
+[ext_resource path="res://assets/images/ui/sound_off_icon.png" type="Texture" id=56]
+[ext_resource path="res://assets/sounds/interface/click_003.ogg" type="AudioStream" id=57]
+[ext_resource path="res://assets/sounds/interface/victory_sound_000.ogg" type="AudioStream" id=58]
+[ext_resource path="res://source/resources/animations/animation_ui_wiggle.tres" type="Animation" id=59]
+[ext_resource path="res://source/resources/animations/animation_ui_scale_in_out.tres" type="Animation" id=60]
+[ext_resource path="res://source/nodes/popup_end_game.tscn" type="PackedScene" id=63]
+
+[sub_resource type="StyleBoxEmpty" id=13]
+
+[sub_resource type="StyleBoxEmpty" id=14]
+
+[sub_resource type="StyleBoxEmpty" id=8]
+
+[sub_resource type="Animation" id=19]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("Button:rect_rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 0.0 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Button:rect_scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 1, 1 ) ]
+}
+
+[sub_resource type="Animation" id=20]
+resource_name = "rotate_icon"
+length = 0.3
+step = 0.05
+tracks/0/type = "bezier"
+tracks/0/path = NodePath("Button:rect_rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"points": PoolRealArray( 0, -0.25, 0, 0.05, -0.285706, -180, -0.05, -0.125885, 0.25, 0 ),
+"times": PoolRealArray( 0, 0.3 )
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Button:rect_scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.15, 0.3 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 1, 1 ), Vector2( 1.2, 1.2 ), Vector2( 1, 1 ) ]
+}
+
+[sub_resource type="Animation" id=21]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("Button:rect_rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 0.0 ]
+}
+
+[sub_resource type="Animation" id=22]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("Button:rect_scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 1, 1 ) ]
+}
+
+[sub_resource type="Animation" id=23]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("Button:rect_scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 1, 1 ) ]
+}
+
+[sub_resource type="Animation" id=9]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("Menu:rect_position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 0, 0 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Menu/SettingsLabel:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Menu/Options:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ) ]
+}
+
+[sub_resource type="Animation" id=10]
+resource_name = "menu_show"
+length = 0.6
+tracks/0/type = "value"
+tracks/0/path = NodePath("Menu:rect_position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.3, 0.6 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0, -1280 ), Vector2( 0, 0 ), Vector2( 0, 0 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Menu/SettingsLabel:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.3, 0.6 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Menu/Options:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.3, 0.6 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
+}
+
+[sub_resource type="StyleBoxEmpty" id=5]
+
+[sub_resource type="Animation" id=6]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("SettingsButton:rect_rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 0.0 ]
+}
+
+[sub_resource type="Animation" id=7]
+resource_name = "settings_button_rotation"
+length = 1.2
+tracks/0/type = "bezier"
+tracks/0/path = NodePath("SettingsButton:rect_rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"points": PoolRealArray( 0, -0.25, 0, 0.25, 0, 360, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0, 1.1 )
+}
+
+[node name="MainScene" type="Node2D"]
+
+[node name="Core" type="Node" parent="."]
+
+[node name="GameInput" type="Node" parent="Core"]
+script = ExtResource( 25 )
+
+[node name="CanvasLayer" type="CanvasLayer" parent="Core/GameInput"]
+
+[node name="Control" type="Control" parent="Core/GameInput/CanvasLayer"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="PlayerPrefs" type="Node" parent="Core"]
+script = ExtResource( 22 )
+
+[node name="Settings" type="Node" parent="Core"]
+script = ExtResource( 19 )
+_game_input_path = NodePath("../GameInput")
+_theme_changer_path = NodePath("../../Effects/ThemeChanger")
+_colorblind_mode_path = NodePath("../../Effects/ColorblindMode")
+_sound_path = NodePath("../../Effects/Sound")
+_dots_path = NodePath("../Dots")
+_score_path = NodePath("../../UI/ScoresContainer/ScoreContainer/ScoreLabel")
+
+[node name="Game" type="Node" parent="Core"]
+script = ExtResource( 24 )
+_game_input_path = NodePath("../GameInput")
+_player_prefs_path = NodePath("../PlayerPrefs")
+_dots_path = NodePath("../Dots")
+_moves_path = NodePath("../../UI/HeaderMoves/MovesContainer/MovesLabel")
+_score_path = NodePath("../../UI/ScoresContainer/ScoreContainer/ScoreLabel")
+_highscore_path = NodePath("../../UI/ScoresContainer/HighscoreContainer/HighscoreLabel")
+_popup_end_game_path = NodePath("../../UI/PopupEndGame")
+_sound_path = NodePath("../../Effects/Sound")
+_all_buttons_paths = [ NodePath("../../UI/SettingsButtonVisual/SettingsButton"), NodePath("../../UI/MenuVisual/Menu/SettingsLabel"), NodePath("../../UI/MenuVisual/Menu/Options/Restart/Label"), NodePath("../../UI/MenuVisual/Menu/Options/Restart/Button"), NodePath("../../UI/MenuVisual/Menu/Options/Tutorial/Label"), NodePath("../../UI/MenuVisual/Menu/Options/Tutorial/Button"), NodePath("../../UI/MenuVisual/Menu/Options/Colorblind/Label"), NodePath("../../UI/MenuVisual/Menu/Options/Colorblind/Button"), NodePath("../../UI/MenuVisual/Menu/Options/Theme/Label"), NodePath("../../UI/MenuVisual/Menu/Options/Theme/Button"), NodePath("../../UI/MenuVisual/Menu/Options/Sound/Label"), NodePath("../../UI/MenuVisual/Menu/Options/Sound/Button"), NodePath("../../UI/PopupConfirm/PopupDialog/VBoxContainer/VBoxContainer/AcceptButton"), NodePath("../../UI/PopupConfirm/PopupDialog/VBoxContainer/VBoxContainer/CancelButton"), NodePath("../../UI/PopupEndGame/PopupDialog/VBoxContainer/VBoxButtons/NewGameButton"), NodePath("../../UI/PopupEndGame/PopupDialog/VBoxContainer/VBoxButtons/WatchAdButton") ]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="Core/Game"]
+layer = 2
+
+[node name="TransitionColorRect" type="ColorRect" parent="Core/Game/CanvasLayer"]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="Dots" type="Node" parent="Core"]
+script = ExtResource( 2 )
+_game_input_path = NodePath("../GameInput")
+_connecting_line_path = NodePath("../ConnectingLine")
+_colorblind_mode_path = NodePath("../../Effects/ColorblindMode")
+_dot_packed_scene = ExtResource( 3 )
+_colors = ExtResource( 4 )
+
+[node name="CanvasLayer" type="CanvasLayer" parent="Core/Dots"]
+
+[node name="Control" type="Control" parent="Core/Dots/CanvasLayer"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="NewDotsPositions" type="HBoxContainer" parent="Core/Dots/CanvasLayer"]
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+margin_top = -400.0
+margin_bottom = -349.0
+custom_constants/separation = 58
+alignment = 1
+
+[node name="Control" type="Control" parent="Core/Dots/CanvasLayer/NewDotsPositions"]
+margin_left = 62.0
+margin_right = 113.2
+margin_bottom = 51.2
+rect_min_size = Vector2( 51.2, 51.2 )
+
+[node name="Control2" type="Control" parent="Core/Dots/CanvasLayer/NewDotsPositions"]
+margin_left = 171.0
+margin_right = 222.2
+margin_bottom = 51.2
+rect_min_size = Vector2( 51.2, 51.2 )
+
+[node name="Control3" type="Control" parent="Core/Dots/CanvasLayer/NewDotsPositions"]
+margin_left = 280.0
+margin_right = 331.2
+margin_bottom = 51.2
+rect_min_size = Vector2( 51.2, 51.2 )
+
+[node name="Control4" type="Control" parent="Core/Dots/CanvasLayer/NewDotsPositions"]
+margin_left = 389.0
+margin_right = 440.2
+margin_bottom = 51.2
+rect_min_size = Vector2( 51.2, 51.2 )
+
+[node name="Control5" type="Control" parent="Core/Dots/CanvasLayer/NewDotsPositions"]
+margin_left = 498.0
+margin_right = 549.2
+margin_bottom = 51.2
+rect_min_size = Vector2( 51.2, 51.2 )
+
+[node name="Control6" type="Control" parent="Core/Dots/CanvasLayer/NewDotsPositions"]
+margin_left = 607.0
+margin_right = 658.2
+margin_bottom = 51.2
+rect_min_size = Vector2( 51.2, 51.2 )
+
+[node name="DotsPositions" type="GridContainer" parent="Core/Dots/CanvasLayer"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -298.0
+margin_top = -300.0
+margin_right = 298.0
+margin_bottom = 514.0
+custom_constants/vseparation = 58
+custom_constants/hseparation = 58
+columns = 6
+
+[node name="Control" type="Control" parent="Core/Dots/CanvasLayer/DotsPositions"]
+margin_right = 51.2
+margin_bottom = 51.2
+rect_min_size = Vector2( 51.2, 51.2 )
+
+[node name="Control2" type="Control" parent="Core/Dots/CanvasLayer/DotsPositions"]
+margin_left = 109.0
+margin_right = 160.2
+margin_bottom = 51.2
+rect_min_size = Vector2( 51.2, 51.2 )
+
+[node name="Control3" type="Control" parent="Core/Dots/CanvasLayer/DotsPositions"]
+margin_left = 218.0
+margin_right = 269.2
+margin_bottom = 51.2
+rect_min_size = Vector2( 51.2, 51.2 )
+
+[node name="Control4" type="Control" parent="Core/Dots/CanvasLayer/DotsPositions"]
+margin_left = 327.0
+margin_right = 378.2
+margin_bottom = 51.2
+rect_min_size = Vector2( 51.2, 51.2 )
+
+[node name="Control5" type="Control" parent="Core/Dots/CanvasLayer/DotsPositions"]
+margin_left = 436.0
+margin_right = 487.2
+margin_bottom = 51.2
+rect_min_size = Vector2( 51.2, 51.2 )
+
+[node name="Control6" type="Control" parent="Core/Dots/CanvasLayer/DotsPositions"]
+margin_left = 545.0
+margin_right = 596.2
+margin_bottom = 51.2
+rect_min_size = Vector2( 51.2, 51.2 )
+
+[node name="Control7" type="Control" parent="Core/Dots/CanvasLayer/DotsPositions"]
+margin_top = 109.0
+margin_right = 51.2
+margin_bottom = 160.2
+rect_min_size = Vector2( 51.2, 51.2 )
+
+[node name="Control8" type="Control" parent="Core/Dots/CanvasLayer/DotsPositions"]
+margin_left = 109.0
+margin_top = 109.0
+margin_right = 160.2
+margin_bottom = 160.2
+rect_min_size = Vector2( 51.2, 51.2 )
+
+[node name="Control9" type="Control" parent="Core/Dots/CanvasLayer/DotsPositions"]
+margin_left = 218.0
+margin_top = 109.0
+margin_right = 269.2
+margin_bottom = 160.2
+rect_min_size = Vector2( 51.2, 51.2 )
+
+[node name="Control10" type="Control" parent="Core/Dots/CanvasLayer/DotsPositions"]
+margin_left = 327.0
+margin_top = 109.0
+margin_right = 378.2
+margin_bottom = 160.2
+rect_min_size = Vector2( 51.2, 51.2 )
+
+[node name="Control11" type="Control" parent="Core/Dots/CanvasLayer/DotsPositions"]
+margin_left = 436.0
+margin_top = 109.0
+margin_right = 487.2
+margin_bottom = 160.2
+rect_min_size = Vector2( 51.2, 51.2 )
+
+[node name="Control12" type="Control" parent="Core/Dots/CanvasLayer/DotsPositions"]
+margin_left = 545.0
+margin_top = 109.0
+margin_right = 596.2
+margin_bottom = 160.2
+rect_min_size = Vector2( 51.2, 51.2 )
+
+[node name="Control13" type="Control" parent="Core/Dots/CanvasLayer/DotsPositions"]
+margin_top = 218.0
+margin_right = 51.2
+margin_bottom = 269.2
+rect_min_size = Vector2( 51.2, 51.2 )
+
+[node name="Control14" type="Control" parent="Core/Dots/CanvasLayer/DotsPositions"]
+margin_left = 109.0
+margin_top = 218.0
+margin_right = 160.2
+margin_bottom = 269.2
+rect_min_size = Vector2( 51.2, 51.2 )
+
+[node name="Control15" type="Control" parent="Core/Dots/CanvasLayer/DotsPositions"]
+margin_left = 218.0
+margin_top = 218.0
+margin_right = 269.2
+margin_bottom = 269.2
+rect_min_size = Vector2( 51.2, 51.2 )
+
+[node name="Control16" type="Control" parent="Core/Dots/CanvasLayer/DotsPositions"]
+margin_left = 327.0
+margin_top = 218.0
+margin_right = 378.2
+margin_bottom = 269.2
+rect_min_size = Vector2( 51.2, 51.2 )
+
+[node name="Control17" type="Control" parent="Core/Dots/CanvasLayer/DotsPositions"]
+margin_left = 436.0
+margin_top = 218.0
+margin_right = 487.2
+margin_bottom = 269.2
+rect_min_size = Vector2( 51.2, 51.2 )
+
+[node name="Control18" type="Control" parent="Core/Dots/CanvasLayer/DotsPositions"]
+margin_left = 545.0
+margin_top = 218.0
+margin_right = 596.2
+margin_bottom = 269.2
+rect_min_size = Vector2( 51.2, 51.2 )
+
+[node name="Control19" type="Control" parent="Core/Dots/CanvasLayer/DotsPositions"]
+margin_top = 327.0
+margin_right = 51.2
+margin_bottom = 378.2
+rect_min_size = Vector2( 51.2, 51.2 )
+
+[node name="Control20" type="Control" parent="Core/Dots/CanvasLayer/DotsPositions"]
+margin_left = 109.0
+margin_top = 327.0
+margin_right = 160.2
+margin_bottom = 378.2
+rect_min_size = Vector2( 51.2, 51.2 )
+
+[node name="Control21" type="Control" parent="Core/Dots/CanvasLayer/DotsPositions"]
+margin_left = 218.0
+margin_top = 327.0
+margin_right = 269.2
+margin_bottom = 378.2
+rect_min_size = Vector2( 51.2, 51.2 )
+
+[node name="Control22" type="Control" parent="Core/Dots/CanvasLayer/DotsPositions"]
+margin_left = 327.0
+margin_top = 327.0
+margin_right = 378.2
+margin_bottom = 378.2
+rect_min_size = Vector2( 51.2, 51.2 )
+
+[node name="Control23" type="Control" parent="Core/Dots/CanvasLayer/DotsPositions"]
+margin_left = 436.0
+margin_top = 327.0
+margin_right = 487.2
+margin_bottom = 378.2
+rect_min_size = Vector2( 51.2, 51.2 )
+
+[node name="Control24" type="Control" parent="Core/Dots/CanvasLayer/DotsPositions"]
+margin_left = 545.0
+margin_top = 327.0
+margin_right = 596.2
+margin_bottom = 378.2
+rect_min_size = Vector2( 51.2, 51.2 )
+
+[node name="Control25" type="Control" parent="Core/Dots/CanvasLayer/DotsPositions"]
+margin_top = 436.0
+margin_right = 51.2
+margin_bottom = 487.2
+rect_min_size = Vector2( 51.2, 51.2 )
+
+[node name="Control26" type="Control" parent="Core/Dots/CanvasLayer/DotsPositions"]
+margin_left = 109.0
+margin_top = 436.0
+margin_right = 160.2
+margin_bottom = 487.2
+rect_min_size = Vector2( 51.2, 51.2 )
+
+[node name="Control27" type="Control" parent="Core/Dots/CanvasLayer/DotsPositions"]
+margin_left = 218.0
+margin_top = 436.0
+margin_right = 269.2
+margin_bottom = 487.2
+rect_min_size = Vector2( 51.2, 51.2 )
+
+[node name="Control28" type="Control" parent="Core/Dots/CanvasLayer/DotsPositions"]
+margin_left = 327.0
+margin_top = 436.0
+margin_right = 378.2
+margin_bottom = 487.2
+rect_min_size = Vector2( 51.2, 51.2 )
+
+[node name="Control29" type="Control" parent="Core/Dots/CanvasLayer/DotsPositions"]
+margin_left = 436.0
+margin_top = 436.0
+margin_right = 487.2
+margin_bottom = 487.2
+rect_min_size = Vector2( 51.2, 51.2 )
+
+[node name="Control30" type="Control" parent="Core/Dots/CanvasLayer/DotsPositions"]
+margin_left = 545.0
+margin_top = 436.0
+margin_right = 596.2
+margin_bottom = 487.2
+rect_min_size = Vector2( 51.2, 51.2 )
+
+[node name="Control31" type="Control" parent="Core/Dots/CanvasLayer/DotsPositions"]
+margin_top = 545.0
+margin_right = 51.2
+margin_bottom = 596.2
+rect_min_size = Vector2( 51.2, 51.2 )
+
+[node name="Control32" type="Control" parent="Core/Dots/CanvasLayer/DotsPositions"]
+margin_left = 109.0
+margin_top = 545.0
+margin_right = 160.2
+margin_bottom = 596.2
+rect_min_size = Vector2( 51.2, 51.2 )
+
+[node name="Control33" type="Control" parent="Core/Dots/CanvasLayer/DotsPositions"]
+margin_left = 218.0
+margin_top = 545.0
+margin_right = 269.2
+margin_bottom = 596.2
+rect_min_size = Vector2( 51.2, 51.2 )
+
+[node name="Control34" type="Control" parent="Core/Dots/CanvasLayer/DotsPositions"]
+margin_left = 327.0
+margin_top = 545.0
+margin_right = 378.2
+margin_bottom = 596.2
+rect_min_size = Vector2( 51.2, 51.2 )
+
+[node name="Control35" type="Control" parent="Core/Dots/CanvasLayer/DotsPositions"]
+margin_left = 436.0
+margin_top = 545.0
+margin_right = 487.2
+margin_bottom = 596.2
+rect_min_size = Vector2( 51.2, 51.2 )
+
+[node name="Control36" type="Control" parent="Core/Dots/CanvasLayer/DotsPositions"]
+margin_left = 545.0
+margin_top = 545.0
+margin_right = 596.2
+margin_bottom = 596.2
+rect_min_size = Vector2( 51.2, 51.2 )
+
+[node name="Control37" type="Control" parent="Core/Dots/CanvasLayer/DotsPositions"]
+margin_top = 654.0
+margin_right = 51.2
+margin_bottom = 705.2
+rect_min_size = Vector2( 51.2, 51.2 )
+
+[node name="Control38" type="Control" parent="Core/Dots/CanvasLayer/DotsPositions"]
+margin_left = 109.0
+margin_top = 654.0
+margin_right = 160.2
+margin_bottom = 705.2
+rect_min_size = Vector2( 51.2, 51.2 )
+
+[node name="Control39" type="Control" parent="Core/Dots/CanvasLayer/DotsPositions"]
+margin_left = 218.0
+margin_top = 654.0
+margin_right = 269.2
+margin_bottom = 705.2
+rect_min_size = Vector2( 51.2, 51.2 )
+
+[node name="Control40" type="Control" parent="Core/Dots/CanvasLayer/DotsPositions"]
+margin_left = 327.0
+margin_top = 654.0
+margin_right = 378.2
+margin_bottom = 705.2
+rect_min_size = Vector2( 51.2, 51.2 )
+
+[node name="Control41" type="Control" parent="Core/Dots/CanvasLayer/DotsPositions"]
+margin_left = 436.0
+margin_top = 654.0
+margin_right = 487.2
+margin_bottom = 705.2
+rect_min_size = Vector2( 51.2, 51.2 )
+
+[node name="Control42" type="Control" parent="Core/Dots/CanvasLayer/DotsPositions"]
+margin_left = 545.0
+margin_top = 654.0
+margin_right = 596.2
+margin_bottom = 705.2
+rect_min_size = Vector2( 51.2, 51.2 )
+
+[node name="Control43" type="Control" parent="Core/Dots/CanvasLayer/DotsPositions"]
+margin_top = 763.0
+margin_right = 51.2
+margin_bottom = 814.2
+rect_min_size = Vector2( 51.2, 51.2 )
+
+[node name="Control44" type="Control" parent="Core/Dots/CanvasLayer/DotsPositions"]
+margin_left = 109.0
+margin_top = 763.0
+margin_right = 160.2
+margin_bottom = 814.2
+rect_min_size = Vector2( 51.2, 51.2 )
+
+[node name="Control45" type="Control" parent="Core/Dots/CanvasLayer/DotsPositions"]
+margin_left = 218.0
+margin_top = 763.0
+margin_right = 269.2
+margin_bottom = 814.2
+rect_min_size = Vector2( 51.2, 51.2 )
+
+[node name="Control46" type="Control" parent="Core/Dots/CanvasLayer/DotsPositions"]
+margin_left = 327.0
+margin_top = 763.0
+margin_right = 378.2
+margin_bottom = 814.2
+rect_min_size = Vector2( 51.2, 51.2 )
+
+[node name="Control47" type="Control" parent="Core/Dots/CanvasLayer/DotsPositions"]
+margin_left = 436.0
+margin_top = 763.0
+margin_right = 487.2
+margin_bottom = 814.2
+rect_min_size = Vector2( 51.2, 51.2 )
+
+[node name="Control48" type="Control" parent="Core/Dots/CanvasLayer/DotsPositions"]
+margin_left = 545.0
+margin_top = 763.0
+margin_right = 596.2
+margin_bottom = 814.2
+rect_min_size = Vector2( 51.2, 51.2 )
+
+[node name="ConnectingLine" type="Node" parent="Core"]
+script = ExtResource( 26 )
+
+[node name="Line" type="Line2D" parent="Core/ConnectingLine"]
+z_index = 1
+width = 18.0
+joint_mode = 2
+end_cap_mode = 2
+antialiased = true
+
+[node name="Effects" type="Node" parent="."]
+
+[node name="ThemeChanger" type="Node" parent="Effects"]
+script = ExtResource( 10 )
+_themes = [ ExtResource( 12 ), ExtResource( 13 ) ]
+_accent_labels_paths = [ NodePath("../../UI/HeaderMoves/MovesContainer/MovesLabel"), NodePath("../../UI/HeaderMoves/MovesContainer/MovesTitleLabel"), NodePath("../../UI/HeaderMoves/MovesContainer/MovesLabel/AddMovesLabel"), NodePath("../../UI/PopupConfirm/PopupDialog/VBoxContainer/VBoxContainer/AcceptButton"), NodePath("../../UI/PopupEndGame/PopupDialog/VBoxContainer/VBoxButtons/NewGameButton") ]
+_labels_paths = [ NodePath("../../UI/ScoresContainer/ScoreContainer/ScoreLabel"), NodePath("../../UI/ScoresContainer/ScoreContainer/ScoreTitleLabel"), NodePath("../../UI/ScoresContainer/HighscoreContainer/HighscoreLabel"), NodePath("../../UI/ScoresContainer/HighscoreContainer/HighscoreTitleLabel"), NodePath("../../UI/MenuVisual/Menu/SettingsLabel"), NodePath("../../UI/MenuVisual/Menu/Options/Restart/Label"), NodePath("../../UI/MenuVisual/Menu/Options/Tutorial/Label"), NodePath("../../UI/MenuVisual/Menu/Options/Colorblind/Label"), NodePath("../../UI/MenuVisual/Menu/Options/Theme/Label"), NodePath("../../UI/MenuVisual/Menu/Options/Sound/Label"), NodePath("../../UI/ScoresContainer/ScoreContainer/ScoreLabel/AddScoreLabel"), NodePath("../../UI/PopupConfirm/PopupDialog/VBoxContainer/Label"), NodePath("../../UI/PopupEndGame/PopupDialog/VBoxContainer/VBoxScore/FinalScore"), NodePath("../../UI/PopupEndGame/PopupDialog/VBoxContainer/VBoxScore/ScoreLabel"), NodePath("../../UI/PopupEndGame/PopupDialog/Label"), NodePath("../DotEffects/CanvasLayer/Control/AdditionalMovesLabels/PlusLabel"), NodePath("../DotEffects/CanvasLayer/Control/AdditionalMovesLabels/CountLabel"), NodePath("../DotEffects/CanvasLayer/Control/AdditionalMovesLabels/MovesLabel") ]
+_backgrounds_paths = [ NodePath("../../Background/ColorRect"), NodePath("../../UI/MenuVisual/Menu"), NodePath("../../UI/PopupConfirm/PopupDialog"), NodePath("../../UI/PopupConfirm/ColorRect"), NodePath("../../Core/Game/CanvasLayer/TransitionColorRect"), NodePath("../../UI/PopupEndGame/PopupDialog"), NodePath("../../UI/PopupEndGame/ColorRect"), NodePath("../../Core/Game/CanvasLayer/TransitionColorRect") ]
+
+[node name="ColorblindMode" type="Node" parent="Effects"]
+script = ExtResource( 32 )
+_icons = [ ExtResource( 34 ), ExtResource( 35 ), ExtResource( 33 ), ExtResource( 36 ), ExtResource( 37 ), ExtResource( 38 ), ExtResource( 39 ) ]
+
+[node name="DotEffects" type="Node" parent="Effects"]
+script = ExtResource( 1 )
+_dots_path = NodePath("../../Core/Dots")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="Effects/DotEffects"]
+layer = 0
+
+[node name="Control" type="Control" parent="Effects/DotEffects/CanvasLayer"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="ColorRect" type="ColorRect" parent="Effects/DotEffects/CanvasLayer/Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="AdditionalMovesLabels" parent="Effects/DotEffects/CanvasLayer/Control" instance=ExtResource( 45 )]
+visible = false
+
+[node name="SettingsVisual" type="Node" parent="Effects"]
+script = ExtResource( 27 )
+_settings_path = NodePath("../../Core/Settings")
+_settings_button_visual_path = NodePath("../../UI/SettingsButtonVisual")
+_menu_visual_path = NodePath("../../UI/MenuVisual")
+
+[node name="Sound" type="Node" parent="Effects"]
+script = ExtResource( 43 )
+_connect_sounds_rsc = [ ExtResource( 46 ), ExtResource( 47 ), ExtResource( 50 ), ExtResource( 48 ), ExtResource( 49 ) ]
+_disconnect_sounds_rsc = [ ExtResource( 51 ) ]
+_removed_sounds_rsc = [ ExtResource( 52 ) ]
+_loop_selected_sounds_rsc = [ ExtResource( 53 ) ]
+_interface_sounds_rsc = [ ExtResource( 57 ), ExtResource( 58 ) ]
+
+[node name="SoundManager" parent="Effects/Sound" instance=ExtResource( 44 )]
+
+[node name="SoundsJSWrapper" type="Node" parent="Effects/Sound"]
+script = ExtResource( 54 )
+
+[node name="Background" type="CanvasLayer" parent="."]
+layer = -1
+
+[node name="ColorRect" type="ColorRect" parent="Background"]
+self_modulate = Color( 0.992157, 0.988235, 0.988235, 1 )
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="UI" type="CanvasLayer" parent="."]
+
+[node name="HeaderMoves" type="TextureRect" parent="UI"]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -376.0
+margin_top = -25.0
+margin_right = -120.0
+margin_bottom = 231.0
+texture = ExtResource( 6 )
+
+[node name="MovesContainer" type="VBoxContainer" parent="UI/HeaderMoves"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -89.6
+margin_top = -100.5
+margin_right = 89.6
+margin_bottom = 99.5
+alignment = 1
+
+[node name="MovesLabel" type="Label" parent="UI/HeaderMoves/MovesContainer"]
+margin_top = 47.0
+margin_right = 204.0
+margin_bottom = 104.0
+custom_fonts/font = ExtResource( 8 )
+text = "61728"
+align = 1
+script = ExtResource( 11 )
+
+[node name="AddMovesLabel" type="Label" parent="UI/HeaderMoves/MovesContainer/MovesLabel"]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_top = -32.0
+margin_bottom = 6.0
+custom_fonts/font = ExtResource( 31 )
+align = 2
+
+[node name="MovesTitleLabel" type="Label" parent="UI/HeaderMoves/MovesContainer"]
+margin_top = 108.0
+margin_right = 204.0
+margin_bottom = 153.0
+custom_fonts/font = ExtResource( 5 )
+text = "KEY_MOVES"
+align = 1
+
+[node name="ScoresContainer" type="HBoxContainer" parent="UI"]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -135.5
+margin_top = 49.0
+margin_right = 251.5
+margin_bottom = 155.0
+custom_constants/separation = 60
+alignment = 1
+
+[node name="ScoreContainer" type="VBoxContainer" parent="UI/ScoresContainer"]
+margin_right = 195.0
+margin_bottom = 106.0
+alignment = 1
+
+[node name="ScoreLabel" type="Label" parent="UI/ScoresContainer/ScoreContainer"]
+self_modulate = Color( 0.368627, 0.396078, 0.47451, 1 )
+margin_right = 195.0
+margin_bottom = 57.0
+custom_fonts/font = ExtResource( 8 )
+text = "7000"
+align = 1
+script = ExtResource( 9 )
+_dots_path = NodePath("../../../../Core/Dots")
+_scores_and_colors_count = [ [ -1, 4 ], [ 200, 5 ], [ 1000, 6 ], [ 2000, 7 ] ]
+
+[node name="AddScoreLabel" type="Label" parent="UI/ScoresContainer/ScoreContainer/ScoreLabel"]
+self_modulate = Color( 0.368627, 0.396078, 0.47451, 1 )
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -27.0
+margin_top = -32.0
+margin_right = 27.0
+margin_bottom = 6.0
+custom_fonts/font = ExtResource( 31 )
+align = 2
+
+[node name="ScoreTitleLabel" type="Label" parent="UI/ScoresContainer/ScoreContainer"]
+self_modulate = Color( 0.368627, 0.396078, 0.47451, 1 )
+margin_top = 61.0
+margin_right = 195.0
+margin_bottom = 106.0
+custom_fonts/font = ExtResource( 5 )
+text = "KEY_SCORE"
+align = 1
+
+[node name="HighscoreContainer" type="VBoxContainer" parent="UI/ScoresContainer"]
+margin_left = 255.0
+margin_right = 537.0
+margin_bottom = 106.0
+alignment = 1
+
+[node name="HighscoreLabel" type="Label" parent="UI/ScoresContainer/HighscoreContainer"]
+self_modulate = Color( 0.368627, 0.396078, 0.47451, 1 )
+margin_right = 282.0
+margin_bottom = 57.0
+custom_fonts/font = ExtResource( 8 )
+text = "76123"
+align = 1
+script = ExtResource( 23 )
+_highscore_label_path = NodePath(".")
+
+[node name="HighscoreTitleLabel" type="Label" parent="UI/ScoresContainer/HighscoreContainer"]
+self_modulate = Color( 0.368627, 0.396078, 0.47451, 1 )
+margin_top = 61.0
+margin_right = 282.0
+margin_bottom = 106.0
+custom_fonts/font = ExtResource( 5 )
+text = "KEY_HIGHSCORE"
+align = 1
+
+[node name="MenuVisual" type="Node" parent="UI"]
+script = ExtResource( 20 )
+
+[node name="Menu" type="ColorRect" parent="UI/MenuVisual"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 1, 1, 1, 0.980392 )
+
+[node name="SettingsLabel" type="Button" parent="UI/MenuVisual/Menu"]
+self_modulate = Color( 0.368627, 0.396078, 0.47451, 1 )
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = 22.0
+margin_top = 60.0
+margin_right = 244.0
+margin_bottom = 105.0
+rect_min_size = Vector2( 254, 0 )
+custom_fonts/font = ExtResource( 5 )
+custom_styles/focus = SubResource( 13 )
+text = "KEY_QUIT_MENU"
+flat = true
+align = 0
+
+[node name="Options" type="VBoxContainer" parent="UI/MenuVisual/Menu"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -340.0
+margin_top = -470.0
+margin_right = 340.0
+margin_bottom = 514.0
+custom_constants/separation = 20
+alignment = 2
+
+[node name="Restart" type="Control" parent="UI/MenuVisual/Menu/Options"]
+margin_top = 554.0
+margin_right = 680.0
+margin_bottom = 624.0
+rect_min_size = Vector2( 0, 70 )
+script = ExtResource( 17 )
+_animation_player_path = NodePath("AnimationPlayer")
+_settings_path = NodePath("../../../../../Core/Settings")
+_settings_button_visual_path = NodePath("../../../../SettingsButtonVisual")
+_moves_path = NodePath("../../../../HeaderMoves/MovesContainer/MovesLabel")
+_score_path = NodePath("../../../../ScoresContainer/ScoreContainer/ScoreLabel")
+_highscore_path = NodePath("../../../../ScoresContainer/HighscoreContainer/HighscoreLabel")
+_popup_confirm_path = NodePath("../../../../PopupConfirm")
+
+[node name="Label" type="Button" parent="UI/MenuVisual/Menu/Options/Restart"]
+self_modulate = Color( 0.368627, 0.396078, 0.47451, 1 )
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+margin_left = -590.0
+margin_top = -35.0
+margin_right = -90.0
+margin_bottom = 35.0
+rect_min_size = Vector2( 500, 0 )
+custom_fonts/font = ExtResource( 5 )
+custom_styles/focus = SubResource( 14 )
+text = "KEY_RESTART"
+flat = true
+align = 2
+
+[node name="Button" type="Button" parent="UI/MenuVisual/Menu/Options/Restart"]
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+margin_left = -96.0
+margin_top = -35.0
+margin_right = 20.0
+margin_bottom = 35.0
+rect_min_size = Vector2( 96, 0 )
+rect_pivot_offset = Vector2( 58, 35 )
+custom_styles/focus = SubResource( 8 )
+icon = ExtResource( 14 )
+flat = true
+icon_align = 1
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="UI/MenuVisual/Menu/Options/Restart"]
+anims/RESET = SubResource( 19 )
+anims/rotate_icon = SubResource( 20 )
+
+[node name="Tutorial" type="Control" parent="UI/MenuVisual/Menu/Options"]
+margin_top = 644.0
+margin_right = 680.0
+margin_bottom = 714.0
+rect_min_size = Vector2( 0, 70 )
+script = ExtResource( 42 )
+_score_path = NodePath("../../../../ScoresContainer/ScoreContainer/ScoreLabel")
+_highscore_path = NodePath("../../../../ScoresContainer/HighscoreContainer/HighscoreLabel")
+_player_prefs_path = NodePath("../../../../../Core/PlayerPrefs")
+_popup_confirm_path = NodePath("../../../../PopupConfirm")
+_transition_color_rect_path = NodePath("../../../../../Core/Game/CanvasLayer/TransitionColorRect")
+_scene_root_path = NodePath("../../../../..")
+_theme_changer_path = NodePath("../../../../../Effects/ThemeChanger")
+_colorblind_mode_path = NodePath("../../../../../Effects/ColorblindMode")
+_sound_path = NodePath("../../../../../Effects/Sound")
+_tutorial_scene_file_path = "res://source/nodes/tutorial_scene.tscn"
+_tutorial_theme_changer_path = "Core/ThemeChanger"
+_tutorial_colorblind_mode_path = "Core/ColorblindMode"
+_tutorial_sound_path = "Core/Sound"
+
+[node name="Label" type="Button" parent="UI/MenuVisual/Menu/Options/Tutorial"]
+self_modulate = Color( 0.368627, 0.396078, 0.47451, 1 )
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+margin_left = -590.0
+margin_top = -35.0
+margin_right = -90.0
+margin_bottom = 35.0
+rect_min_size = Vector2( 500, 0 )
+custom_fonts/font = ExtResource( 5 )
+custom_styles/focus = SubResource( 14 )
+text = "KEY_TUTORIAL"
+flat = true
+align = 2
+__meta__ = {
+"_editor_description_": ""
+}
+
+[node name="Button" type="Button" parent="UI/MenuVisual/Menu/Options/Tutorial"]
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+margin_left = -96.0
+margin_top = -35.0
+margin_right = 20.0
+margin_bottom = 35.0
+rect_pivot_offset = Vector2( 58, 35 )
+custom_styles/focus = SubResource( 8 )
+icon = ExtResource( 16 )
+flat = true
+icon_align = 1
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="UI/MenuVisual/Menu/Options/Tutorial"]
+playback_speed = 6.0
+anims/RESET = SubResource( 21 )
+anims/wiggle = ExtResource( 59 )
+
+[node name="Colorblind" type="Control" parent="UI/MenuVisual/Menu/Options"]
+margin_top = 734.0
+margin_right = 680.0
+margin_bottom = 804.0
+rect_min_size = Vector2( 0, 70 )
+script = ExtResource( 40 )
+_settings_path = NodePath("../../../../../Core/Settings")
+
+[node name="Label" type="Button" parent="UI/MenuVisual/Menu/Options/Colorblind"]
+self_modulate = Color( 0.368627, 0.396078, 0.47451, 1 )
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+margin_left = -590.0
+margin_top = -35.0
+margin_right = -90.0
+margin_bottom = 35.0
+rect_min_size = Vector2( 500, 0 )
+custom_fonts/font = ExtResource( 5 )
+custom_styles/focus = SubResource( 14 )
+text = "KEY_COLORBLIND"
+flat = true
+align = 2
+__meta__ = {
+"_editor_description_": ""
+}
+
+[node name="Button" type="Button" parent="UI/MenuVisual/Menu/Options/Colorblind"]
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+margin_left = -96.0
+margin_top = -35.0
+margin_right = 20.0
+margin_bottom = 35.0
+rect_pivot_offset = Vector2( 58, 35 )
+custom_styles/focus = SubResource( 8 )
+icon = ExtResource( 15 )
+flat = true
+icon_align = 1
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="UI/MenuVisual/Menu/Options/Colorblind"]
+playback_speed = 6.0
+anims/animation_ui_wiggle = ExtResource( 59 )
+
+[node name="Theme" type="Control" parent="UI/MenuVisual/Menu/Options"]
+margin_top = 824.0
+margin_right = 680.0
+margin_bottom = 894.0
+rect_min_size = Vector2( 0, 70 )
+script = ExtResource( 28 )
+_settings_path = NodePath("../../../../../Core/Settings")
+_light_mode_texture = ExtResource( 30 )
+_dark_mode_texture = ExtResource( 29 )
+
+[node name="Label" type="Button" parent="UI/MenuVisual/Menu/Options/Theme"]
+self_modulate = Color( 0.368627, 0.396078, 0.47451, 1 )
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+margin_left = -590.0
+margin_top = -35.0
+margin_right = -90.0
+margin_bottom = 35.0
+rect_min_size = Vector2( 500, 0 )
+custom_fonts/font = ExtResource( 5 )
+custom_styles/focus = SubResource( 14 )
+text = "KEY_THEME"
+flat = true
+align = 2
+__meta__ = {
+"_editor_description_": ""
+}
+
+[node name="Button" type="Button" parent="UI/MenuVisual/Menu/Options/Theme"]
+self_modulate = Color( 0.945098, 0.733333, 0.0627451, 1 )
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+margin_left = -96.0
+margin_top = -35.0
+margin_right = 20.0
+margin_bottom = 35.0
+rect_pivot_offset = Vector2( 58, 35 )
+custom_styles/focus = SubResource( 8 )
+icon = ExtResource( 30 )
+flat = true
+icon_align = 1
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="UI/MenuVisual/Menu/Options/Theme"]
+playback_speed = 6.0
+anims/RESET = SubResource( 22 )
+anims/animation_ui_scale_in_out = ExtResource( 60 )
+
+[node name="Sound" type="Control" parent="UI/MenuVisual/Menu/Options"]
+margin_top = 914.0
+margin_right = 680.0
+margin_bottom = 984.0
+rect_min_size = Vector2( 0, 70 )
+rect_pivot_offset = Vector2( 58, 35 )
+script = ExtResource( 55 )
+_sounds_path = NodePath("../../../../../Effects/Sound")
+_sound_on_texture = ExtResource( 18 )
+_sound_off_texture = ExtResource( 56 )
+
+[node name="Label" type="Button" parent="UI/MenuVisual/Menu/Options/Sound"]
+self_modulate = Color( 0.368627, 0.396078, 0.47451, 1 )
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+margin_left = -590.0
+margin_top = -35.0
+margin_right = -90.0
+margin_bottom = 35.0
+rect_min_size = Vector2( 500, 0 )
+custom_fonts/font = ExtResource( 5 )
+custom_styles/focus = SubResource( 14 )
+text = "KEY_SOUND"
+flat = true
+align = 2
+__meta__ = {
+"_editor_description_": ""
+}
+
+[node name="Button" type="Button" parent="UI/MenuVisual/Menu/Options/Sound"]
+self_modulate = Color( 0.945098, 0.733333, 0.0627451, 1 )
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+margin_left = -96.0
+margin_top = -35.0
+margin_right = 20.0
+margin_bottom = 35.0
+rect_pivot_offset = Vector2( 58, 35 )
+custom_styles/focus = SubResource( 8 )
+icon = ExtResource( 18 )
+flat = true
+icon_align = 1
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="UI/MenuVisual/Menu/Options/Sound"]
+playback_speed = 6.0
+anims/RESET = SubResource( 23 )
+anims/animation_ui_scale_in_out = ExtResource( 60 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="UI/MenuVisual"]
+reset_on_save = false
+anims/RESET = SubResource( 9 )
+anims/menu_show = SubResource( 10 )
+
+[node name="SettingsButtonVisual" type="Node" parent="UI"]
+script = ExtResource( 21 )
+_settings_label_button_path = NodePath("../MenuVisual/Menu/SettingsLabel")
+
+[node name="SettingsButton" type="Button" parent="UI/SettingsButtonVisual"]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = 264.0
+margin_top = 49.0
+margin_right = 340.0
+margin_bottom = 119.0
+rect_scale = Vector2( 1.2, 1.2 )
+rect_pivot_offset = Vector2( 38, 35 )
+custom_styles/focus = SubResource( 5 )
+icon = ExtResource( 7 )
+flat = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="UI/SettingsButtonVisual"]
+anims/RESET = SubResource( 6 )
+anims/settings_button_rotation = SubResource( 7 )
+
+[node name="PopupConfirm" parent="UI" instance=ExtResource( 41 )]
+
+[node name="PopupEndGame" parent="UI" instance=ExtResource( 63 )]
+
+[editable path="Effects/DotEffects/CanvasLayer/Control/AdditionalMovesLabels"]

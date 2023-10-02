@@ -1,0 +1,11 @@
+[gd_resource type="Resource" load_steps=2 format=2]
+
+[ext_resource path="res://source/scripts/quests/goals/loop_connected_goal.gd" type="Script" id=1]
+
+[resource]
+script = ExtResource( 1 )
+_title = ""
+_description = ""
+_dots_path = "/root/TutorialScene/Core/Dots"
+_dots_effects_path = "/root/TutorialScene/Core/DotEffects"
+_moves_path = "/root/TutorialScene/UI/HeaderMoves/MovesContainer/MovesLabel"

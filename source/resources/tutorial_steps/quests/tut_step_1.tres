@@ -1,0 +1,17 @@
+[gd_resource type="Resource" load_steps=7 format=2]
+
+[ext_resource path="res://source/scripts/quests/quest_base.gd" type="Script" id=1]
+[ext_resource path="res://source/resources/tutorial_steps/actions/call_next_tut_step.tres" type="Resource" id=2]
+[ext_resource path="res://source/resources/tutorial_steps/goals/clear_all_dots_goal.tres" type="Resource" id=3]
+[ext_resource path="res://source/resources/tutorial_steps/actions/act_set_step_1_visible.tres" type="Resource" id=4]
+[ext_resource path="res://source/resources/tutorial_steps/actions/act_set_step_1_invisible.tres" type="Resource" id=5]
+[ext_resource path="res://source/resources/tutorial_steps/actions/spawn_dots_step_1.tres" type="Resource" id=6]
+
+[resource]
+script = ExtResource( 1 )
+_id = 1
+_title = ""
+_description = ""
+_goals = [ ExtResource( 3 ) ]
+_actions_on_start = [ ExtResource( 4 ), ExtResource( 6 ) ]
+_actions_on_finish = [ ExtResource( 5 ), ExtResource( 2 ) ]

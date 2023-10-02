@@ -1,0 +1,9 @@
+[gd_resource type="Resource" load_steps=2 format=2]
+
+[ext_resource path="res://source/scripts/visuals/theme_colors.gd" type="Script" id=1]
+
+[resource]
+script = ExtResource( 1 )
+_label_accent_color = Color( 0.992157, 0.988235, 0.988235, 1 )
+_label_color = Color( 0.368627, 0.396078, 0.47451, 1 )
+_background_color = Color( 0.992157, 0.988235, 0.988235, 1 )
