@@ -4,6 +4,7 @@
 
 [resource]
 script = ExtResource( 1 )
+_theme_name = "Light"
 _label_accent_color = Color( 0.992157, 0.988235, 0.988235, 1 )
 _label_color = Color( 0.368627, 0.396078, 0.47451, 1 )
 _background_color = Color( 0.992157, 0.988235, 0.988235, 1 )

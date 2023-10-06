@@ -19,6 +19,26 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://source/scripts/visuals/additional_moves_labels.gd"
 }, {
+"base": "Node",
+"class": "AudioBase",
+"language": "GDScript",
+"path": "res://source/scripts/audio/audio_base.gd"
+}, {
+"base": "AudioBase",
+"class": "AudioPC",
+"language": "GDScript",
+"path": "res://source/scripts/audio/audio_pc.gd"
+}, {
+"base": "AudioBase",
+"class": "AudioWeb",
+"language": "GDScript",
+"path": "res://source/scripts/audio/audio_web.gd"
+}, {
+"base": "Node",
+"class": "AutoloadPlaceholder",
+"language": "GDScript",
+"path": "res://source/scripts/autoload_placeholder.gd"
+}, {
 "base": "ActionBase",
 "class": "CallMethodAction",
 "language": "GDScript",
@@ -105,6 +125,11 @@ _global_script_classes=[ {
 "path": "res://source/scripts/dots/highscore.gd"
 }, {
 "base": "Node",
+"class": "HowlerJSWrapper",
+"language": "GDScript",
+"path": "res://addons/howler_js/howler_js_wrapper.gd"
+}, {
+"base": "Node",
 "class": "LabelButtonVisual",
 "language": "GDScript",
 "path": "res://source/scripts/ui/label_buttons/label_button_visual.gd"
@@ -113,6 +138,11 @@ _global_script_classes=[ {
 "class": "LanguageButton",
 "language": "GDScript",
 "path": "res://source/scripts/ui/language_button.gd"
+}, {
+"base": "Node",
+"class": "LanguageChanger",
+"language": "GDScript",
+"path": "res://source/scripts/language_changer.gd"
 }, {
 "base": "Node",
 "class": "LocaleChangeUIEffect",
@@ -184,6 +214,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://source/scripts/core/saveable.gd"
 }, {
+"base": "Node",
+"class": "SceneChanger",
+"language": "GDScript",
+"path": "res://source/scripts/scene_changer.gd"
+}, {
 "base": "Saveable",
 "class": "Score",
 "language": "GDScript",
@@ -229,6 +264,21 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://source/scripts/sounds_js_wrapper.gd"
 }, {
+"base": "Node",
+"class": "StartSceneBase",
+"language": "GDScript",
+"path": "res://source/scripts/core/start_scene/start_scene_base.gd"
+}, {
+"base": "StartSceneBase",
+"class": "StartSceneWebGL",
+"language": "GDScript",
+"path": "res://source/scripts/core/start_scene/start_scene_webgl.gd"
+}, {
+"base": "StartSceneWebGL",
+"class": "StartSceneYandex",
+"language": "GDScript",
+"path": "res://source/scripts/core/start_scene/start_scene_yandex.gd"
+}, {
 "base": "QuestGoalBase",
 "class": "TapAnywhereGoal",
 "language": "GDScript",
@@ -244,10 +294,20 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://source/scripts/visuals/theme_changer.gd"
 }, {
-"base": "Reference",
+"base": "Resource",
 "class": "ThemeColors",
 "language": "GDScript",
 "path": "res://source/scripts/visuals/theme_colors.gd"
+}, {
+"base": "Node",
+"class": "ThemeNodesCollection",
+"language": "GDScript",
+"path": "res://source/scripts/themes/theme_nodes_collection.gd"
+}, {
+"base": "Node",
+"class": "Transition",
+"language": "GDScript",
+"path": "res://source/scripts/visuals/transition.gd"
 }, {
 "base": "Node",
 "class": "Tutorial",
@@ -270,18 +330,22 @@ _global_script_classes=[ {
 "path": "res://source/scripts/dots/tutorial_dots.gd"
 }, {
 "base": "Node",
-"class": "YandexSDK",
+"class": "YandexSDKWrapper",
 "language": "GDScript",
 "path": "res://addons/yandex_sdk/yandex_sdk.gd"
 }, {
 "base": "Node",
-"class": "YandexSDKWrapper",
+"class": "YandexSDKWrapperOld",
 "language": "GDScript",
-"path": "res://source/scripts/yandex_sdk_wrapper.gd"
+"path": "res://source/scripts/yandex_sdk_wrapper_old.gd"
 } ]
 _global_script_class_icons={
 "ActionBase": "",
 "AdditionalMovesLabels": "",
+"AudioBase": "",
+"AudioPC": "",
+"AudioWeb": "",
+"AutoloadPlaceholder": "",
 "CallMethodAction": "",
 "ClearAllDotsGoal": "",
 "ColorblindButtonVisual": "",
@@ -299,8 +363,10 @@ _global_script_class_icons={
 "GameInput": "",
 "GameYandex": "",
 "Highscore": "",
+"HowlerJSWrapper": "",
 "LabelButtonVisual": "",
 "LanguageButton": "",
+"LanguageChanger": "",
 "LocaleChangeUIEffect": "",
 "LoopConnectedGoal": "",
 "MenuVisual": "",
@@ -315,6 +381,7 @@ _global_script_class_icons={
 "QuestGoalBase": "",
 "RestartButtonVisual": "",
 "Saveable": "",
+"SceneChanger": "",
 "Score": "",
 "Settings": "",
 "SettingsButtonVisual": "",
@@ -324,29 +391,37 @@ _global_script_class_icons={
 "SoundButtonVisual": "",
 "SoundEffects": "",
 "SoundsJSWrapper": "",
+"StartSceneBase": "",
+"StartSceneWebGL": "",
+"StartSceneYandex": "",
 "TapAnywhereGoal": "",
 "ThemeButtonVisual": "",
 "ThemeChanger": "",
 "ThemeColors": "",
+"ThemeNodesCollection": "",
+"Transition": "",
 "Tutorial": "",
 "TutorialButtonVisual": "",
 "TutorialDotEffects": "",
 "TutorialDots": "",
-"YandexSDK": "",
-"YandexSDKWrapper": ""
+"YandexSDKWrapper": "",
+"YandexSDKWrapperOld": ""
 }
 
 [application]
 
 config/name="Connect"
-run/main_scene="res://source/nodes/start_screen_yandex.tscn"
+run/main_scene="res://source/nodes/scenes/webgl/start_scene_webgl.tscn"
 config/icon="res://assets/images/icon.png"
 
 [autoload]
 
+PlayerPrefsAutoload="*res://source/scripts/core/player_prefs.gd"
+SceneChangerAutoload="*res://source/scripts/scene_changer.gd"
 SoundManager="*res://addons/sound_manager/sound_manager.tscn"
-YandexSdkWrapper="*res://source/scripts/yandex_sdk_wrapper.gd"
-YandexSdk="*res://addons/yandex_sdk/yandex_sdk.gd"
+HowlerJS="*res://addons/howler_js/howler_js_wrapper.gd"
+ThemeChangerAutoload="*res://source/nodes/themes/theme_changer.tscn"
+TransitionAutoload="*res://source/nodes/transition_node.tscn"
 
 [display]
 
@@ -362,7 +437,7 @@ window/stretch/aspect="expand"
 
 [editor_plugins]
 
-enabled=PoolStringArray( "res://addons/sound_manager/plugin.cfg" )
+enabled=PoolStringArray( "res://addons/howler_js/plugin.cfg", "res://addons/sound_manager/plugin.cfg" )
 
 [gui]
 

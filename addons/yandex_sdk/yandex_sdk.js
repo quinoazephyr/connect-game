@@ -31,6 +31,20 @@ function InitPlayer(full, callback) {
 }
 
 
+let lb;
+function InitLeaderboards(callback) {
+    ysdk.getLeaderboards()
+  .then(_lb =>{
+         lb = _lb;
+        callback();
+    });
+}
+
+function SetLeaderboardScore(leaderboardName, score) {
+    lb.setLeaderboardScore(leaderboardName, score);
+    console.log("highscore: ", score);
+}
+
 function ShowAd(callback) {
     console.log('Show ad');
     ysdk.adv.showFullscreenAdv({
@@ -80,6 +94,16 @@ function SaveData(data, force) {
     });
 }
 
+function SaveDataToSafeStorage(data) {
+    console.log('Data save to safe storage ', data);
+    ysdk.getStorage().then(safeStorage => {
+        Object.keys(data).forEach(function(key) {
+            safeStorage.setItem(key, data[key]);
+        });
+        console.log('Data saved to safe storage');
+    })
+}
+
 
 function SaveStats(data) {
     console.log('Stats save ', data);
@@ -90,10 +114,10 @@ function SaveStats(data) {
 
 
 function LoadData(keys, callback) {
-    console.log('Data load ', keys);
+    console.log('Data load ');
     player.getData(keys).then(
         result => {
-            console.log('Data loaded');
+            console.log('Data loaded', result);
             callback("loaded", result);
         },
         error => {
@@ -101,6 +125,18 @@ function LoadData(keys, callback) {
             callback("error");
         }
     );
+}
+
+function LoadDataFromSafeStorage(keys, callback) {
+    console.log('Data load from safe storage');
+    ysdk.getStorage().then(safeStorage => {
+        var result  = {};
+        keys.forEach(function(key) {
+            result[key] = safeStorage.getItem(key);
+        });
+         console.log('Data loaded from safe storage', result);
+        callback("loaded", result);
+    })
 }
 
 
@@ -116,4 +152,8 @@ function LoadStats(keys, callback) {
             callback("error");
         }
     );
+}
+
+function GetLocale(callback) {
+    callback(ysdk.environment.i18n.lang);
 }

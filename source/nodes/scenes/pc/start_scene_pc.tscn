@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://source/scripts/audio/audio_pc.gd" type="Script" id=1]
+[ext_resource path="res://source/nodes/scenes/start_scene_base.tscn" type="PackedScene" id=2]
+
+[node name="StartSceneBase" instance=ExtResource( 2 )]
+
+[node name="Audio" parent="." index="0"]
+script = ExtResource( 1 )

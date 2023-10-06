@@ -1,4 +1,4 @@
-class_name YandexSDK
+class_name YandexSDKWrapper
 extends Node
 
 signal rewarded_ad(result)

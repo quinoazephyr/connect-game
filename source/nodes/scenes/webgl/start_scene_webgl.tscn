@@ -1,0 +1,11 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://source/nodes/scenes/start_scene_base.tscn" type="PackedScene" id=1]
+[ext_resource path="res://source/scripts/audio/audio_web.gd" type="Script" id=2]
+[ext_resource path="res://source/scripts/core/start_scene/start_scene_webgl.gd" type="Script" id=3]
+
+[node name="StartSceneWebGL" instance=ExtResource( 1 )]
+script = ExtResource( 3 )
+
+[node name="Audio" parent="." index="0"]
+script = ExtResource( 2 )

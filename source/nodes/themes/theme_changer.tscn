@@ -1,0 +1,9 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://source/scripts/visuals/theme_changer.gd" type="Script" id=1]
+[ext_resource path="res://source/resources/themes/light_theme.tres" type="Resource" id=2]
+[ext_resource path="res://source/resources/themes/dark_theme.tres" type="Resource" id=3]
+
+[node name="ThemeChanger" type="Node"]
+script = ExtResource( 1 )
+_themes = [ ExtResource( 2 ), ExtResource( 3 ) ]

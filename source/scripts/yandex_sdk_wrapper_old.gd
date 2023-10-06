@@ -1,4 +1,4 @@
-class_name YandexSDKWrapper
+class_name YandexSDKWrapperOld
 extends Node
 
 signal rewarded_ad_success
@@ -20,13 +20,13 @@ var _locale_name = "en"
 var _loaded_data
 var _loaded_data_from_safe_storage
 
-onready var _yandex_sdk = get_node("/root/YandexSdk")
+onready var _yandex_sdk = get_node("/root/YandexSDK")
 
 func _ready():
 	call_deferred("initialize", _yandex_sdk)
 	_yandex_sdk.connect("game_initialized", self, "show_ad")
 
-func initialize(yandex_sdk : YandexSDK):
+func initialize(yandex_sdk : YandexSDKWrapper):
 	_yandex_sdk = yandex_sdk
 	
 	_yandex_sdk.init_game()

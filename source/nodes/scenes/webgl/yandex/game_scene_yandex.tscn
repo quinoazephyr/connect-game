@@ -1,0 +1,5 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://source/nodes/scenes/webgl/game_scene_webgl.tscn" type="PackedScene" id=1]
+
+[node name="GameSceneYandex" instance=ExtResource( 1 )]

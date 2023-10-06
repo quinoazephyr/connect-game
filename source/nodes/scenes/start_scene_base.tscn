@@ -1,0 +1,177 @@
+[gd_scene load_steps=15 format=2]
+
+[ext_resource path="res://source/nodes/audio/audio.tscn" type="PackedScene" id=1]
+[ext_resource path="res://source/scripts/themes/theme_nodes_collection.gd" type="Script" id=2]
+[ext_resource path="res://source/scripts/language_changer.gd" type="Script" id=3]
+[ext_resource path="res://source/scripts/core/start_scene/start_scene_base.gd" type="Script" id=4]
+[ext_resource path="res://assets/images/ui/uk.png" type="Texture" id=6]
+[ext_resource path="res://assets/images/ui/change_language_button.png" type="Texture" id=7]
+[ext_resource path="res://assets/images/ui/popup_play_again_button.png" type="Texture" id=8]
+[ext_resource path="res://assets/images/icon_rounded.png" type="Texture" id=9]
+[ext_resource path="res://source/scripts/ui/locale_change_ui_effect.gd" type="Script" id=10]
+[ext_resource path="res://source/scripts/ui/language_button.gd" type="Script" id=11]
+[ext_resource path="res://source/scripts/ui/play_game_button.gd" type="Script" id=12]
+[ext_resource path="res://source/resources/fonts/title_font.tres" type="DynamicFont" id=13]
+[ext_resource path="res://source/resources/fonts/header_font.tres" type="DynamicFont" id=14]
+
+[sub_resource type="StyleBoxEmpty" id=1]
+
+[node name="StartSceneBase" type="CanvasLayer"]
+script = ExtResource( 4 )
+
+[node name="Audio" parent="." instance=ExtResource( 1 )]
+__meta__ = {
+"_editor_description_": ""
+}
+_sounds_paths = {
+"dot_connection_0": "res://assets/sounds/dot_connection/footstep_wood_000.ogg",
+"dot_connection_1": "res://assets/sounds/dot_connection/footstep_wood_001.ogg",
+"dot_connection_2": "res://assets/sounds/dot_connection/footstep_wood_002.ogg",
+"dot_connection_3": "res://assets/sounds/dot_connection/footstep_wood_003.ogg",
+"dot_connection_4": "res://assets/sounds/dot_connection/footstep_wood_004.ogg",
+"dot_disconnection_0": "res://assets/sounds/dot_disconnection/whoosh_sound_effect_001.ogg",
+"dots_loop_selected_0": "res://assets/sounds/dots_loop_selected/drop_004.ogg",
+"dots_removed_0": "res://assets/sounds/dots_removed/pop_001.ogg",
+"end_game": "res://assets/sounds/interface/victory_sound_000.ogg",
+"ui_button_press": "res://assets/sounds/interface/click_003.ogg"
+}
+
+[node name="ThemeNodesCollection" type="Node" parent="."]
+script = ExtResource( 2 )
+_labels_paths = [ NodePath("../Control/VBoxContainer/PlayButton/Label"), NodePath("../Control/VBoxContainer/LanguageButton/Label"), NodePath("../Control/HBoxContainer/Label") ]
+_backgrounds_paths = [ NodePath("../Control/ColorRect") ]
+
+[node name="LanguageChanger" type="Node" parent="."]
+script = ExtResource( 3 )
+_locales = [ "en", "ru" ]
+
+[node name="Control" type="Control" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="ColorRect" type="ColorRect" parent="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Control"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -196.0
+margin_top = 260.0
+margin_right = 196.0
+margin_bottom = 452.0
+custom_constants/separation = 20
+alignment = 1
+script = ExtResource( 10 )
+_ui_elements_paths = [ NodePath("PlayButton/Label"), NodePath("LanguageButton/TextureRect"), NodePath("LanguageButton/Label"), NodePath("../HBoxContainer/Label") ]
+_language_changer_path = NodePath("../../LanguageChanger")
+
+[node name="PlayButton" type="Button" parent="Control/VBoxContainer"]
+margin_right = 392.0
+margin_bottom = 86.0
+custom_colors/font_color_disabled = Color( 1, 1, 1, 1 )
+custom_colors/font_color_focus = Color( 1, 1, 1, 1 )
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+custom_colors/font_color_hover = Color( 1, 1, 1, 1 )
+custom_colors/font_color_pressed = Color( 1, 1, 1, 1 )
+custom_fonts/font = ExtResource( 13 )
+custom_styles/focus = SubResource( 1 )
+icon = ExtResource( 8 )
+flat = true
+icon_align = 1
+script = ExtResource( 12 )
+_scene_root_path = NodePath("../../..")
+_main_scene_file_path = "res://source/nodes/scenes/start_scene_base.tscn"
+
+[node name="Label" type="Label" parent="Control/VBoxContainer/PlayButton"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -156.0
+margin_top = -23.0
+margin_right = 156.0
+margin_bottom = 23.0
+rect_pivot_offset = Vector2( 156, 23 )
+custom_fonts/font = ExtResource( 13 )
+text = "KEY_START_GAME"
+align = 1
+valign = 1
+
+[node name="LanguageButton" type="Button" parent="Control/VBoxContainer"]
+margin_top = 106.0
+margin_right = 392.0
+margin_bottom = 192.0
+custom_colors/font_color_disabled = Color( 1, 1, 1, 1 )
+custom_colors/font_color_focus = Color( 1, 1, 1, 1 )
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+custom_colors/font_color_hover = Color( 1, 1, 1, 1 )
+custom_colors/font_color_pressed = Color( 1, 1, 1, 1 )
+custom_fonts/font = ExtResource( 13 )
+custom_styles/focus = SubResource( 1 )
+icon = ExtResource( 7 )
+flat = true
+icon_align = 1
+script = ExtResource( 11 )
+_language_changer_path = NodePath("../../../LanguageChanger")
+
+[node name="TextureRect" type="TextureRect" parent="Control/VBoxContainer/LanguageButton"]
+anchor_bottom = 1.0
+margin_left = 30.0
+margin_top = 20.0
+margin_right = 76.0
+margin_bottom = -20.0
+rect_pivot_offset = Vector2( 23, 23 )
+texture = ExtResource( 6 )
+expand = true
+stretch_mode = 6
+
+[node name="Label" type="Label" parent="Control/VBoxContainer/LanguageButton"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -135.0
+margin_top = -23.0
+margin_right = 135.0
+margin_bottom = 23.0
+rect_min_size = Vector2( 270, 46 )
+rect_pivot_offset = Vector2( 135, 23 )
+custom_fonts/font = ExtResource( 13 )
+text = "KEY_LANGUAGE"
+align = 1
+valign = 1
+
+[node name="HBoxContainer" type="VBoxContainer" parent="Control"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -190.0
+margin_top = -340.0
+margin_right = 190.0
+margin_bottom = 115.0
+custom_constants/separation = 30
+alignment = 1
+
+[node name="GameIcon" type="TextureRect" parent="Control/HBoxContainer"]
+margin_top = 35.0
+margin_right = 380.0
+margin_bottom = 335.0
+rect_min_size = Vector2( 300, 300 )
+texture = ExtResource( 9 )
+expand = true
+stretch_mode = 6
+
+[node name="Label" type="Label" parent="Control/HBoxContainer"]
+margin_top = 365.0
+margin_right = 380.0
+margin_bottom = 420.0
+rect_min_size = Vector2( 380, 55 )
+rect_pivot_offset = Vector2( 190, 27.5 )
+custom_fonts/font = ExtResource( 14 )
+text = "KEY_GAME_TITLE"
+align = 1
+valign = 1

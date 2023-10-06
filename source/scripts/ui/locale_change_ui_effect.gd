@@ -1,31 +1,27 @@
 class_name LocaleChangeUIEffect
 extends Node
 
-
 export(Array) var _ui_elements_paths
-export(NodePath) var _locale_changer_path
+export(NodePath) var _language_changer_path
 
 var _ui_elements : Array
+var _tween
 
-onready var _locale_changer = get_node(_locale_changer_path)
+onready var _language_changer = get_node(_language_changer_path)
 
 func _ready():
 	for path in _ui_elements_paths:
 		var elem = get_node(path)
 		_ui_elements.append(elem)
-	_locale_changer.connect("locale_changed", self, "_bounce_elements")
-	var yandex_sdk_wrapper = get_tree().root.get_node("/root/YandexSdkWrapper")
-	yandex_sdk_wrapper.connect("locale_loaded", _locale_changer, "set_locale")
-	connect("tree_exiting", \
-			yandex_sdk_wrapper, \
-			"disconnect", \
-			["locale_loaded", _locale_changer, "set_locale"])
+	_language_changer.connect("language_changed", self, "bounce_elements")
 
-func _bounce_elements(locale_name):
-	var tween = get_tree().create_tween()
+func bounce_elements(locale_name):
+	if _tween:
+		_tween.kill()
+	_tween = create_tween()
 	for elem in _ui_elements:
-		tween.parallel().tween_property(elem, "rect_scale", Vector2.ONE * 1.5, 0.15)\
+		_tween.parallel().tween_property(elem, "rect_scale", Vector2.ONE * 1.5, 0.15)\
 				.from(Vector2.ONE)
-	tween.tween_property(self, "name", name, 0.0)
+	_tween.tween_property(self, "name", name, 0.0)
 	for elem in _ui_elements:
-		tween.parallel().tween_property(elem, "rect_scale", Vector2.ONE, 0.15)
+		_tween.parallel().tween_property(elem, "rect_scale", Vector2.ONE, 0.15)
