@@ -9,3 +9,6 @@ script = ExtResource( 3 )
 
 [node name="Audio" parent="." index="0"]
 script = ExtResource( 2 )
+
+[node name="PlayButton" parent="Control/VBoxContainer" index="0"]
+_next_scene_file_path = "res://source/nodes/scenes/webgl/game_scene_webgl.tscn"

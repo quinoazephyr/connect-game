@@ -3,7 +3,10 @@
 [ext_resource path="res://source/scripts/audio/audio_pc.gd" type="Script" id=1]
 [ext_resource path="res://source/nodes/scenes/start_scene_base.tscn" type="PackedScene" id=2]
 
-[node name="StartSceneBase" instance=ExtResource( 2 )]
+[node name="StartScenePC" instance=ExtResource( 2 )]
 
 [node name="Audio" parent="." index="0"]
 script = ExtResource( 1 )
+
+[node name="PlayButton" parent="Control/VBoxContainer" index="0"]
+_next_scene_file_path = "res://source/nodes/scenes/pc/game_scene_pc.tscn"

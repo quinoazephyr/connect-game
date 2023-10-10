@@ -13,8 +13,11 @@ var _is_muted : bool
 var _sounds : Dictionary # { name : [sounds] }
 var _sounds_ids_for_random_play : Dictionary # { name : [sounds_ids] }
 
-func _ready():
-	connect("ready", self, "load_sounds")
+func copy_from(origin : AudioBase):
+	_is_muted = origin._is_muted
+	_sounds = origin._sounds.duplicate(true)
+	_sounds_ids_for_random_play = \
+			origin._sounds_ids_for_random_play.duplicate(true)
 
 func load_sounds():
 	_sounds.clear()

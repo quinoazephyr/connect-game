@@ -10,7 +10,7 @@ onready var _settings_button_visual = get_node(_settings_button_visual_path)
 onready var _menu_visual = get_node(_menu_visual_path)
 
 func _ready():
-	_settings_button_visual.connect("button_pressed", self, "_toggle_menu")
+	_settings_button_visual.connect("pressed", self, "_toggle_menu")
 
 func _toggle_menu():
 	var old_menu_visible = _menu_visual.is_menu_visible()

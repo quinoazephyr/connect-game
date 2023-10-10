@@ -1,4 +1,4 @@
-[gd_scene load_steps=75 format=2]
+[gd_scene load_steps=74 format=2]
 
 [ext_resource path="res://source/scripts/visuals/dot_effects.gd" type="Script" id=1]
 [ext_resource path="res://source/scripts/dots/dots.gd" type="Script" id=2]
@@ -16,18 +16,18 @@
 [ext_resource path="res://assets/images/ui/restart_icon.png" type="Texture" id=14]
 [ext_resource path="res://assets/images/ui/colorblind_icon.png" type="Texture" id=15]
 [ext_resource path="res://assets/images/ui/tutorial_icon.png" type="Texture" id=16]
-[ext_resource path="res://source/scripts/ui/label_buttons/restart_button_visual.gd" type="Script" id=17]
+[ext_resource path="res://source/scripts/ui/label_buttons/restart_label_button.gd" type="Script" id=17]
 [ext_resource path="res://assets/images/ui/sound_on_icon.png" type="Texture" id=18]
 [ext_resource path="res://source/scripts/core/settings.gd" type="Script" id=19]
 [ext_resource path="res://source/scripts/ui/menu_visual.gd" type="Script" id=20]
-[ext_resource path="res://source/scripts/ui/settings_button_visual.gd" type="Script" id=21]
+[ext_resource path="res://source/scripts/ui/menu_label_button.gd" type="Script" id=21]
 [ext_resource path="res://source/scripts/core/player_prefs.gd" type="Script" id=22]
 [ext_resource path="res://source/scripts/dots/highscore.gd" type="Script" id=23]
 [ext_resource path="res://source/scripts/core/game.gd" type="Script" id=24]
 [ext_resource path="res://source/scripts/core/game_input.gd" type="Script" id=25]
 [ext_resource path="res://source/scripts/dots/connecting_line.gd" type="Script" id=26]
 [ext_resource path="res://source/scripts/ui/settings_visual.gd" type="Script" id=27]
-[ext_resource path="res://source/scripts/ui/label_buttons/theme_button_visual.gd" type="Script" id=28]
+[ext_resource path="res://source/scripts/ui/label_buttons/theme_label_button.gd" type="Script" id=28]
 [ext_resource path="res://assets/images/ui/theme_dark_icon.png" type="Texture" id=29]
 [ext_resource path="res://assets/images/ui/theme_light_icon.png" type="Texture" id=30]
 [ext_resource path="res://source/resources/fonts/digits_small_font.tres" type="DynamicFont" id=31]
@@ -39,9 +39,9 @@
 [ext_resource path="res://assets/images/colorblind/color_4.png" type="Texture" id=37]
 [ext_resource path="res://assets/images/colorblind/color_5.png" type="Texture" id=38]
 [ext_resource path="res://assets/images/colorblind/color_6.png" type="Texture" id=39]
-[ext_resource path="res://source/scripts/ui/label_buttons/colorblind_button_visual.gd" type="Script" id=40]
+[ext_resource path="res://source/scripts/ui/label_buttons/colorblind_label_button.gd" type="Script" id=40]
 [ext_resource path="res://source/nodes/popup_confirm.tscn" type="PackedScene" id=41]
-[ext_resource path="res://source/scripts/ui/label_buttons/tutorial_button_visual.gd" type="Script" id=42]
+[ext_resource path="res://source/scripts/ui/label_buttons/tutorial_label_button.gd" type="Script" id=42]
 [ext_resource path="res://source/scripts/dots/sound_effects.gd" type="Script" id=43]
 [ext_resource path="res://addons/sound_manager/sound_manager.tscn" type="PackedScene" id=44]
 [ext_resource path="res://source/nodes/additional_moves_labels.tscn" type="PackedScene" id=45]
@@ -54,8 +54,7 @@
 [ext_resource path="res://assets/sounds/dots_removed/pop_001.ogg" type="AudioStream" id=52]
 [ext_resource path="res://assets/sounds/dots_loop_selected/drop_004.ogg" type="AudioStream" id=53]
 [ext_resource path="res://source/scripts/sounds_js_wrapper.gd" type="Script" id=54]
-[ext_resource path="res://source/scripts/ui/label_buttons/sound_button_visual.gd" type="Script" id=55]
-[ext_resource path="res://assets/images/ui/sound_off_icon.png" type="Texture" id=56]
+[ext_resource path="res://source/scripts/ui/label_buttons/audio_label_button.gd" type="Script" id=55]
 [ext_resource path="res://assets/sounds/interface/click_003.ogg" type="AudioStream" id=57]
 [ext_resource path="res://assets/sounds/interface/victory_sound_000.ogg" type="AudioStream" id=58]
 [ext_resource path="res://source/resources/animations/animation_ui_wiggle.tres" type="Animation" id=59]
@@ -731,9 +730,6 @@ antialiased = true
 [node name="ThemeChanger" type="Node" parent="Effects"]
 script = ExtResource( 10 )
 _themes = [ ExtResource( 12 ), ExtResource( 13 ) ]
-_accent_labels_paths = [ NodePath("../../UI/HeaderMoves/MovesContainer/MovesLabel"), NodePath("../../UI/HeaderMoves/MovesContainer/MovesTitleLabel"), NodePath("../../UI/HeaderMoves/MovesContainer/MovesLabel/AddMovesLabel"), NodePath("../../UI/PopupConfirm/PopupDialog/VBoxContainer/VBoxContainer/AcceptButton"), NodePath("../../UI/PopupEndGame/PopupDialog/VBoxContainer/VBoxButtons/NewGameButton") ]
-_labels_paths = [ NodePath("../../UI/ScoresContainer/ScoreContainer/ScoreLabel"), NodePath("../../UI/ScoresContainer/ScoreContainer/ScoreTitleLabel"), NodePath("../../UI/ScoresContainer/HighscoreContainer/HighscoreLabel"), NodePath("../../UI/ScoresContainer/HighscoreContainer/HighscoreTitleLabel"), NodePath("../../UI/MenuVisual/Menu/SettingsLabel"), NodePath("../../UI/MenuVisual/Menu/Options/Restart/Label"), NodePath("../../UI/MenuVisual/Menu/Options/Tutorial/Label"), NodePath("../../UI/MenuVisual/Menu/Options/Colorblind/Label"), NodePath("../../UI/MenuVisual/Menu/Options/Theme/Label"), NodePath("../../UI/MenuVisual/Menu/Options/Sound/Label"), NodePath("../../UI/ScoresContainer/ScoreContainer/ScoreLabel/AddScoreLabel"), NodePath("../../UI/PopupConfirm/PopupDialog/VBoxContainer/Label"), NodePath("../../UI/PopupEndGame/PopupDialog/VBoxContainer/VBoxScore/FinalScore"), NodePath("../../UI/PopupEndGame/PopupDialog/VBoxContainer/VBoxScore/ScoreLabel"), NodePath("../../UI/PopupEndGame/PopupDialog/Label"), NodePath("../DotEffects/CanvasLayer/Control/AdditionalMovesLabels/PlusLabel"), NodePath("../DotEffects/CanvasLayer/Control/AdditionalMovesLabels/CountLabel"), NodePath("../DotEffects/CanvasLayer/Control/AdditionalMovesLabels/MovesLabel") ]
-_backgrounds_paths = [ NodePath("../../Background/ColorRect"), NodePath("../../UI/MenuVisual/Menu"), NodePath("../../UI/PopupConfirm/PopupDialog"), NodePath("../../UI/PopupConfirm/ColorRect"), NodePath("../../Core/Game/CanvasLayer/TransitionColorRect"), NodePath("../../UI/PopupEndGame/PopupDialog"), NodePath("../../UI/PopupEndGame/ColorRect"), NodePath("../../Core/Game/CanvasLayer/TransitionColorRect") ]
 
 [node name="ColorblindMode" type="Node" parent="Effects"]
 script = ExtResource( 32 )
@@ -854,8 +850,6 @@ custom_fonts/font = ExtResource( 8 )
 text = "7000"
 align = 1
 script = ExtResource( 9 )
-_dots_path = NodePath("../../../../Core/Dots")
-_scores_and_colors_count = [ [ -1, 4 ], [ 200, 5 ], [ 1000, 6 ], [ 2000, 7 ] ]
 
 [node name="AddScoreLabel" type="Label" parent="UI/ScoresContainer/ScoreContainer/ScoreLabel"]
 self_modulate = Color( 0.368627, 0.396078, 0.47451, 1 )
@@ -943,13 +937,6 @@ margin_right = 680.0
 margin_bottom = 624.0
 rect_min_size = Vector2( 0, 70 )
 script = ExtResource( 17 )
-_animation_player_path = NodePath("AnimationPlayer")
-_settings_path = NodePath("../../../../../Core/Settings")
-_settings_button_visual_path = NodePath("../../../../SettingsButtonVisual")
-_moves_path = NodePath("../../../../HeaderMoves/MovesContainer/MovesLabel")
-_score_path = NodePath("../../../../ScoresContainer/ScoreContainer/ScoreLabel")
-_highscore_path = NodePath("../../../../ScoresContainer/HighscoreContainer/HighscoreLabel")
-_popup_confirm_path = NodePath("../../../../PopupConfirm")
 
 [node name="Label" type="Button" parent="UI/MenuVisual/Menu/Options/Restart"]
 self_modulate = Color( 0.368627, 0.396078, 0.47451, 1 )
@@ -994,19 +981,6 @@ margin_right = 680.0
 margin_bottom = 714.0
 rect_min_size = Vector2( 0, 70 )
 script = ExtResource( 42 )
-_score_path = NodePath("../../../../ScoresContainer/ScoreContainer/ScoreLabel")
-_highscore_path = NodePath("../../../../ScoresContainer/HighscoreContainer/HighscoreLabel")
-_player_prefs_path = NodePath("../../../../../Core/PlayerPrefs")
-_popup_confirm_path = NodePath("../../../../PopupConfirm")
-_transition_color_rect_path = NodePath("../../../../../Core/Game/CanvasLayer/TransitionColorRect")
-_scene_root_path = NodePath("../../../../..")
-_theme_changer_path = NodePath("../../../../../Effects/ThemeChanger")
-_colorblind_mode_path = NodePath("../../../../../Effects/ColorblindMode")
-_sound_path = NodePath("../../../../../Effects/Sound")
-_tutorial_scene_file_path = "res://source/nodes/tutorial_scene.tscn"
-_tutorial_theme_changer_path = "Core/ThemeChanger"
-_tutorial_colorblind_mode_path = "Core/ColorblindMode"
-_tutorial_sound_path = "Core/Sound"
 
 [node name="Label" type="Button" parent="UI/MenuVisual/Menu/Options/Tutorial"]
 self_modulate = Color( 0.368627, 0.396078, 0.47451, 1 )
@@ -1054,7 +1028,6 @@ margin_right = 680.0
 margin_bottom = 804.0
 rect_min_size = Vector2( 0, 70 )
 script = ExtResource( 40 )
-_settings_path = NodePath("../../../../../Core/Settings")
 
 [node name="Label" type="Button" parent="UI/MenuVisual/Menu/Options/Colorblind"]
 self_modulate = Color( 0.368627, 0.396078, 0.47451, 1 )
@@ -1101,7 +1074,6 @@ margin_right = 680.0
 margin_bottom = 894.0
 rect_min_size = Vector2( 0, 70 )
 script = ExtResource( 28 )
-_settings_path = NodePath("../../../../../Core/Settings")
 _light_mode_texture = ExtResource( 30 )
 _dark_mode_texture = ExtResource( 29 )
 
@@ -1153,9 +1125,6 @@ margin_bottom = 984.0
 rect_min_size = Vector2( 0, 70 )
 rect_pivot_offset = Vector2( 58, 35 )
 script = ExtResource( 55 )
-_sounds_path = NodePath("../../../../../Effects/Sound")
-_sound_on_texture = ExtResource( 18 )
-_sound_off_texture = ExtResource( 56 )
 
 [node name="Label" type="Button" parent="UI/MenuVisual/Menu/Options/Sound"]
 self_modulate = Color( 0.368627, 0.396078, 0.47451, 1 )
@@ -1205,7 +1174,6 @@ anims/menu_show = SubResource( 10 )
 
 [node name="SettingsButtonVisual" type="Node" parent="UI"]
 script = ExtResource( 21 )
-_settings_label_button_path = NodePath("../MenuVisual/Menu/SettingsLabel")
 
 [node name="SettingsButton" type="Button" parent="UI/SettingsButtonVisual"]
 anchor_left = 0.5

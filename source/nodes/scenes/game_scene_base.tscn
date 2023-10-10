@@ -1,3 +1,412 @@
-[gd_scene format=2]
+[gd_scene load_steps=34 format=2]
 
-[node name="GameSceneBase" type="Node2D"]
+[ext_resource path="res://source/nodes/scenes/scene_base.tscn" type="PackedScene" id=1]
+[ext_resource path="res://source/scripts/dots/score.gd" type="Script" id=2]
+[ext_resource path="res://source/scripts/ui/label_buttons/audio_label_button.gd" type="Script" id=3]
+[ext_resource path="res://source/scripts/ui/label_buttons/theme_label_button.gd" type="Script" id=4]
+[ext_resource path="res://source/scripts/ui/label_buttons/tutorial_label_button.gd" type="Script" id=5]
+[ext_resource path="res://source/scripts/ui/label_buttons/colorblind_label_button.gd" type="Script" id=6]
+[ext_resource path="res://source/scripts/ui/menu_visual.gd" type="Script" id=7]
+[ext_resource path="res://source/scripts/ui/label_buttons/restart_label_button.gd" type="Script" id=8]
+[ext_resource path="res://source/scripts/core/game_scene/game_scene_base.gd" type="Script" id=9]
+[ext_resource path="res://source/scripts/dots/highscore.gd" type="Script" id=10]
+[ext_resource path="res://assets/images/ui/restart_icon.png" type="Texture" id=11]
+[ext_resource path="res://assets/images/ui/sound_on_icon.png" type="Texture" id=12]
+[ext_resource path="res://assets/images/ui/tutorial_icon.png" type="Texture" id=13]
+[ext_resource path="res://assets/images/ui/colorblind_icon.png" type="Texture" id=14]
+[ext_resource path="res://source/scripts/ui/menu_label_button.gd" type="Script" id=15]
+[ext_resource path="res://assets/images/ui/theme_light_icon.png" type="Texture" id=16]
+[ext_resource path="res://source/scripts/dots/moves.gd" type="Script" id=17]
+[ext_resource path="res://source/resources/fonts/title_font.tres" type="DynamicFont" id=18]
+[ext_resource path="res://source/resources/fonts/digits_font.tres" type="DynamicFont" id=19]
+[ext_resource path="res://source/resources/fonts/digits_small_font.tres" type="DynamicFont" id=20]
+[ext_resource path="res://source/nodes/popup_end_game.tscn" type="PackedScene" id=21]
+[ext_resource path="res://source/nodes/popup_confirm.tscn" type="PackedScene" id=22]
+[ext_resource path="res://assets/images/ui/header_moves.png" type="Texture" id=23]
+[ext_resource path="res://assets/images/ui/settings_icon.png" type="Texture" id=24]
+[ext_resource path="res://assets/images/ui/sound_off_icon.png" type="Texture" id=25]
+[ext_resource path="res://source/resources/animations/animation_ui_bounce_rotate.tres" type="Animation" id=26]
+[ext_resource path="res://source/nodes/ui/animated_label_button.tscn" type="PackedScene" id=27]
+[ext_resource path="res://assets/images/ui/theme_dark_icon.png" type="Texture" id=28]
+
+[sub_resource type="Animation" id=13]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("Menu:rect_position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 0, 0 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Menu/Options:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Menu:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ false ]
+}
+
+[sub_resource type="Animation" id=14]
+resource_name = "menu_show"
+length = 0.6
+tracks/0/type = "value"
+tracks/0/path = NodePath("Menu:rect_position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.3, 0.6 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0, -1280 ), Vector2( 0, 0 ), Vector2( 0, 0 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Menu/Options:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.3, 0.6 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
+}
+
+[sub_resource type="Animation" id=15]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("Label:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Button:rect_rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 0.0 ]
+}
+
+[sub_resource type="Animation" id=17]
+resource_name = "rotate_gear"
+length = 0.6
+tracks/0/type = "value"
+tracks/0/path = NodePath("Button:rect_rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.6 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ 0.0, 180.0 ]
+}
+
+[sub_resource type="Animation" id=16]
+resource_name = "show_label"
+length = 0.6
+tracks/0/type = "value"
+tracks/0/path = NodePath("Label:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.3, 0.6 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
+}
+
+[node name="GameSceneBase" instance=ExtResource( 1 )]
+script = ExtResource( 9 )
+
+[node name="ThemeNodesCollection" parent="." index="1"]
+_accent_labels_paths = [ NodePath("../UI/HeaderMoves/MovesContainer/MovesLabel"), NodePath("../UI/HeaderMoves/MovesContainer/MovesTitleLabel"), NodePath("../UI/HeaderMoves/MovesContainer/MovesLabel/AddMovesLabel") ]
+_labels_paths = [ NodePath("../UI/ScoresContainer/ScoreContainer/ScoreLabel"), NodePath("../UI/ScoresContainer/ScoreContainer/ScoreLabel/AddScoreLabel"), NodePath("../UI/ScoresContainer/ScoreContainer/ScoreTitleLabel"), NodePath("../UI/ScoresContainer/HighscoreContainer/HighscoreLabel"), NodePath("../UI/ScoresContainer/HighscoreContainer/HighscoreTitleLabel"), NodePath("../UI/MenuVisual/Menu/Options/RestartLabelButton/Label"), NodePath("../UI/MenuVisual/Menu/Options/TutorialLabelButton/Label"), NodePath("../UI/MenuVisual/Menu/Options/ColorblindLabelButton/Label"), NodePath("../UI/MenuVisual/Menu/Options/ThemeLabelButton/Label"), NodePath("../UI/MenuVisual/Menu/Options/AudioLabelButton/Label"), NodePath("../UI/MenuLabelButton/Label") ]
+_backgrounds_paths = [ NodePath("../Background/ColorRect"), NodePath("../UI/MenuVisual/Menu") ]
+
+[node name="Background" type="CanvasLayer" parent="." index="2"]
+layer = -1
+
+[node name="ColorRect" type="ColorRect" parent="Background" index="0"]
+self_modulate = Color( 0.992157, 0.988235, 0.988235, 1 )
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="UI" type="CanvasLayer" parent="." index="3"]
+
+[node name="HeaderMoves" type="TextureRect" parent="UI" index="0"]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -376.0
+margin_top = -25.0
+margin_right = -120.0
+margin_bottom = 231.0
+texture = ExtResource( 23 )
+
+[node name="MovesContainer" type="VBoxContainer" parent="UI/HeaderMoves" index="0"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -89.6
+margin_top = -100.5
+margin_right = 89.6
+margin_bottom = 99.5
+alignment = 1
+
+[node name="MovesLabel" type="Label" parent="UI/HeaderMoves/MovesContainer" index="0"]
+margin_top = 47.0
+margin_right = 204.0
+margin_bottom = 104.0
+custom_fonts/font = ExtResource( 19 )
+text = "61728"
+align = 1
+script = ExtResource( 17 )
+
+[node name="AddMovesLabel" type="Label" parent="UI/HeaderMoves/MovesContainer/MovesLabel" index="0"]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_top = -32.0
+margin_bottom = 6.0
+custom_fonts/font = ExtResource( 20 )
+align = 2
+
+[node name="MovesTitleLabel" type="Label" parent="UI/HeaderMoves/MovesContainer" index="1"]
+margin_top = 108.0
+margin_right = 204.0
+margin_bottom = 153.0
+custom_fonts/font = ExtResource( 18 )
+text = "KEY_MOVES"
+align = 1
+
+[node name="ScoresContainer" type="HBoxContainer" parent="UI" index="1"]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -135.5
+margin_top = 49.0
+margin_right = 251.5
+margin_bottom = 155.0
+custom_constants/separation = 60
+alignment = 1
+
+[node name="ScoreContainer" type="VBoxContainer" parent="UI/ScoresContainer" index="0"]
+margin_right = 195.0
+margin_bottom = 106.0
+alignment = 1
+
+[node name="ScoreLabel" type="Label" parent="UI/ScoresContainer/ScoreContainer" index="0"]
+self_modulate = Color( 0.368627, 0.396078, 0.47451, 1 )
+margin_right = 195.0
+margin_bottom = 57.0
+custom_fonts/font = ExtResource( 19 )
+text = "7000"
+align = 1
+script = ExtResource( 2 )
+
+[node name="AddScoreLabel" type="Label" parent="UI/ScoresContainer/ScoreContainer/ScoreLabel" index="0"]
+self_modulate = Color( 0.368627, 0.396078, 0.47451, 1 )
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -27.0
+margin_top = -32.0
+margin_right = 27.0
+margin_bottom = 6.0
+custom_fonts/font = ExtResource( 20 )
+align = 2
+
+[node name="ScoreTitleLabel" type="Label" parent="UI/ScoresContainer/ScoreContainer" index="1"]
+self_modulate = Color( 0.368627, 0.396078, 0.47451, 1 )
+margin_top = 61.0
+margin_right = 195.0
+margin_bottom = 106.0
+custom_fonts/font = ExtResource( 18 )
+text = "KEY_SCORE"
+align = 1
+
+[node name="HighscoreContainer" type="VBoxContainer" parent="UI/ScoresContainer" index="1"]
+margin_left = 255.0
+margin_right = 537.0
+margin_bottom = 106.0
+alignment = 1
+
+[node name="HighscoreLabel" type="Label" parent="UI/ScoresContainer/HighscoreContainer" index="0"]
+self_modulate = Color( 0.368627, 0.396078, 0.47451, 1 )
+margin_right = 282.0
+margin_bottom = 57.0
+custom_fonts/font = ExtResource( 19 )
+text = "76123"
+align = 1
+script = ExtResource( 10 )
+_highscore_label_path = NodePath(".")
+
+[node name="HighscoreTitleLabel" type="Label" parent="UI/ScoresContainer/HighscoreContainer" index="1"]
+self_modulate = Color( 0.368627, 0.396078, 0.47451, 1 )
+margin_top = 61.0
+margin_right = 282.0
+margin_bottom = 106.0
+custom_fonts/font = ExtResource( 18 )
+text = "KEY_HIGHSCORE"
+align = 1
+
+[node name="MenuVisual" type="Node" parent="UI" index="2"]
+script = ExtResource( 7 )
+
+[node name="Menu" type="ColorRect" parent="UI/MenuVisual" index="0"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 1, 1, 1, 0.980392 )
+
+[node name="Options" type="VBoxContainer" parent="UI/MenuVisual/Menu" index="0"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -340.0
+margin_top = -470.0
+margin_right = 340.0
+margin_bottom = 514.0
+custom_constants/separation = 20
+alignment = 2
+
+[node name="RestartLabelButton" parent="UI/MenuVisual/Menu/Options" index="0" instance=ExtResource( 27 )]
+script = ExtResource( 8 )
+
+[node name="Label" parent="UI/MenuVisual/Menu/Options/RestartLabelButton" index="0"]
+text = "KEY_RESTART"
+
+[node name="Button" parent="UI/MenuVisual/Menu/Options/RestartLabelButton" index="1"]
+rect_rotation = -180.0
+icon = ExtResource( 11 )
+
+[node name="AnimationPlayer" parent="UI/MenuVisual/Menu/Options/RestartLabelButton" index="2"]
+anims/animation_ui_bounce_rotate = ExtResource( 26 )
+
+[node name="TutorialLabelButton" parent="UI/MenuVisual/Menu/Options" index="1" instance=ExtResource( 27 )]
+margin_top = 644.0
+margin_bottom = 714.0
+script = ExtResource( 5 )
+_current_scene_root_path = NodePath("../../../../..")
+_next_scene_file_path = "res://source/nodes/scenes/tutorial_scene_base.tscn"
+
+[node name="Label" parent="UI/MenuVisual/Menu/Options/TutorialLabelButton" index="0"]
+text = "KEY_TUTORIAL"
+
+[node name="Button" parent="UI/MenuVisual/Menu/Options/TutorialLabelButton" index="1"]
+icon = ExtResource( 13 )
+
+[node name="ColorblindLabelButton" parent="UI/MenuVisual/Menu/Options" index="2" instance=ExtResource( 27 )]
+margin_top = 734.0
+margin_bottom = 804.0
+script = ExtResource( 6 )
+
+[node name="Label" parent="UI/MenuVisual/Menu/Options/ColorblindLabelButton" index="0"]
+text = "KEY_COLORBLIND"
+
+[node name="Button" parent="UI/MenuVisual/Menu/Options/ColorblindLabelButton" index="1"]
+icon = ExtResource( 14 )
+
+[node name="ThemeLabelButton" parent="UI/MenuVisual/Menu/Options" index="3" instance=ExtResource( 27 )]
+margin_top = 824.0
+margin_bottom = 894.0
+script = ExtResource( 4 )
+_light_mode_texture = ExtResource( 16 )
+_dark_mode_texture = ExtResource( 28 )
+
+[node name="Label" parent="UI/MenuVisual/Menu/Options/ThemeLabelButton" index="0"]
+text = "KEY_THEME"
+
+[node name="Button" parent="UI/MenuVisual/Menu/Options/ThemeLabelButton" index="1"]
+self_modulate = Color( 0.945098, 0.733333, 0.0627451, 1 )
+icon = ExtResource( 16 )
+
+[node name="AudioLabelButton" parent="UI/MenuVisual/Menu/Options" index="4" instance=ExtResource( 27 )]
+margin_top = 914.0
+margin_bottom = 984.0
+script = ExtResource( 3 )
+_audio_path = NodePath("../../../../../Audio")
+_audio_unmuted_texture = ExtResource( 12 )
+_audio_muted_texture = ExtResource( 25 )
+
+[node name="Label" parent="UI/MenuVisual/Menu/Options/AudioLabelButton" index="0"]
+text = "KEY_SOUND"
+
+[node name="Button" parent="UI/MenuVisual/Menu/Options/AudioLabelButton" index="1"]
+self_modulate = Color( 0.945098, 0.733333, 0.0627451, 1 )
+icon = ExtResource( 12 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="UI/MenuVisual" index="1"]
+reset_on_save = false
+anims/RESET = SubResource( 13 )
+anims/menu_show = SubResource( 14 )
+
+[node name="MenuLabelButton" parent="UI" index="3" instance=ExtResource( 27 )]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -340.0
+margin_top = 51.0
+margin_right = 340.0
+margin_bottom = 121.0
+script = ExtResource( 15 )
+_menu_node_path = NodePath("../MenuVisual")
+
+[node name="Label" parent="UI/MenuLabelButton" index="0"]
+text = "KEY_QUIT_MENU"
+
+[node name="Button" parent="UI/MenuLabelButton" index="1"]
+rect_scale = Vector2( 1.2, 1.2 )
+icon = ExtResource( 24 )
+
+[node name="AnimationPlayer" parent="UI/MenuLabelButton" index="2"]
+anims/RESET = SubResource( 15 )
+anims/rotate_gear = SubResource( 17 )
+anims/show_label = SubResource( 16 )
+
+[node name="PopupConfirm" parent="UI" index="4" instance=ExtResource( 22 )]
+
+[node name="PopupEndGame" parent="UI" index="5" instance=ExtResource( 21 )]
+
+[editable path="UI/MenuVisual/Menu/Options/RestartLabelButton"]
+[editable path="UI/MenuVisual/Menu/Options/TutorialLabelButton"]
+[editable path="UI/MenuVisual/Menu/Options/ColorblindLabelButton"]
+[editable path="UI/MenuVisual/Menu/Options/ThemeLabelButton"]
+[editable path="UI/MenuVisual/Menu/Options/AudioLabelButton"]
+[editable path="UI/MenuLabelButton"]

@@ -6,13 +6,14 @@ signal transition_hid_screen
 signal transition_ended
 
 export(float) var _transition_time = 0.5
+export(float) var _transition_rect_show_time = 0.2
 
 onready var _color_rect = $TransitionColorRect
 
 func show_transition(delay = 0.0):
 	var transition_time_half = _transition_time * 0.5
 	hide_screen(delay)
-	show_screen(delay + transition_time_half)
+	show_screen(delay + transition_time_half + _transition_rect_show_time)
 
 func hide_screen(delay = 0.0):
 	var solid_rect_color = Color(_color_rect.color.r, _color_rect.color.g, \
