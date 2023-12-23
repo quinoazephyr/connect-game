@@ -1,0 +1,18 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://source/nodes/gameplay.tscn" type="PackedScene" id=1]
+[ext_resource path="res://source/scripts/dots/tutorial_dots.gd" type="Script" id=2]
+[ext_resource path="res://source/scripts/core/tutorial_gameplay.gd" type="Script" id=3]
+[ext_resource path="res://source/scripts/visuals/tutorial_dot_effects.gd" type="Script" id=4]
+
+[node name="TutorialGameplay" instance=ExtResource( 1 )]
+script = ExtResource( 3 )
+
+[node name="Dots" parent="." index="0"]
+script = ExtResource( 2 )
+_color_ids = [  ]
+
+[node name="DotEffects" parent="." index="2"]
+script = ExtResource( 4 )
+
+[editable path="DotEffects/CanvasLayer/Control/AdditionalMovesLabels"]

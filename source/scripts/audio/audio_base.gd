@@ -1,7 +1,9 @@
 class_name AudioBase
-extends Node
+extends Saveable
 
 signal muted(is_muted)
+
+const _IS_MUTED_PREF = "is_audio_muted"
 
 #	[KEY] sound_name && sound_name_N
 #	[VALUE] sound_path
@@ -59,6 +61,15 @@ func mute(mute : bool) -> void:
 
 func get_is_muted():
 	return _is_muted
+
+func save_me(player_prefs : PlayerPrefs):
+	player_prefs.set_pref(_IS_MUTED_PREF, get_is_muted())
+
+func load_me(player_prefs : PlayerPrefs):
+	if player_prefs.has_pref(_IS_MUTED_PREF):
+		mute(player_prefs.get_pref(_IS_MUTED_PREF))
+	else:
+		mute(false)
 
 func _get_sound_group_name(name_str : String):
 	var last_underscore_idx = name_str.find_last("_")

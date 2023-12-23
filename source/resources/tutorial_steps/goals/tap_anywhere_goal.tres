@@ -6,4 +6,4 @@
 script = ExtResource( 1 )
 _title = ""
 _description = ""
-_input_observer_path = "/root/TutorialScene/Core/Tutorial/CanvasLayer/Control"
+_game_input_path = "/root/TutorialScene/GameInput"

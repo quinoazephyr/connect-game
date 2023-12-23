@@ -1,3 +1,0 @@
-class_name GameSceneWebGL
-extends GameSceneBase
-

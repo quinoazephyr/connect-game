@@ -1,11 +1,14 @@
-[gd_resource type="Resource" load_steps=7 format=2]
+[gd_resource type="Resource" load_steps=10 format=2]
 
 [ext_resource path="res://source/scripts/quests/quest_base.gd" type="Script" id=1]
 [ext_resource path="res://source/resources/tutorial_steps/actions/act_set_step_3_visible.tres" type="Resource" id=2]
-[ext_resource path="res://source/resources/tutorial_steps/goals/clear_all_dots_goal.tres" type="Resource" id=3]
+[ext_resource path="res://source/resources/tutorial_steps/goals/clear_all_dots_step_3_goal.tres" type="Resource" id=3]
 [ext_resource path="res://source/resources/tutorial_steps/actions/act_set_step_3_invisible.tres" type="Resource" id=4]
 [ext_resource path="res://source/resources/tutorial_steps/actions/call_next_tut_step.tres" type="Resource" id=5]
-[ext_resource path="res://source/resources/tutorial_steps/actions/spawn_dots_step_3.tres" type="Resource" id=6]
+[ext_resource path="res://source/resources/tutorial_steps/actions/init_gameplay_step_3.tres" type="Resource" id=6]
+[ext_resource path="res://source/resources/tutorial_steps/actions/show_transition.tres" type="Resource" id=7]
+[ext_resource path="res://source/resources/tutorial_steps/actions/terminate_gameplay_step_3.tres" type="Resource" id=8]
+[ext_resource path="res://source/resources/tutorial_steps/actions/play_tutorial_step_success_sound.tres" type="Resource" id=9]
 
 [resource]
 script = ExtResource( 1 )
@@ -14,4 +17,4 @@ _title = ""
 _description = ""
 _goals = [ ExtResource( 3 ) ]
 _actions_on_start = [ ExtResource( 2 ), ExtResource( 6 ) ]
-_actions_on_finish = [ ExtResource( 4 ), ExtResource( 5 ) ]
+_actions_on_finish = [ ExtResource( 8 ), ExtResource( 9 ), ExtResource( 4 ), ExtResource( 5 ), ExtResource( 7 ) ]

@@ -1,20 +1,19 @@
 class_name TapAnywhereGoal
 extends QuestGoalBase
 
-export(String) var _input_observer_path # Control
+export(String) var _game_input_path
 
-var _root
-var _input_observer
+var _game_input
 
 func start(root_node : Node) -> void:
-	_root = root_node
-	_input_observer = _root.get_node(_input_observer_path)
-	_input_observer.connect("gui_input", self, "_on_gui_input")
-
-func _on_gui_input(event : InputEvent):
-	if Input.is_action_just_pressed("tap"):
-		complete()
+	_game_input = root_node.get_node(_game_input_path)
+	_game_input.connect("input_just_released", \
+			self, "_catch_input_just_released")
 
 func complete() -> void:
-	_input_observer.disconnect("gui_input", self, "_on_gui_input")
+	_game_input.disconnect("input_just_released", \
+			self, "_catch_input_just_released")
 	.complete()
+
+func _catch_input_just_released(mouse_pos):
+	complete()

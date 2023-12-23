@@ -1,0 +1,10 @@
+[gd_resource type="Resource" load_steps=2 format=2]
+
+[ext_resource path="res://source/scripts/quests/actions/call_method_action.gd" type="Script" id=1]
+
+[resource]
+script = ExtResource( 1 )
+_target_node_path = "/root/TutorialScene"
+_method = "terminate_gameplay"
+_arguments = [ NodePath("Tutorial/SquareConnectionsGameplay") ]
+_delay = 0.0

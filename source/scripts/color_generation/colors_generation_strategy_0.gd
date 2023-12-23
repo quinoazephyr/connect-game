@@ -1,7 +1,15 @@
 class_name ColorsGenerationStrategy0
 extends ColorsGenerationStrategyBase
 
+const _MAX_RANGE_DOT_COUNT_VALUE = 1000
+
 var _colors_generated : int = 0
+
+func set_counter(val : int):
+	_colors_generated = val
+
+func get_counter():
+	return _colors_generated
 
 func reset_counter():
 	_colors_generated = 0
@@ -13,7 +21,7 @@ func generate_color(dots : Array, colors : DotsColors,
 
 func regenerate_color(dots : Array, colors : DotsColors, 
 		column_count : int, row : int, column : int, colors_count : int):
-	var adjacent_dots = get_adjacent_dots(dots, column_count, row, column)
+	var adjacent_dots = get_adjacent_dots_all(dots, column_count, row, column)
 	
 	var generative_colors : Array
 	for i in min(colors_count, colors.count):
@@ -24,11 +32,10 @@ func regenerate_color(dots : Array, colors : DotsColors,
 	for col in generative_colors:
 		colors_html_weights.append(max_weight)
 	
-	var max_range_dot_count_value = 800
 	var adjacent_colors_weight_mult = \
 			_convert_to_range(\
-			clamp(_colors_generated, 0, max_range_dot_count_value), \
-			0, max_range_dot_count_value, \
+			clamp(_colors_generated, 0, _MAX_RANGE_DOT_COUNT_VALUE), \
+			0, _MAX_RANGE_DOT_COUNT_VALUE, \
 			1.0, 0.3)
 #	print("%.2f" % adjacent_colors_weight_mult)
 	
@@ -68,20 +75,18 @@ func regenerate_color(dots : Array, colors : DotsColors,
 	for idx in colors_html_weights.size():
 		rand_weight -= colors_html_weights[idx]
 		if rand_weight < 0:
-#			print("%s -> %d" % [s, colors_html_weights[idx]])
+#			print("%d: %s -> %d" % [colors_count, s, colors_html_weights[idx]])
 			return Color(generative_colors[idx])
 	
 #	print("random")
 	return Color(generative_colors[randi() % generative_colors.size()])
 
-func get_adjacent_dots(dots : Array, column_count : int, \
+func get_adjacent_dots_all(dots : Array, column_count : int, \
 		row : int, column : int):
 	var left_dot = ._get_dot(dots, column_count, row, column - 1)
-	var left_left_dot = ._get_dot(dots, column_count, row, column - 2)
 	var right_dot = ._get_dot(dots, column_count, row, column + 1)
-	var right_right_dot = ._get_dot(dots, column_count, row, column + 2)
+	var top_dot = ._get_dot(dots, column_count, row - 1, column)
 	var bottom_dot = ._get_dot(dots, column_count, row + 1, column)
-	var bottom_bottom_dot = ._get_dot(dots, column_count, row + 2, column)
 	var top_left_dot = ._get_dot(dots, column_count, row - 1, column - 1)
 	var top_right_dot = ._get_dot(dots, column_count, row - 1, column + 1)
 	var bottom_left_dot = ._get_dot(dots, column_count, row + 1, column - 1)
@@ -94,7 +99,26 @@ func get_adjacent_dots(dots : Array, column_count : int, \
 		bottom_dot,
 		bottom_right_dot,
 		right_dot,
-		top_right_dot
+		top_right_dot,
+		top_dot
+	]
+	
+	for idx in range(adjacent_dots.size(), 0, -1):
+		if !adjacent_dots[idx - 1]:
+			adjacent_dots.remove(idx - 1)
+	
+	return adjacent_dots
+
+func get_adjacent_dots_right_bottom(dots : Array, column_count : int, \
+		row : int, column : int):
+	var right_dot = ._get_dot(dots, column_count, row, column + 1)
+	var bottom_dot = ._get_dot(dots, column_count, row + 1, column)
+	var bottom_right_dot = ._get_dot(dots, column_count, row + 1, column + 1)
+	
+	var adjacent_dots = [
+		bottom_dot,
+		bottom_right_dot,
+		right_dot
 	]
 	
 	for idx in range(adjacent_dots.size(), 0, -1):

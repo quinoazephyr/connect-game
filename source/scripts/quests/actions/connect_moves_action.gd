@@ -1,18 +1,24 @@
 class_name ConnectMovesAction
 extends ActionBase
 
-export(String) var _dots_path
+export(String) var _tutorial_scene_path
+export(String) var _gameplay_path
 export(String) var _moves_path
-export(String) var _game_input_path
 
 func fire(root : Node) -> void:
+	var tutorial_scene = root.get_node(_tutorial_scene_path)
+	var gameplay = root.get_node(_gameplay_path)
 	var moves = root.get_node(_moves_path)
-	var dots = root.get_node(_dots_path)
-	var game_input = root.get_node(_game_input_path)
 	
-	dots.connect("dot_connected", moves, "_on_dot_connected")
-	dots.connect("dot_disconnected", moves, "_on_dot_connected")
-	dots.connect("dots_looped", moves, "_on_dots_looped")
-	dots.connect("dots_connected_removed", moves, "_on_dots_removed")
-	
-	game_input.connect("input_just_released", moves, "_on_input_release")
+	gameplay.connect("dot_connected_no_args", moves, \
+			"set_additional_moves", [-1])
+	gameplay.connect("dot_connected_no_args", moves, \
+			"show_add_moves_label", [true])
+	gameplay.connect("dot_disconnected_no_args", moves, \
+			"set_additional_moves", [-1])
+	gameplay.connect("dots_connected_loop", tutorial_scene, \
+			"_set_additional_moves_minus_one")
+	gameplay.connect("dots_removed_no_args", moves, "add_moves", [-1])
+	gameplay.connect("dots_removed_loop", moves, "add_moves")
+	gameplay.connect("game_restarted", moves, "set_moves", [2])
+

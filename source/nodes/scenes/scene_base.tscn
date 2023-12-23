@@ -17,7 +17,8 @@ _sounds_paths = {
 "dot_disconnection_0": "res://assets/sounds/dot_disconnection/whoosh_sound_effect_001.ogg",
 "dots_loop_selected_0": "res://assets/sounds/dots_loop_selected/drop_004.ogg",
 "dots_removed_0": "res://assets/sounds/dots_removed/pop_001.ogg",
-"end_game": "res://assets/sounds/interface/victory_sound_000.ogg",
+"end_game": "res://assets/sounds/interface/mixkit-winning-notification-2018.ogg",
+"tutorial_step_success": "res://assets/sounds/interface/audioblocks-confirmation-3-note-alert-interface-note-alert-interface_StkQLWMI0v8_NWM.ogg",
 "ui_button_press": "res://assets/sounds/interface/click_003.ogg"
 }
 

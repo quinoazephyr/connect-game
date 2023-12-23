@@ -1,6 +1,11 @@
 class_name PopupWithBackground
 extends Node
 
+signal popup_shown
+signal popup_hidden
+
+export(float) var _tween_duration = 0.5
+
 onready var _popup = $PopupDialog
 onready var _background = $ColorRect
 
@@ -27,15 +32,16 @@ func show_popup_delayed(delay : float):
 			0.0)
 	_background.color = clear_color
 	
-	var tween_duration = 1.0
 	var tween = get_tree().create_tween()
-	tween.tween_property(_background, "color", initial_color, tween_duration)\
+	tween.tween_property(_background, "color", initial_color, _tween_duration)\
 			.from(clear_color).set_delay(delay)
 	tween.parallel()\
 			.tween_property(_popup, "rect_position", \
-			centered_rect_position, tween_duration) \
+			centered_rect_position, _tween_duration) \
 			.set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_OUT)\
 			.set_delay(delay)
+	
+	emit_signal("popup_shown")
 
 func hide_popup():
 	var centered_rect_position = _popup.rect_position
@@ -46,15 +52,16 @@ func hide_popup():
 	var clear_color = Color(initial_color.r, initial_color.g, initial_color.b, \
 			0.0)
 	
-	var tween_duration = 1.0
 	var tween = get_tree().create_tween()
-	tween.tween_property(_background, "color", clear_color, tween_duration)\
+	tween.tween_property(_background, "color", clear_color, _tween_duration)\
 			.from(initial_color)
 	tween.parallel().tween_property(_popup, "rect_position", \
-			out_of_screen_rect_position, tween_duration) \
+			out_of_screen_rect_position, _tween_duration) \
 			.set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_IN)
 	tween.tween_callback(_popup, "set_visible", [false])
 	tween.tween_callback(_background, "set_frame_color", [initial_color])
+	
+	emit_signal("popup_hidden")
 
 func _center_popup():
 	var window_size = _background.rect_size

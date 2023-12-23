@@ -1,6 +1,8 @@
 class_name GameInput
 extends Node
 
+signal input_enabled
+signal input_disabled
 signal input_motion_drag(mouse_pos)
 signal input_motion(mouse_pos)
 signal input_just_pressed(mouse_pos)
@@ -33,3 +35,7 @@ func _input(event):
 
 func enable_input(enable : bool):
 	_is_input_enabled = enable
+	if _is_input_enabled:
+		emit_signal("input_enabled")
+	else:
+		emit_signal("input_disabled")

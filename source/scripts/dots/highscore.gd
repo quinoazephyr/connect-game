@@ -5,11 +5,9 @@ signal highscore_set
 
 const _HIGHSCORE_PREF = "highscore"
 
-export(NodePath) var _highscore_label_path
-
 var _highscore : int
 
-onready var _highscore_label = get_node(_highscore_label_path)
+onready var _highscore_label = $HighscoreLabel
 
 func evaluate_and_set_highscore(score : int):
 	var old_highscore = get_highscore()
@@ -29,4 +27,4 @@ func save_me(player_prefs : PlayerPrefs):
 	player_prefs.set_pref(_HIGHSCORE_PREF, get_highscore())
 
 func load_me(player_prefs : PlayerPrefs):
-	set_highscore(max(player_prefs.get_pref(_HIGHSCORE_PREF), _highscore))
+	set_highscore(max(player_prefs.get_pref(_HIGHSCORE_PREF), get_highscore()))

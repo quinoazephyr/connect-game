@@ -21,7 +21,7 @@ KEY_RESTART_CONFIRMATION,Do you really\nwant to restart?,Вы действите
 KEY_SKIP_TUTORIAL,Skip tutorial,Пропустить обучение
 KEY_GREETING,Welcome to Connect.,Добро пожаловать в Точки.
 KEY_COMPLIMENT,You've got the right idea.,Всё правильно.
-KEY_VERTICAL_CONNECTIONS,Connection can also be vertical...,Соединения также могут\nбыть вертикальными...
+KEY_VERTICAL_CONNECTIONS,Connections can also be vertical...,Соединения также могут\nбыть вертикальными...
 KEY_DIAGONAL_CONNECTIONS,...AND diagonal.,...И диагональными.
 KEY_SECRET_TRICK,There's also a secret trick.,Ещё есть особый приём.
 KEY_MAKE_YELLOW_SQUARE,Try making a yellow square.,Попробуйте соединить\nжелтые точки\nв замкнутый квадрат.
@@ -37,3 +37,4 @@ KEY_MOVES_PLURAL_LOWER,moves,ходов
 KEY_START_GAME,Play,Играть
 KEY_LANGUAGE,English,Русский
 KEY_GAME_TITLE,Connect,Точки
+KEY_LOADING,Loading,Загрузка

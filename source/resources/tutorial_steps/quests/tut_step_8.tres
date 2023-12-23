@@ -1,12 +1,13 @@
-[gd_resource type="Resource" load_steps=8 format=2]
+[gd_resource type="Resource" load_steps=9 format=2]
 
 [ext_resource path="res://source/scripts/quests/quest_base.gd" type="Script" id=1]
 [ext_resource path="res://source/resources/tutorial_steps/actions/act_set_step_8_visible.tres" type="Resource" id=2]
 [ext_resource path="res://source/resources/tutorial_steps/goals/tap_anywhere_goal.tres" type="Resource" id=3]
 [ext_resource path="res://source/resources/tutorial_steps/actions/act_set_step_8_invisible.tres" type="Resource" id=4]
-[ext_resource path="res://source/resources/tutorial_steps/actions/finish_tutorial_action.tres" type="Resource" id=5]
+[ext_resource path="res://source/resources/tutorial_steps/actions/act_set_scene_changer_btn_visible.tres" type="Resource" id=5]
 [ext_resource path="res://source/resources/tutorial_steps/actions/act_set_moves_invisible.tres" type="Resource" id=6]
-[ext_resource path="res://source/resources/tutorial_steps/actions/call_next_tut_step.tres" type="Resource" id=7]
+[ext_resource path="res://source/resources/tutorial_steps/actions/act_set_scene_changer_btn_invisible.tres" type="Resource" id=7]
+[ext_resource path="res://source/resources/tutorial_steps/actions/fade_out_skip_tutorial_btn.tres" type="Resource" id=8]
 
 [resource]
 script = ExtResource( 1 )
@@ -14,5 +15,5 @@ _id = 8
 _title = ""
 _description = ""
 _goals = [ ExtResource( 3 ) ]
-_actions_on_start = [ ExtResource( 2 ), ExtResource( 6 ) ]
-_actions_on_finish = [ ExtResource( 4 ), ExtResource( 7 ), ExtResource( 5 ) ]
+_actions_on_start = [ ExtResource( 2 ), ExtResource( 6 ), ExtResource( 5 ) ]
+_actions_on_finish = [ ExtResource( 4 ), ExtResource( 7 ), ExtResource( 8 ) ]

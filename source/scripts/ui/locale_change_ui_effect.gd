@@ -2,20 +2,22 @@ class_name LocaleChangeUIEffect
 extends Node
 
 export(Array) var _ui_elements_paths
-export(NodePath) var _language_changer_path
 
 var _ui_elements : Array
 var _tween
-
-onready var _language_changer = get_node(_language_changer_path)
 
 func _ready():
 	for path in _ui_elements_paths:
 		var elem = get_node(path)
 		_ui_elements.append(elem)
-	_language_changer.connect("language_changed", self, "bounce_elements")
 
-func bounce_elements(locale_name):
+func add_element(elem):
+	_ui_elements.append(elem)
+
+func remove_element(elem):
+	_ui_elements.erase(elem)
+
+func bounce_elements():
 	if _tween:
 		_tween.kill()
 	_tween = create_tween()

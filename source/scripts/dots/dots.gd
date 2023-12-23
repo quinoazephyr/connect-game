@@ -1,23 +1,25 @@
 class_name Dots
-extends Node
+extends Saveable
 
 signal dot_connected(dot)
 signal dot_disconnected(dot)
 signal dots_selected(dots)
 signal dots_looped(dots)
-signal dots_connected_removed(dots)
+signal dots_removed_special_loop(dots)
 signal dots_removed(dots)
-signal dots_moved(existing_dots, new_dots)
+signal dots_moved(columns_count, existing_dots, existing_dots_target_positions, \
+		new_dots, new_dots_target_positions)
+signal dots_generated(dots)
 
+const _DOTS_PREF = "dots"
+const _COLORS_COUNT_PREF = "colors_count"
+const _GENERATION_STRATEGY_COUNT_PREF = "generations_count"
 const _DOTS_SPECIAL_LOOP_MIN_COUNT = 4
 
-export(NodePath) var _game_input_path
-export(NodePath) var _connecting_line_path
-export(NodePath) var _colorblind_mode_path
 export(PackedScene) var _dot_packed_scene
 export(Resource) var _colors
 
-var current_colors_count = 1
+var _current_colors_count = 4
 
 var _dots : Array
 var _connected_dots : Array
@@ -25,29 +27,26 @@ var _connected_dots : Array
 onready var _viewport = get_viewport()
 onready var _viewport_size = _viewport.size
 onready var _canvas_item = $CanvasLayer/Control # for resize callback
-onready var _new_dots_positions_parent = $CanvasLayer/NewDotsPositions
 onready var _dots_positions_parent = $CanvasLayer/DotsPositions
 onready var _columns_count = _dots_positions_parent.columns
 onready var _rows_count = _dots_positions_parent.get_child_count() / \
 		_columns_count
-onready var _game_input = get_node(_game_input_path)
-onready var _connecting_line = get_node(_connecting_line_path)
-onready var _colorblind_mode = get_node(_colorblind_mode_path)
 onready var _colors_generation_strategy = ColorsGenerationStrategy0.new()
 
 func _ready():
-	_canvas_item.connect("resized", self, \
-			"_call_deferred_update_dots_positions")
-	
-	_game_input.connect("input_just_pressed", self, "_on_input_pressed")
-	_game_input.connect("input_just_released", self, "_on_input_released")
-	_game_input.connect("input_motion_drag", self, "_on_input_dragged")
-	
-	_colorblind_mode.connect("colorblind_changed", self, "_show_colorblind_sprites")
+	_canvas_item.connect("resized", self, "_update_dots_positions", [], \
+			CONNECT_DEFERRED)
 
 static func is_loop_exists(dots : Array):
 	for dot in dots:
 		if get_dot_count_between_dots(dots, dot, dot) > 0:
+			return true
+	return false
+
+static func is_loop_special_exists(dots : Array):
+	for dot in dots:
+		if get_dot_count_between_dots(dots, dot, dot) > \
+				_DOTS_SPECIAL_LOOP_MIN_COUNT - 1:
 			return true
 	return false
 
@@ -58,76 +57,142 @@ static func get_dot_count_between_dots(dots : Array, dot_begin : Dot, dot_end : 
 		return 0
 	return dot_end_idx - dot_begin_idx
 
+static func get_loop(dots : Array, dot_begin : Dot, dot_end : Dot):
+	var dots_loop : Array
+	var dot_begin_idx = dots.find(dot_begin)
+	var dot_end_idx = dots.rfind(dot_end)
+	for idx in range(dot_begin_idx, dot_end_idx):
+		dots_loop.append(dots[idx])
+	return dots_loop
+
 static func sort_by_null_ascending(a, b):
 	return a == null
 
-func generate_new():
-	for idx in _dots.size():
-		var dot = _dots[idx]
-		_dots[idx] = null
-		dot.queue_free()
-	
-	if !_dots || _dots.size() == 0:
-		for i in _dots_positions_parent.get_child_count():
-			_dots.append(null)
-	
+func show_colorblind_sprites_all(is_show : bool):
+	show_colorblind_sprites(_dots, is_show)
+
+func show_colorblind_sprites(dots : Array, is_show : bool):
+	for dot in dots:
+		dot.show_colorblind_sprite(is_show)
+
+func generate_new(colors_count : int):
+	_clear_all_dots()
 	_colors_generation_strategy.reset_counter()
+	set_colors_count(colors_count)
 	_fill_empty_positions()
-	_call_deferred_update_dots_positions()
+	call_deferred("_update_dots_positions")
 
-func _on_input_pressed(mouse_pos):
-	var dot = _get_dot_under_cursor(mouse_pos)
-	if dot:
-		_connected_dots.clear()
-		_connect_new_dot(dot)
-		_connecting_line.create_line(dot.center_position, dot.center_position, dot.color)
+func get_dot_at_position(pos : Vector2):
+	for dot in _dots:
+		if dot.is_contains_mouse(pos):
+			return dot
+	return null
 
-func _on_input_released(mouse_pos):
+func is_loop_in_connection():
+	return is_loop_exists(_connected_dots)
+
+func is_loop_in_connection_special():
+	return get_special_loop_dot_count_in_connection() > \
+			_DOTS_SPECIAL_LOOP_MIN_COUNT - 1
+
+func get_special_loop_dot_count_in_connection():
+	var last_connected_dot = _connected_dots.back()
+	return get_dot_count_between_dots(_connected_dots, \
+			last_connected_dot, last_connected_dot)
+
+func get_connected_dots_count():
+	return _connected_dots.size()
+
+func notify_of_connected_special_loop(last_connected_dot : Dot):
+	var dots_loop = get_loop(_connected_dots, \
+			last_connected_dot, last_connected_dot)
+	emit_signal("dots_looped", dots_loop)
+
+func select_all_dots_of_color(color_id):
+	var dots_one_color : Array
+	for d in _dots:
+		if d.color_id == color_id:
+			dots_one_color.append(d)
+	emit_signal("dots_selected", dots_one_color)
+
+func can_connect_dot(dot : Dot):
+	var last_connected_dot = _connected_dots.back()
+	return _can_connect_new_dot(last_connected_dot, dot)
+
+func can_disconnect_last_dot_after_current_dot(current_dot : Dot):
+	var last_connected_dot = _connected_dots.back()
+	return _can_disconnect_dots(last_connected_dot, current_dot)
+
+func connect_dot(dot : Dot):
+	_connected_dots.append(dot)
+	emit_signal("dot_connected", dot)
+
+func disconnect_dot(dot : Dot):
+	_connected_dots.remove(_connected_dots.rfind(dot))
+	emit_signal("dot_disconnected", dot)
+
+func disconnect_last_dot():
+	var last_connected_dot = _connected_dots.back()
+	disconnect_dot(last_connected_dot)
+
+func reset_connected_dots():
+	_connected_dots.clear()
+
+func is_any_dot_connected():
+	return _connected_dots.size() > 0
+
+func set_colors_count(count : int):
+	_current_colors_count = count
+
+func get_colors_count():
+	return _current_colors_count
+
+func try_remove_connected_dots():
 	if _connected_dots.size() > 1:
+		var dots_to_remove : Array
 		var last_dot = _connected_dots.back()
 		if get_dot_count_between_dots(_connected_dots, last_dot, last_dot) > \
 				_DOTS_SPECIAL_LOOP_MIN_COUNT - 1:
-					emit_signal("dots_connected_removed", _connected_dots)
-					var color_id_to_remove = last_dot.color_id
-					_connected_dots.clear()
-					for dot in _dots:
-						if dot.color_id == color_id_to_remove:
-							_connected_dots.append(dot)
+			var color_id_to_remove = last_dot.color_id
+			for dot in _dots:
+				if dot.color_id == color_id_to_remove:
+					dots_to_remove.append(dot)
+			emit_signal("dots_removed_special_loop", _connected_dots)
 		else:
-			emit_signal("dots_connected_removed", _connected_dots)
-		_accept_and_remove_connected_dots()
+			dots_to_remove = _connected_dots
+		_remove_dots(dots_to_remove)
 		_prepare_board_after_dots_removal()
-	_connected_dots.clear()
-	_connecting_line.clear_line()
 
-func _on_input_dragged(mouse_pos):
-	if _connected_dots.size() > 0:
-		var dot = _get_dot_under_cursor(mouse_pos)
-		var last_connected_dot = _connected_dots.back()
-		if dot:
-			if _can_disconnect_dots(last_connected_dot, dot):
-				_disconnect_dot(last_connected_dot)
-				_connecting_line.remove_last_point()
-			elif _can_connect_new_dot(last_connected_dot, dot) && !is_loop_exists(_connected_dots):
-				_connect_new_dot(dot)
-				_connecting_line.set_line_end(dot.center_position)
-				_connecting_line.add_point(mouse_pos)
-				if is_loop_exists(_connected_dots):
-					_connecting_line.set_line_end(dot.center_position)
-					if get_dot_count_between_dots(_connected_dots, dot, dot) > _DOTS_SPECIAL_LOOP_MIN_COUNT - 1:
-						var dots_one_color : Array
-						for d in _dots:
-							if d.color_id == dot.color_id:
-								dots_one_color.append(d)
-						var dots_loop : Array
-						var dot_begin_idx = _connected_dots.find(dot)
-						var dot_end_idx = _connected_dots.rfind(dot)
-						for idx in range(dot_begin_idx, dot_end_idx):
-							dots_loop.append(_connected_dots[idx])
-						emit_signal("dots_looped", dots_loop)
-						emit_signal("dots_selected", dots_one_color)
-		if !is_loop_exists(_connected_dots):
-			_connecting_line.set_line_end(mouse_pos)
+func save_me(player_prefs : PlayerPrefs):
+	var dot_colors : Array
+	for dot in _dots:
+		dot_colors.append(_colors.get_color_idx(dot.color))
+	player_prefs.set_pref(_DOTS_PREF, dot_colors)
+	player_prefs.set_pref(_COLORS_COUNT_PREF, get_colors_count())
+	player_prefs.set_pref(_GENERATION_STRATEGY_COUNT_PREF, \
+			_colors_generation_strategy.get_counter())
+
+func load_me(player_prefs : PlayerPrefs):
+	if player_prefs.has_pref(_DOTS_PREF):
+		var dot_colors = player_prefs.get_pref(_DOTS_PREF)
+		var colors_count = player_prefs.get_pref(_COLORS_COUNT_PREF)
+		var gen_strategy_counter = \
+				player_prefs.get_pref(_GENERATION_STRATEGY_COUNT_PREF)
+		
+		_clear_all_dots()
+		_colors_generation_strategy.set_counter(gen_strategy_counter)
+		set_colors_count(colors_count)
+		
+		for idx in dot_colors.size():
+			var row = _get_row(idx)
+			var column = _get_column(idx)
+			var color = _colors.get_color(dot_colors[idx])
+			var colorblind_texture = \
+					_colors.get_colorblind_sprite(_colors.get_color_idx(color))
+			var dot = _instantiate_dot(row, column, color, colorblind_texture)
+			_dots[idx] = dot
+		
+		call_deferred("_update_dots_positions")
 
 func _instantiate_dot(row : int, column : int, \
 		color : Color, colorblind_texture : Texture):
@@ -140,19 +205,22 @@ func _remove_dot(dot : Dot): # DOES NOT REMOVE FROM TREE - expected!!!
 	var idx = _get_idx(dot.row, dot.column)
 	_dots[idx] = null
 
-func _accept_and_remove_connected_dots():
+func _remove_dots(dots_to_remove : Array):
+	if dots_to_remove.size() == 0:
+		return
 	var removed_ids : Array
-	for connected_dot in _connected_dots:
-		var idx = _get_idx(connected_dot.row, connected_dot.column)
+	for dot in dots_to_remove:
+		var idx = _get_idx(dot.row, dot.column)
 		if removed_ids.find(idx) != -1:
 			continue
 		removed_ids.append(idx)
-		_remove_dot(connected_dot)
-	emit_signal("dots_removed", _connected_dots)
-	_connected_dots.clear()
+		_remove_dot(dot)
+	emit_signal("dots_removed", dots_to_remove)
+	reset_connected_dots()
 
 func _prepare_board_after_dots_removal():
 	var existing_dots_to_move : Array
+	var existing_dots_target_positions : Array
 	for c in _columns_count:
 		var cur_row_dots : Array
 		var nulls_count = 0
@@ -167,7 +235,11 @@ func _prepare_board_after_dots_removal():
 				if !cur_row_dots[r]:
 					break
 				if cur_row_dots[r].row != r:
+					var idx = _get_idx(r, c)
 					existing_dots_to_move.append(cur_row_dots[r])
+					existing_dots_target_positions.append(\
+							_dots_positions_parent\
+							.get_child(idx).rect_global_position)
 					cur_row_dots[r].initialize(r, c, cur_row_dots[r].color_id, \
 							cur_row_dots[r].colorblind_sprite)
 		
@@ -186,10 +258,15 @@ func _prepare_board_after_dots_removal():
 	_fill_empty_positions()
 	
 	var new_dots_to_move : Array
+	var new_dots_target_positions : Array
 	for idx in empty_dots_ids:
 		new_dots_to_move.append(_dots[idx])
+		new_dots_target_positions.append(_dots_positions_parent\
+				.get_child(idx).rect_global_position)
 	
-	emit_signal("dots_moved", existing_dots_to_move, new_dots_to_move)
+	emit_signal("dots_moved", _columns_count, \
+			existing_dots_to_move, existing_dots_target_positions, \
+			new_dots_to_move, new_dots_target_positions)
 
 func _fill_empty_positions():
 	var new_dots : Array = [] # [idx, dot]
@@ -209,36 +286,27 @@ func _fill_empty_positions():
 			new_dots[idx] = [dot_idx, regen_dot]
 			_dots[dot_idx] = regen_dot
 			dot_old.queue_free()
+	
+	var new_dots_only : Array = []
+	for d in new_dots:
+		var dot = d[1]
+		new_dots_only.append(dot)
+	emit_signal("dots_generated", new_dots_only)
 
 func _generate_dot_in_empty_position(idx : int, is_regenerate : bool):
 	var row = _get_row(idx)
 	var column = _get_column(idx)
 	var color = _colors_generation_strategy \
 			.regenerate_color(_dots, _colors, _columns_count, \
-			row, column, current_colors_count) if is_regenerate \
+			row, column, _current_colors_count) if is_regenerate \
 			else \
 			_colors_generation_strategy \
 				.generate_color(_dots, _colors, _columns_count, \
-				row, column, current_colors_count)
+				row, column, _current_colors_count)
 	var colorblind_texture = \
-			_colorblind_mode.get_texture(_colors.get_color_idx(color))
+			_colors.get_colorblind_sprite(_colors.get_color_idx(color))
 	var dot = _instantiate_dot(row, column, color, colorblind_texture)
-	dot.show_colorblind_sprite(_colorblind_mode.is_active)
 	return dot
-
-func _connect_new_dot(dot : Dot):
-	_connected_dots.append(dot)
-	emit_signal("dot_connected", dot)
-
-func _disconnect_dot(dot : Dot):
-	_connected_dots.remove(_connected_dots.rfind(dot))
-	emit_signal("dot_disconnected", dot)
-
-func _get_dot_under_cursor(mouse_pos : Vector2):
-	for dot in _dots:
-		if dot.is_contains_mouse(mouse_pos):
-			return dot
-	return null
 
 func _can_disconnect_dots(last_connected_dot, dot):
 	return last_connected_dot != dot && _connected_dots.size() > 1 && \
@@ -249,9 +317,9 @@ func _can_connect_new_dot(last_connected_dot, dot):
 			dot.column - last_connected_dot.column).length()
 	return last_connected_dot != dot && \
 			last_connected_dot.color_id == dot.color_id && \
-			dots_distance < 2.0 && \
-			!_connecting_line.is_line_exists(last_connected_dot.center_position, \
-					dot.center_position)
+			dots_distance < 2.0# && \
+#			!_connecting_line.is_line_exists(last_connected_dot.center_position, \
+#					dot.center_position)
 
 func _is_connections_available(): # can connect any dots?
 	for idx in _dots.size():
@@ -260,15 +328,22 @@ func _is_connections_available(): # can connect any dots?
 			continue
 		var adjacent_dots = \
 				_colors_generation_strategy\
-				.get_adjacent_dots(_dots, _columns_count, dot.row, dot.column)
+				.get_adjacent_dots_right_bottom(\
+				_dots, _columns_count, dot.row, dot.column)
 		for adj_dot in adjacent_dots:
 			if adj_dot.color.to_html() == dot.color.to_html():
 				return true
 	return false
 
-func _show_colorblind_sprites(is_enabled : bool):
-	for dot in _dots:
-		dot.show_colorblind_sprite(is_enabled)
+func _clear_all_dots():
+	for idx in _dots.size():
+		var dot = _dots[idx]
+		_dots[idx] = null
+		dot.queue_free()
+	
+	if !_dots || _dots.size() == 0:
+		for i in _dots_positions_parent.get_child_count():
+			_dots.append(null)
 
 func _get_row(idx : int):
 	return idx / _columns_count
@@ -284,9 +359,6 @@ func _get_dot(row : int, col : int):
 	if idx < 0 || idx >= _dots.size():
 		return null
 	return _dots[idx]
-
-func _call_deferred_update_dots_positions():
-	call_deferred("_update_dots_positions")
 
 func _update_dots_positions():
 	for i in _dots.size():

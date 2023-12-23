@@ -1,0 +1,14 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://source/scripts/debug/yandex/set_data_empty_yandex_button.gd" type="Script" id=1]
+
+[node name="SetDataEmptyYandexButton" type="Button"]
+margin_top = 108.0
+margin_right = 150.0
+margin_bottom = 158.0
+rect_min_size = Vector2( 150, 50 )
+text = "SetDataEmpty"
+script = ExtResource( 1 )
+__meta__ = {
+"_editor_description_": ""
+}

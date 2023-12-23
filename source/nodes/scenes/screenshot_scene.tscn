@@ -1,0 +1,648 @@
+[gd_scene load_steps=12 format=2]
+
+[ext_resource path="res://source/nodes/scenes/gameplay_scene_base.tscn" type="PackedScene" id=1]
+[ext_resource path="res://source/nodes/gameplay.tscn" type="PackedScene" id=2]
+[ext_resource path="res://source/scripts/core/screenshot_scene.gd" type="Script" id=3]
+[ext_resource path="res://source/nodes/ui/header_highscore.tscn" type="PackedScene" id=4]
+[ext_resource path="res://source/nodes/ui/animated_label_button.tscn" type="PackedScene" id=5]
+[ext_resource path="res://source/nodes/ui/header_moves.tscn" type="PackedScene" id=6]
+[ext_resource path="res://source/nodes/ui/header_score.tscn" type="PackedScene" id=7]
+[ext_resource path="res://assets/images/ui/settings_icon.png" type="Texture" id=9]
+
+[sub_resource type="Animation" id=1]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("Label:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Button:rect_rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 0.0 ]
+}
+
+[sub_resource type="Animation" id=2]
+resource_name = "rotate_gear"
+length = 0.6
+tracks/0/type = "value"
+tracks/0/path = NodePath("Button:rect_rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.6 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ 0.0, 180.0 ]
+}
+
+[sub_resource type="Animation" id=3]
+resource_name = "show_label"
+length = 0.6
+tracks/0/type = "value"
+tracks/0/path = NodePath("Label:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.3, 0.6 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
+}
+
+[node name="ScreenshotScene" instance=ExtResource( 1 )]
+script = ExtResource( 3 )
+_board_id = 8
+_dots_color_ids = [ [ 1, 0, 2, 5, 0, 1, 4, 1, 2, 5, 1, 4, 1, 0, 2, 5, 0, 1, 4, 1, 2, 5, 1, 4, 1, 0, 2, 5, 0, 1, 4, 1, 2, 5, 1, 4, 1, 0, 2, 5, 0, 1, 4, 1, 1, 1, 1, 4 ], [ 6, 6, 6, 6, 6, 6, 6, 2, 1, 1, 2, 6, 6, 1, 0, 0, 1, 6, 6, 1, 0, 0, 1, 6, 6, 1, 0, 0, 1, 6, 6, 1, 0, 0, 1, 6, 6, 2, 1, 1, 2, 6, 6, 6, 6, 6, 6, 6 ], [ 0, 0, 0, 0, 1, 0, 0, 1, 1, 5, 1, 0, 0, 1, 2, 5, 1, 0, 0, 1, 2, 5, 1, 0, 0, 1, 2, 5, 1, 0, 0, 1, 5, 5, 1, 0, 0, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0 ], [ 1, 1, 1, 1, 0, 1, 1, 0, 0, 5, 0, 1, 1, 0, 2, 5, 0, 1, 1, 0, 2, 5, 0, 1, 1, 0, 2, 5, 0, 1, 1, 0, 5, 5, 0, 1, 1, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1 ], [ 0, 0, 0, 0, 0, 0, 0, 6, 3, 3, 5, 0, 1, 0, 6, 0, 5, 0, 0, 6, 0, 2, 0, 0, 0, 0, 4, 0, 2, 0, 0, 4, 0, 1, 0, 0, 0, 0, 1, 0, 3, 0, 0, 2, 3, 1, 0, 0 ], [ 6, 6, 6, 6, 6, 6, 3, 3, 3, 3, 3, 3, 1, 2, 4, 4, 2, 1, 5, 4, 0, 0, 4, 5, 5, 4, 0, 0, 4, 5, 1, 2, 4, 4, 2, 1, 3, 3, 3, 3, 3, 3, 6, 6, 6, 6, 6, 6 ], [ 0, 0, 0, 0, 0, 0, 6, 6, 6, 6, 6, 6, 3, 5, 4, 4, 5, 3, 1, 4, 2, 2, 4, 1, 1, 4, 2, 2, 4, 1, 3, 5, 4, 4, 5, 3, 6, 6, 6, 6, 6, 6, 0, 0, 0, 0, 0, 0 ], [ 0, 0, 0, 0, 0, 0, 6, 6, 6, 6, 6, 6, 3, 5, 2, 2, 5, 3, 1, 2, 4, 4, 2, 1, 1, 2, 4, 4, 2, 1, 3, 5, 2, 2, 5, 3, 6, 6, 6, 6, 6, 6, 0, 0, 0, 0, 0, 0 ], [ 5, 2, 1, 0, 0, 3, 0, 2, 2, 0, 4, 6, 4, 5, 3, 1 ] ]
+
+[node name="Gameplay4x4" parent="." index="4" instance=ExtResource( 2 )]
+
+[node name="DotsPositions" parent="Gameplay4x4/Dots/CanvasLayer" index="1"]
+margin_left = -154.5
+margin_top = -154.5
+margin_right = 154.5
+margin_bottom = 154.5
+custom_constants/vseparation = 35
+custom_constants/hseparation = 35
+columns = 4
+
+[node name="Control" type="Control" parent="Gameplay4x4/Dots/CanvasLayer/DotsPositions" index="0"]
+margin_right = 51.2
+margin_bottom = 51.2
+rect_min_size = Vector2( 51.2, 51.2 )
+
+[node name="Control2" type="Control" parent="Gameplay4x4/Dots/CanvasLayer/DotsPositions" index="1"]
+margin_left = 86.0
+margin_right = 137.2
+margin_bottom = 51.2
+rect_min_size = Vector2( 51.2, 51.2 )
+
+[node name="Control3" type="Control" parent="Gameplay4x4/Dots/CanvasLayer/DotsPositions" index="2"]
+margin_left = 172.0
+margin_right = 223.2
+margin_bottom = 51.2
+rect_min_size = Vector2( 51.2, 51.2 )
+
+[node name="Control4" type="Control" parent="Gameplay4x4/Dots/CanvasLayer/DotsPositions" index="3"]
+margin_left = 258.0
+margin_right = 309.2
+margin_bottom = 51.2
+rect_min_size = Vector2( 51.2, 51.2 )
+
+[node name="Control5" type="Control" parent="Gameplay4x4/Dots/CanvasLayer/DotsPositions" index="4"]
+margin_top = 86.0
+margin_right = 51.2
+margin_bottom = 137.2
+rect_min_size = Vector2( 51.2, 51.2 )
+
+[node name="Control6" type="Control" parent="Gameplay4x4/Dots/CanvasLayer/DotsPositions" index="5"]
+margin_left = 86.0
+margin_top = 86.0
+margin_right = 137.2
+margin_bottom = 137.2
+rect_min_size = Vector2( 51.2, 51.2 )
+
+[node name="Control7" type="Control" parent="Gameplay4x4/Dots/CanvasLayer/DotsPositions" index="6"]
+margin_left = 172.0
+margin_top = 86.0
+margin_right = 223.2
+margin_bottom = 137.2
+rect_min_size = Vector2( 51.2, 51.2 )
+
+[node name="Control8" type="Control" parent="Gameplay4x4/Dots/CanvasLayer/DotsPositions" index="7"]
+margin_left = 258.0
+margin_top = 86.0
+margin_right = 309.2
+margin_bottom = 137.2
+rect_min_size = Vector2( 51.2, 51.2 )
+
+[node name="Control9" type="Control" parent="Gameplay4x4/Dots/CanvasLayer/DotsPositions" index="8"]
+margin_top = 172.0
+margin_right = 51.2
+margin_bottom = 223.2
+rect_min_size = Vector2( 51.2, 51.2 )
+
+[node name="Control10" type="Control" parent="Gameplay4x4/Dots/CanvasLayer/DotsPositions" index="9"]
+margin_left = 86.0
+margin_top = 172.0
+margin_right = 137.2
+margin_bottom = 223.2
+rect_min_size = Vector2( 51.2, 51.2 )
+
+[node name="Control11" type="Control" parent="Gameplay4x4/Dots/CanvasLayer/DotsPositions" index="10"]
+margin_left = 172.0
+margin_top = 172.0
+margin_right = 223.2
+margin_bottom = 223.2
+rect_min_size = Vector2( 51.2, 51.2 )
+
+[node name="Control12" type="Control" parent="Gameplay4x4/Dots/CanvasLayer/DotsPositions" index="11"]
+margin_left = 258.0
+margin_top = 172.0
+margin_right = 309.2
+margin_bottom = 223.2
+rect_min_size = Vector2( 51.2, 51.2 )
+
+[node name="Control13" type="Control" parent="Gameplay4x4/Dots/CanvasLayer/DotsPositions" index="12"]
+margin_top = 258.0
+margin_right = 51.2
+margin_bottom = 309.2
+rect_min_size = Vector2( 51.2, 51.2 )
+
+[node name="Control14" type="Control" parent="Gameplay4x4/Dots/CanvasLayer/DotsPositions" index="13"]
+margin_left = 86.0
+margin_top = 258.0
+margin_right = 137.2
+margin_bottom = 309.2
+rect_min_size = Vector2( 51.2, 51.2 )
+
+[node name="Control15" type="Control" parent="Gameplay4x4/Dots/CanvasLayer/DotsPositions" index="14"]
+margin_left = 172.0
+margin_top = 258.0
+margin_right = 223.2
+margin_bottom = 309.2
+rect_min_size = Vector2( 51.2, 51.2 )
+
+[node name="Control16" type="Control" parent="Gameplay4x4/Dots/CanvasLayer/DotsPositions" index="15"]
+margin_left = 258.0
+margin_top = 258.0
+margin_right = 309.2
+margin_bottom = 309.2
+rect_min_size = Vector2( 51.2, 51.2 )
+
+[node name="NewDotsPositions" parent="Gameplay4x4/DotEffects/CanvasLayer" index="0"]
+margin_top = -289.0
+margin_bottom = -238.0
+custom_constants/separation = 35
+
+[node name="Control" type="Control" parent="Gameplay4x4/DotEffects/CanvasLayer/NewDotsPositions" index="0"]
+margin_left = 205.0
+margin_right = 256.2
+margin_bottom = 51.2
+rect_min_size = Vector2( 51.2, 51.2 )
+
+[node name="Control2" type="Control" parent="Gameplay4x4/DotEffects/CanvasLayer/NewDotsPositions" index="1"]
+margin_left = 291.0
+margin_right = 342.2
+margin_bottom = 51.2
+rect_min_size = Vector2( 51.2, 51.2 )
+
+[node name="Control3" type="Control" parent="Gameplay4x4/DotEffects/CanvasLayer/NewDotsPositions" index="2"]
+margin_left = 377.0
+margin_right = 428.2
+margin_bottom = 51.2
+rect_min_size = Vector2( 51.2, 51.2 )
+
+[node name="Control4" type="Control" parent="Gameplay4x4/DotEffects/CanvasLayer/NewDotsPositions" index="3"]
+margin_left = 463.0
+margin_right = 514.2
+margin_bottom = 51.2
+rect_min_size = Vector2( 51.2, 51.2 )
+
+[node name="ColorRect" parent="Gameplay4x4/DotEffects/CanvasLayer/Control" index="0"]
+self_modulate = Color( 1, 1, 1, 0 )
+
+[node name="Gameplay6x8" parent="." index="5" instance=ExtResource( 2 )]
+
+[node name="Control" type="Control" parent="Gameplay6x8/Dots/CanvasLayer/DotsPositions" index="0"]
+margin_right = 51.2
+margin_bottom = 51.2
+rect_min_size = Vector2( 51.2, 51.2 )
+
+[node name="Control2" type="Control" parent="Gameplay6x8/Dots/CanvasLayer/DotsPositions" index="1"]
+margin_left = 109.0
+margin_right = 160.2
+margin_bottom = 51.2
+rect_min_size = Vector2( 51.2, 51.2 )
+
+[node name="Control3" type="Control" parent="Gameplay6x8/Dots/CanvasLayer/DotsPositions" index="2"]
+margin_left = 218.0
+margin_right = 269.2
+margin_bottom = 51.2
+rect_min_size = Vector2( 51.2, 51.2 )
+
+[node name="Control4" type="Control" parent="Gameplay6x8/Dots/CanvasLayer/DotsPositions" index="3"]
+margin_left = 327.0
+margin_right = 378.2
+margin_bottom = 51.2
+rect_min_size = Vector2( 51.2, 51.2 )
+
+[node name="Control5" type="Control" parent="Gameplay6x8/Dots/CanvasLayer/DotsPositions" index="4"]
+margin_left = 436.0
+margin_right = 487.2
+margin_bottom = 51.2
+rect_min_size = Vector2( 51.2, 51.2 )
+
+[node name="Control6" type="Control" parent="Gameplay6x8/Dots/CanvasLayer/DotsPositions" index="5"]
+margin_left = 545.0
+margin_right = 596.2
+margin_bottom = 51.2
+rect_min_size = Vector2( 51.2, 51.2 )
+
+[node name="Control7" type="Control" parent="Gameplay6x8/Dots/CanvasLayer/DotsPositions" index="6"]
+margin_top = 109.0
+margin_right = 51.2
+margin_bottom = 160.2
+rect_min_size = Vector2( 51.2, 51.2 )
+
+[node name="Control8" type="Control" parent="Gameplay6x8/Dots/CanvasLayer/DotsPositions" index="7"]
+margin_left = 109.0
+margin_top = 109.0
+margin_right = 160.2
+margin_bottom = 160.2
+rect_min_size = Vector2( 51.2, 51.2 )
+
+[node name="Control9" type="Control" parent="Gameplay6x8/Dots/CanvasLayer/DotsPositions" index="8"]
+margin_left = 218.0
+margin_top = 109.0
+margin_right = 269.2
+margin_bottom = 160.2
+rect_min_size = Vector2( 51.2, 51.2 )
+
+[node name="Control10" type="Control" parent="Gameplay6x8/Dots/CanvasLayer/DotsPositions" index="9"]
+margin_left = 327.0
+margin_top = 109.0
+margin_right = 378.2
+margin_bottom = 160.2
+rect_min_size = Vector2( 51.2, 51.2 )
+
+[node name="Control11" type="Control" parent="Gameplay6x8/Dots/CanvasLayer/DotsPositions" index="10"]
+margin_left = 436.0
+margin_top = 109.0
+margin_right = 487.2
+margin_bottom = 160.2
+rect_min_size = Vector2( 51.2, 51.2 )
+
+[node name="Control12" type="Control" parent="Gameplay6x8/Dots/CanvasLayer/DotsPositions" index="11"]
+margin_left = 545.0
+margin_top = 109.0
+margin_right = 596.2
+margin_bottom = 160.2
+rect_min_size = Vector2( 51.2, 51.2 )
+
+[node name="Control13" type="Control" parent="Gameplay6x8/Dots/CanvasLayer/DotsPositions" index="12"]
+margin_top = 218.0
+margin_right = 51.2
+margin_bottom = 269.2
+rect_min_size = Vector2( 51.2, 51.2 )
+
+[node name="Control14" type="Control" parent="Gameplay6x8/Dots/CanvasLayer/DotsPositions" index="13"]
+margin_left = 109.0
+margin_top = 218.0
+margin_right = 160.2
+margin_bottom = 269.2
+rect_min_size = Vector2( 51.2, 51.2 )
+
+[node name="Control15" type="Control" parent="Gameplay6x8/Dots/CanvasLayer/DotsPositions" index="14"]
+margin_left = 218.0
+margin_top = 218.0
+margin_right = 269.2
+margin_bottom = 269.2
+rect_min_size = Vector2( 51.2, 51.2 )
+
+[node name="Control16" type="Control" parent="Gameplay6x8/Dots/CanvasLayer/DotsPositions" index="15"]
+margin_left = 327.0
+margin_top = 218.0
+margin_right = 378.2
+margin_bottom = 269.2
+rect_min_size = Vector2( 51.2, 51.2 )
+
+[node name="Control17" type="Control" parent="Gameplay6x8/Dots/CanvasLayer/DotsPositions" index="16"]
+margin_left = 436.0
+margin_top = 218.0
+margin_right = 487.2
+margin_bottom = 269.2
+rect_min_size = Vector2( 51.2, 51.2 )
+
+[node name="Control18" type="Control" parent="Gameplay6x8/Dots/CanvasLayer/DotsPositions" index="17"]
+margin_left = 545.0
+margin_top = 218.0
+margin_right = 596.2
+margin_bottom = 269.2
+rect_min_size = Vector2( 51.2, 51.2 )
+
+[node name="Control19" type="Control" parent="Gameplay6x8/Dots/CanvasLayer/DotsPositions" index="18"]
+margin_top = 327.0
+margin_right = 51.2
+margin_bottom = 378.2
+rect_min_size = Vector2( 51.2, 51.2 )
+
+[node name="Control20" type="Control" parent="Gameplay6x8/Dots/CanvasLayer/DotsPositions" index="19"]
+margin_left = 109.0
+margin_top = 327.0
+margin_right = 160.2
+margin_bottom = 378.2
+rect_min_size = Vector2( 51.2, 51.2 )
+
+[node name="Control21" type="Control" parent="Gameplay6x8/Dots/CanvasLayer/DotsPositions" index="20"]
+margin_left = 218.0
+margin_top = 327.0
+margin_right = 269.2
+margin_bottom = 378.2
+rect_min_size = Vector2( 51.2, 51.2 )
+
+[node name="Control22" type="Control" parent="Gameplay6x8/Dots/CanvasLayer/DotsPositions" index="21"]
+margin_left = 327.0
+margin_top = 327.0
+margin_right = 378.2
+margin_bottom = 378.2
+rect_min_size = Vector2( 51.2, 51.2 )
+
+[node name="Control23" type="Control" parent="Gameplay6x8/Dots/CanvasLayer/DotsPositions" index="22"]
+margin_left = 436.0
+margin_top = 327.0
+margin_right = 487.2
+margin_bottom = 378.2
+rect_min_size = Vector2( 51.2, 51.2 )
+
+[node name="Control24" type="Control" parent="Gameplay6x8/Dots/CanvasLayer/DotsPositions" index="23"]
+margin_left = 545.0
+margin_top = 327.0
+margin_right = 596.2
+margin_bottom = 378.2
+rect_min_size = Vector2( 51.2, 51.2 )
+
+[node name="Control25" type="Control" parent="Gameplay6x8/Dots/CanvasLayer/DotsPositions" index="24"]
+margin_top = 436.0
+margin_right = 51.2
+margin_bottom = 487.2
+rect_min_size = Vector2( 51.2, 51.2 )
+
+[node name="Control26" type="Control" parent="Gameplay6x8/Dots/CanvasLayer/DotsPositions" index="25"]
+margin_left = 109.0
+margin_top = 436.0
+margin_right = 160.2
+margin_bottom = 487.2
+rect_min_size = Vector2( 51.2, 51.2 )
+
+[node name="Control27" type="Control" parent="Gameplay6x8/Dots/CanvasLayer/DotsPositions" index="26"]
+margin_left = 218.0
+margin_top = 436.0
+margin_right = 269.2
+margin_bottom = 487.2
+rect_min_size = Vector2( 51.2, 51.2 )
+
+[node name="Control28" type="Control" parent="Gameplay6x8/Dots/CanvasLayer/DotsPositions" index="27"]
+margin_left = 327.0
+margin_top = 436.0
+margin_right = 378.2
+margin_bottom = 487.2
+rect_min_size = Vector2( 51.2, 51.2 )
+
+[node name="Control29" type="Control" parent="Gameplay6x8/Dots/CanvasLayer/DotsPositions" index="28"]
+margin_left = 436.0
+margin_top = 436.0
+margin_right = 487.2
+margin_bottom = 487.2
+rect_min_size = Vector2( 51.2, 51.2 )
+
+[node name="Control30" type="Control" parent="Gameplay6x8/Dots/CanvasLayer/DotsPositions" index="29"]
+margin_left = 545.0
+margin_top = 436.0
+margin_right = 596.2
+margin_bottom = 487.2
+rect_min_size = Vector2( 51.2, 51.2 )
+
+[node name="Control31" type="Control" parent="Gameplay6x8/Dots/CanvasLayer/DotsPositions" index="30"]
+margin_top = 545.0
+margin_right = 51.2
+margin_bottom = 596.2
+rect_min_size = Vector2( 51.2, 51.2 )
+
+[node name="Control32" type="Control" parent="Gameplay6x8/Dots/CanvasLayer/DotsPositions" index="31"]
+margin_left = 109.0
+margin_top = 545.0
+margin_right = 160.2
+margin_bottom = 596.2
+rect_min_size = Vector2( 51.2, 51.2 )
+
+[node name="Control33" type="Control" parent="Gameplay6x8/Dots/CanvasLayer/DotsPositions" index="32"]
+margin_left = 218.0
+margin_top = 545.0
+margin_right = 269.2
+margin_bottom = 596.2
+rect_min_size = Vector2( 51.2, 51.2 )
+
+[node name="Control34" type="Control" parent="Gameplay6x8/Dots/CanvasLayer/DotsPositions" index="33"]
+margin_left = 327.0
+margin_top = 545.0
+margin_right = 378.2
+margin_bottom = 596.2
+rect_min_size = Vector2( 51.2, 51.2 )
+
+[node name="Control35" type="Control" parent="Gameplay6x8/Dots/CanvasLayer/DotsPositions" index="34"]
+margin_left = 436.0
+margin_top = 545.0
+margin_right = 487.2
+margin_bottom = 596.2
+rect_min_size = Vector2( 51.2, 51.2 )
+
+[node name="Control36" type="Control" parent="Gameplay6x8/Dots/CanvasLayer/DotsPositions" index="35"]
+margin_left = 545.0
+margin_top = 545.0
+margin_right = 596.2
+margin_bottom = 596.2
+rect_min_size = Vector2( 51.2, 51.2 )
+
+[node name="Control37" type="Control" parent="Gameplay6x8/Dots/CanvasLayer/DotsPositions" index="36"]
+margin_top = 654.0
+margin_right = 51.2
+margin_bottom = 705.2
+rect_min_size = Vector2( 51.2, 51.2 )
+
+[node name="Control38" type="Control" parent="Gameplay6x8/Dots/CanvasLayer/DotsPositions" index="37"]
+margin_left = 109.0
+margin_top = 654.0
+margin_right = 160.2
+margin_bottom = 705.2
+rect_min_size = Vector2( 51.2, 51.2 )
+
+[node name="Control39" type="Control" parent="Gameplay6x8/Dots/CanvasLayer/DotsPositions" index="38"]
+margin_left = 218.0
+margin_top = 654.0
+margin_right = 269.2
+margin_bottom = 705.2
+rect_min_size = Vector2( 51.2, 51.2 )
+
+[node name="Control40" type="Control" parent="Gameplay6x8/Dots/CanvasLayer/DotsPositions" index="39"]
+margin_left = 327.0
+margin_top = 654.0
+margin_right = 378.2
+margin_bottom = 705.2
+rect_min_size = Vector2( 51.2, 51.2 )
+
+[node name="Control41" type="Control" parent="Gameplay6x8/Dots/CanvasLayer/DotsPositions" index="40"]
+margin_left = 436.0
+margin_top = 654.0
+margin_right = 487.2
+margin_bottom = 705.2
+rect_min_size = Vector2( 51.2, 51.2 )
+
+[node name="Control42" type="Control" parent="Gameplay6x8/Dots/CanvasLayer/DotsPositions" index="41"]
+margin_left = 545.0
+margin_top = 654.0
+margin_right = 596.2
+margin_bottom = 705.2
+rect_min_size = Vector2( 51.2, 51.2 )
+
+[node name="Control43" type="Control" parent="Gameplay6x8/Dots/CanvasLayer/DotsPositions" index="42"]
+margin_top = 763.0
+margin_right = 51.2
+margin_bottom = 814.2
+rect_min_size = Vector2( 51.2, 51.2 )
+
+[node name="Control44" type="Control" parent="Gameplay6x8/Dots/CanvasLayer/DotsPositions" index="43"]
+margin_left = 109.0
+margin_top = 763.0
+margin_right = 160.2
+margin_bottom = 814.2
+rect_min_size = Vector2( 51.2, 51.2 )
+
+[node name="Control45" type="Control" parent="Gameplay6x8/Dots/CanvasLayer/DotsPositions" index="44"]
+margin_left = 218.0
+margin_top = 763.0
+margin_right = 269.2
+margin_bottom = 814.2
+rect_min_size = Vector2( 51.2, 51.2 )
+
+[node name="Control46" type="Control" parent="Gameplay6x8/Dots/CanvasLayer/DotsPositions" index="45"]
+margin_left = 327.0
+margin_top = 763.0
+margin_right = 378.2
+margin_bottom = 814.2
+rect_min_size = Vector2( 51.2, 51.2 )
+
+[node name="Control47" type="Control" parent="Gameplay6x8/Dots/CanvasLayer/DotsPositions" index="46"]
+margin_left = 436.0
+margin_top = 763.0
+margin_right = 487.2
+margin_bottom = 814.2
+rect_min_size = Vector2( 51.2, 51.2 )
+
+[node name="Control48" type="Control" parent="Gameplay6x8/Dots/CanvasLayer/DotsPositions" index="47"]
+margin_left = 545.0
+margin_top = 763.0
+margin_right = 596.2
+margin_bottom = 814.2
+rect_min_size = Vector2( 51.2, 51.2 )
+
+[node name="Control" type="Control" parent="Gameplay6x8/DotEffects/CanvasLayer/NewDotsPositions" index="0"]
+margin_left = 62.0
+margin_right = 113.2
+margin_bottom = 51.2
+rect_min_size = Vector2( 51.2, 51.2 )
+
+[node name="Control2" type="Control" parent="Gameplay6x8/DotEffects/CanvasLayer/NewDotsPositions" index="1"]
+margin_left = 171.0
+margin_right = 222.2
+margin_bottom = 51.2
+rect_min_size = Vector2( 51.2, 51.2 )
+
+[node name="Control3" type="Control" parent="Gameplay6x8/DotEffects/CanvasLayer/NewDotsPositions" index="2"]
+margin_left = 280.0
+margin_right = 331.2
+margin_bottom = 51.2
+rect_min_size = Vector2( 51.2, 51.2 )
+
+[node name="Control4" type="Control" parent="Gameplay6x8/DotEffects/CanvasLayer/NewDotsPositions" index="3"]
+margin_left = 389.0
+margin_right = 440.2
+margin_bottom = 51.2
+rect_min_size = Vector2( 51.2, 51.2 )
+
+[node name="Control5" type="Control" parent="Gameplay6x8/DotEffects/CanvasLayer/NewDotsPositions" index="4"]
+margin_left = 498.0
+margin_right = 549.2
+margin_bottom = 51.2
+rect_min_size = Vector2( 51.2, 51.2 )
+
+[node name="Control6" type="Control" parent="Gameplay6x8/DotEffects/CanvasLayer/NewDotsPositions" index="5"]
+margin_left = 607.0
+margin_right = 658.2
+margin_bottom = 51.2
+rect_min_size = Vector2( 51.2, 51.2 )
+
+[node name="ColorRect" parent="Gameplay6x8/DotEffects/CanvasLayer/Control" index="0"]
+self_modulate = Color( 1, 1, 1, 0 )
+
+[node name="Background" type="CanvasLayer" parent="." index="6"]
+layer = -1
+
+[node name="ColorRect" type="ColorRect" parent="Background" index="0"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="HeaderMoves" parent="Background" index="1" instance=ExtResource( 6 )]
+self_modulate = Color( 0.964706, 0.572549, 0.12549, 1 )
+
+[node name="MovesLabel" parent="Background/HeaderMoves/MovesContainer" index="0"]
+text = "56"
+
+[node name="ScoresContainer" type="HBoxContainer" parent="Background" index="2"]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -135.5
+margin_top = 49.0
+margin_right = 251.5
+margin_bottom = 155.0
+custom_constants/separation = 60
+alignment = 1
+
+[node name="ScoreContainer" parent="Background/ScoresContainer" index="0" instance=ExtResource( 7 )]
+
+[node name="ScoreLabel" parent="Background/ScoresContainer/ScoreContainer" index="0"]
+text = "182"
+
+[node name="HighscoreContainer" parent="Background/ScoresContainer" index="1" instance=ExtResource( 4 )]
+
+[node name="HighscoreLabel" parent="Background/ScoresContainer/HighscoreContainer" index="0"]
+text = "1046"
+
+[node name="MenuLabelButton" parent="Background" index="3" instance=ExtResource( 5 )]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -340.0
+margin_top = 51.0
+margin_right = 340.0
+margin_bottom = 121.0
+
+[node name="Label" parent="Background/MenuLabelButton" index="0"]
+visible = false
+text = "KEY_QUIT_MENU"
+
+[node name="Button" parent="Background/MenuLabelButton" index="1"]
+self_modulate = Color( 0.964706, 0.572549, 0.12549, 1 )
+rect_scale = Vector2( 1.2, 1.2 )
+icon = ExtResource( 9 )
+
+[node name="AnimationPlayer" parent="Background/MenuLabelButton" index="2"]
+anims/RESET = SubResource( 1 )
+anims/rotate_gear = SubResource( 2 )
+anims/show_label = SubResource( 3 )
+
+[editable path="Gameplay4x4"]
+[editable path="Gameplay4x4/DotEffects/CanvasLayer2/Control/AdditionalMovesLabels"]
+[editable path="Gameplay6x8"]
+[editable path="Gameplay6x8/DotEffects/CanvasLayer2/Control/AdditionalMovesLabels"]
+[editable path="Background/HeaderMoves"]
+[editable path="Background/ScoresContainer/ScoreContainer"]
+[editable path="Background/ScoresContainer/HighscoreContainer"]
+[editable path="Background/MenuLabelButton"]

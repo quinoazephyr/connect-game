@@ -26,7 +26,7 @@ func _ready():
 	call_deferred("initialize", _yandex_sdk)
 	_yandex_sdk.connect("game_initialized", self, "show_ad")
 
-func initialize(yandex_sdk : YandexSDKWrapper):
+func initialize(yandex_sdk : YandexSDK):
 	_yandex_sdk = yandex_sdk
 	
 	_yandex_sdk.init_game()

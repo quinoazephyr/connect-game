@@ -1,10 +1,15 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://source/nodes/scenes/webgl/start_scene_webgl.tscn" type="PackedScene" id=1]
 [ext_resource path="res://source/scripts/core/start_scene/start_scene_yandex.gd" type="Script" id=2]
+[ext_resource path="res://source/nodes/ui/start_game_buttons/webgl/yandex/start_game_button_yandex.tscn" type="PackedScene" id=3]
+[ext_resource path="res://source/nodes/ui/start_game_buttons/webgl/yandex/start_tutorial_button_yandex.tscn" type="PackedScene" id=4]
 
 [node name="StartSceneYandex" instance=ExtResource( 1 )]
 script = ExtResource( 2 )
+_start_game_button = ExtResource( 3 )
+_start_tutorial_button = ExtResource( 4 )
 
-[node name="PlayButton" parent="Control/VBoxContainer" index="0"]
-_next_scene_file_path = "res://source/nodes/scenes/webgl/yandex/game_scene_yandex.tscn"
+[node name="VBoxContainer" parent="Control" index="1"]
+margin_top = 260.0
+margin_bottom = 452.0

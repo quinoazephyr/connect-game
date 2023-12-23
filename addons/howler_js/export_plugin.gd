@@ -9,10 +9,10 @@ var exporting := false
 var export_path := ""
 
 func _get_name() -> String:
-	return "HowlerJS"
+	return HowlerJS.SINGLETON_NAME
 
 func _export_begin(features: PoolStringArray, is_debug: bool, path: String, flags: int) -> void:
-	if features.has(HowlerJSWrapper.FEATURE_NAME):
+	if features.has(HowlerJS.FEATURE_NAME):
 		exporting = true
 		export_path = path
 

@@ -1,7 +1,14 @@
-[gd_resource type="Resource" load_steps=2 format=2]
+[gd_resource type="Resource" load_steps=9 format=2]
 
 [ext_resource path="res://source/scripts/visuals/dots_colors.gd" type="Script" id=1]
+[ext_resource path="res://assets/images/colorblind/color_1.png" type="Texture" id=2]
+[ext_resource path="res://assets/images/colorblind/color_0.png" type="Texture" id=3]
+[ext_resource path="res://assets/images/colorblind/color_2.png" type="Texture" id=4]
+[ext_resource path="res://assets/images/colorblind/color_3.png" type="Texture" id=5]
+[ext_resource path="res://assets/images/colorblind/color_4.png" type="Texture" id=6]
+[ext_resource path="res://assets/images/colorblind/color_5.png" type="Texture" id=7]
+[ext_resource path="res://assets/images/colorblind/color_6.png" type="Texture" id=8]
 
 [resource]
 script = ExtResource( 1 )
-_colors = [ Color( 0.87451, 0.145098, 0.117647, 1 ), Color( 0.25098, 0.627451, 0.929412, 1 ), Color( 0.996078, 0.8, 0.184314, 1 ), Color( 0.321569, 0.560784, 0.337255, 1 ), Color( 0.92549, 0.537255, 0.686275, 1 ), Color( 0.592157, 0.843137, 0, 1 ), Color( 0.607843, 0.14902, 0.713726, 1 ) ]
+_colors = [ [ Color( 0.87451, 0.145098, 0.117647, 1 ), ExtResource( 3 ) ], [ Color( 0.25098, 0.627451, 0.929412, 1 ), ExtResource( 2 ) ], [ Color( 0.996078, 0.8, 0.184314, 1 ), ExtResource( 4 ) ], [ Color( 0.321569, 0.560784, 0.337255, 1 ), ExtResource( 5 ) ], [ Color( 0.92549, 0.537255, 0.686275, 1 ), ExtResource( 6 ) ], [ Color( 0.592157, 0.843137, 0, 1 ), ExtResource( 7 ) ], [ Color( 0.643137, 0.384314, 0.854902, 1 ), ExtResource( 8 ) ] ]

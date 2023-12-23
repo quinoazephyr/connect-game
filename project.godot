@@ -24,7 +24,7 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://source/scripts/ui/label_buttons/animated_label_button.gd"
 }, {
-"base": "Node",
+"base": "Saveable",
 "class": "AudioBase",
 "language": "GDScript",
 "path": "res://source/scripts/audio/audio_base.gd"
@@ -59,12 +59,17 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://source/scripts/quests/goals/clear_all_dots_goal.gd"
 }, {
+"base": "Button",
+"class": "ClearPlayerPrefsButton",
+"language": "GDScript",
+"path": "res://source/scripts/debug/clear_player_prefs_button.gd"
+}, {
 "base": "AnimatedLabelButton",
 "class": "ColorblindButtonVisual",
 "language": "GDScript",
 "path": "res://source/scripts/ui/label_buttons/colorblind_label_button.gd"
 }, {
-"base": "Node",
+"base": "Saveable",
 "class": "ColorblindMode",
 "language": "GDScript",
 "path": "res://source/scripts/visuals/colorblind_mode.gd"
@@ -104,7 +109,7 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://source/scripts/visuals/dot_effects.gd"
 }, {
-"base": "Node",
+"base": "Saveable",
 "class": "Dots",
 "language": "GDScript",
 "path": "res://source/scripts/dots/dots.gd"
@@ -114,17 +119,22 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://source/scripts/visuals/dots_colors.gd"
 }, {
-"base": "Node",
-"class": "Game",
+"base": "ActionBase",
+"class": "FadeInNode",
 "language": "GDScript",
-"path": "res://source/scripts/core/game.gd"
+"path": "res://source/scripts/quests/actions/fade_in_node.gd"
+}, {
+"base": "ActionBase",
+"class": "FadeOutNode",
+"language": "GDScript",
+"path": "res://source/scripts/quests/actions/fade_out_node.gd"
 }, {
 "base": "Node",
 "class": "GameInput",
 "language": "GDScript",
 "path": "res://source/scripts/core/game_input.gd"
 }, {
-"base": "SceneBase",
+"base": "GameplaySceneBase",
 "class": "GameSceneBase",
 "language": "GDScript",
 "path": "res://source/scripts/core/game_scene/game_scene_base.gd"
@@ -135,9 +145,9 @@ _global_script_classes=[ {
 "path": "res://source/scripts/core/game_scene/game_scene_pc.gd"
 }, {
 "base": "GameSceneBase",
-"class": "GameSceneWebGL",
+"class": "GameSceneYandex",
 "language": "GDScript",
-"path": "res://source/scripts/core/game_scene/game_scene_webgl.gd"
+"path": "res://source/scripts/core/game_scene/game_scene_yandex.gd"
 }, {
 "base": "Game",
 "class": "GameYandex",
@@ -145,14 +155,24 @@ _global_script_classes=[ {
 "path": "res://source/scripts/core/game_yandex.gd"
 }, {
 "base": "Saveable",
+"class": "Gameplay",
+"language": "GDScript",
+"path": "res://source/scripts/core/gameplay.gd"
+}, {
+"base": "SceneBase",
+"class": "GameplaySceneBase",
+"language": "GDScript",
+"path": "res://source/scripts/core/gameplay_scene_base.gd"
+}, {
+"base": "Saveable",
 "class": "Highscore",
 "language": "GDScript",
 "path": "res://source/scripts/dots/highscore.gd"
 }, {
 "base": "Node",
-"class": "HowlerJSWrapper",
+"class": "HowlerJS",
 "language": "GDScript",
-"path": "res://addons/howler_js/howler_js_wrapper.gd"
+"path": "res://addons/howler_js/howler_js.gd"
 }, {
 "base": "Button",
 "class": "LanguageButton",
@@ -164,10 +184,20 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://source/scripts/language_changer.gd"
 }, {
+"base": "Button",
+"class": "LoadDataAllYandexButton",
+"language": "GDScript",
+"path": "res://source/scripts/debug/yandex/load_data_all_yandex_button.gd"
+}, {
 "base": "Node",
 "class": "LocaleChangeUIEffect",
 "language": "GDScript",
 "path": "res://source/scripts/ui/locale_change_ui_effect.gd"
+}, {
+"base": "Button",
+"class": "LogPlayerPrefsButton",
+"language": "GDScript",
+"path": "res://source/scripts/debug/log_player_prefs_button.gd"
 }, {
 "base": "QuestGoalBase",
 "class": "LoopConnectedGoal",
@@ -177,7 +207,7 @@ _global_script_classes=[ {
 "base": "AnimatedLabelButton",
 "class": "MenuLabelButton",
 "language": "GDScript",
-"path": "res://source/scripts/ui/menu_label_button.gd"
+"path": "res://source/scripts/ui/label_buttons/menu_label_button.gd"
 }, {
 "base": "Node",
 "class": "MenuVisual",
@@ -198,6 +228,11 @@ _global_script_classes=[ {
 "class": "PlayerPrefs",
 "language": "GDScript",
 "path": "res://source/scripts/core/player_prefs.gd"
+}, {
+"base": "PlayerPrefs",
+"class": "PlayerPrefsYandex",
+"language": "GDScript",
+"path": "res://source/scripts/core/player_prefs_yandex.gd"
 }, {
 "base": "PopupWithBackground",
 "class": "PopupConfirm",
@@ -235,6 +270,16 @@ _global_script_classes=[ {
 "path": "res://source/scripts/ui/label_buttons/restart_label_button.gd"
 }, {
 "base": "Node",
+"class": "SaveDataToYandexNode",
+"language": "GDScript",
+"path": "res://source/scripts/debug/yandex/save_data_to_yandex_node.gd"
+}, {
+"base": "Button",
+"class": "SavePlayerPrefsToYandexButton",
+"language": "GDScript",
+"path": "res://source/scripts/debug/yandex/save_prefs_to_yandex_button.gd"
+}, {
+"base": "Node",
 "class": "Saveable",
 "language": "GDScript",
 "path": "res://source/scripts/core/saveable.gd"
@@ -259,30 +304,20 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://source/scripts/dots/score.gd"
 }, {
-"base": "Node",
-"class": "Settings",
+"base": "GameplaySceneBase",
+"class": "ScreenshotScene",
 "language": "GDScript",
-"path": "res://source/scripts/core/settings.gd"
+"path": "res://source/scripts/core/screenshot_scene.gd"
 }, {
 "base": "Node",
-"class": "SettingsVisual",
+"class": "SetDataEmptyYandexButton",
 "language": "GDScript",
-"path": "res://source/scripts/ui/settings_visual.gd"
-}, {
-"base": "Button",
-"class": "SkipTutorialButton",
-"language": "GDScript",
-"path": "res://source/scripts/ui/skip_tutorial_button.gd"
-}, {
-"base": "SkipTutorialButton",
-"class": "SkipTutorialButtonYandex",
-"language": "GDScript",
-"path": "res://source/scripts/ui/skip_tutorial_button_yandex.gd"
+"path": "res://source/scripts/debug/yandex/set_data_empty_yandex_button.gd"
 }, {
 "base": "Node",
-"class": "SoundEffects",
+"class": "SetDataSafeStorageEmptyYandexButton",
 "language": "GDScript",
-"path": "res://source/scripts/dots/sound_effects.gd"
+"path": "res://source/scripts/debug/yandex/set_data_ss_empty_yandex_button.gd"
 }, {
 "base": "Node",
 "class": "SoundsJSWrapper",
@@ -314,7 +349,7 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://source/scripts/ui/label_buttons/theme_label_button.gd"
 }, {
-"base": "Node",
+"base": "Saveable",
 "class": "ThemeChanger",
 "language": "GDScript",
 "path": "res://source/scripts/visuals/theme_changer.gd"
@@ -344,18 +379,28 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://source/scripts/ui/label_buttons/tutorial_label_button.gd"
 }, {
-"base": "Node",
+"base": "DotEffects",
 "class": "TutorialDotEffects",
 "language": "GDScript",
 "path": "res://source/scripts/visuals/tutorial_dot_effects.gd"
 }, {
-"base": "Node",
+"base": "Dots",
 "class": "TutorialDots",
 "language": "GDScript",
 "path": "res://source/scripts/dots/tutorial_dots.gd"
 }, {
+"base": "Gameplay",
+"class": "TutorialGameplay",
+"language": "GDScript",
+"path": "res://source/scripts/core/tutorial_gameplay.gd"
+}, {
+"base": "GameplaySceneBase",
+"class": "TutorialSceneBase",
+"language": "GDScript",
+"path": "res://source/scripts/core/tutorial_scene/tutorial_scene_base.gd"
+}, {
 "base": "Node",
-"class": "YandexSDKWrapper",
+"class": "YandexSDK",
 "language": "GDScript",
 "path": "res://addons/yandex_sdk/yandex_sdk.gd"
 }, {
@@ -363,6 +408,11 @@ _global_script_classes=[ {
 "class": "YandexSDKWrapperOld",
 "language": "GDScript",
 "path": "res://source/scripts/yandex_sdk_wrapper_old.gd"
+}, {
+"base": "Reference",
+"class": "YandexUtils",
+"language": "GDScript",
+"path": "res://source/scripts/yandex_utils.gd"
 } ]
 _global_script_class_icons={
 "ActionBase": "",
@@ -375,6 +425,7 @@ _global_script_class_icons={
 "AutoloadPlaceholder": "",
 "CallMethodAction": "",
 "ClearAllDotsGoal": "",
+"ClearPlayerPrefsButton": "",
 "ColorblindButtonVisual": "",
 "ColorblindMode": "",
 "ColorsGenerationStrategy0": "",
@@ -386,23 +437,29 @@ _global_script_class_icons={
 "DotEffects": "",
 "Dots": "",
 "DotsColors": "",
-"Game": "",
+"FadeInNode": "",
+"FadeOutNode": "",
 "GameInput": "",
 "GameSceneBase": "",
 "GameScenePC": "",
-"GameSceneWebGL": "",
+"GameSceneYandex": "",
 "GameYandex": "",
+"Gameplay": "",
+"GameplaySceneBase": "",
 "Highscore": "",
-"HowlerJSWrapper": "",
+"HowlerJS": "",
 "LanguageButton": "",
 "LanguageChanger": "",
+"LoadDataAllYandexButton": "",
 "LocaleChangeUIEffect": "",
+"LogPlayerPrefsButton": "",
 "LoopConnectedGoal": "",
 "MenuLabelButton": "",
 "MenuVisual": "",
 "Moves": "",
 "PlayGameButton": "",
 "PlayerPrefs": "",
+"PlayerPrefsYandex": "",
 "PopupConfirm": "",
 "PopupEndGame": "",
 "PopupEndGameYandex": "",
@@ -410,16 +467,16 @@ _global_script_class_icons={
 "QuestBase": "",
 "QuestGoalBase": "",
 "RestartLabelButton": "",
+"SaveDataToYandexNode": "",
+"SavePlayerPrefsToYandexButton": "",
 "Saveable": "",
 "SceneBase": "",
 "SceneChanger": "",
 "SceneChangerButton": "",
 "Score": "",
-"Settings": "",
-"SettingsVisual": "",
-"SkipTutorialButton": "",
-"SkipTutorialButtonYandex": "",
-"SoundEffects": "",
+"ScreenshotScene": "",
+"SetDataEmptyYandexButton": "",
+"SetDataSafeStorageEmptyYandexButton": "",
 "SoundsJSWrapper": "",
 "StartSceneBase": "",
 "StartSceneWebGL": "",
@@ -434,22 +491,26 @@ _global_script_class_icons={
 "TutorialButtonVisual": "",
 "TutorialDotEffects": "",
 "TutorialDots": "",
-"YandexSDKWrapper": "",
-"YandexSDKWrapperOld": ""
+"TutorialGameplay": "",
+"TutorialSceneBase": "",
+"YandexSDK": "",
+"YandexSDKWrapperOld": "",
+"YandexUtils": ""
 }
 
 [application]
 
 config/name="Connect"
-run/main_scene="res://source/nodes/scenes/webgl/start_scene_webgl.tscn"
+run/main_scene="res://source/nodes/scenes/webgl/yandex/start_scene_yandex.tscn"
 config/icon="res://assets/images/icon.png"
 
 [autoload]
 
-PlayerPrefsAutoload="*res://source/scripts/core/player_prefs.gd"
+YandexSDKAutoload="*res://addons/yandex_sdk/yandex_sdk.gd"
+PlayerPrefsAutoload="*res://source/scripts/core/player_prefs_yandex.gd"
 SceneChangerAutoload="*res://source/scripts/scene_changer.gd"
 SoundManager="*res://addons/sound_manager/sound_manager.tscn"
-HowlerJS="*res://addons/howler_js/howler_js_wrapper.gd"
+HowlerJSAutoload="*res://addons/howler_js/howler_js.gd"
 ThemeChangerAutoload="*res://source/nodes/themes/theme_changer.tscn"
 TransitionAutoload="*res://source/nodes/transition_node.tscn"
 
@@ -457,7 +518,6 @@ TransitionAutoload="*res://source/nodes/transition_node.tscn"
 
 window/size/width=720
 window/size/height=1280
-window/size/always_on_top=true
 window/size/test_width=720
 window/size/test_height=1280
 window/dpi/allow_hidpi=true
@@ -467,7 +527,7 @@ window/stretch/aspect="expand"
 
 [editor_plugins]
 
-enabled=PoolStringArray( "res://addons/howler_js/plugin.cfg", "res://addons/sound_manager/plugin.cfg" )
+enabled=PoolStringArray( "res://addons/copy_web_template_on_export/plugin.cfg", "res://addons/howler_js/plugin.cfg", "res://addons/sound_manager/plugin.cfg", "res://addons/yandex_sdk/plugin.cfg" )
 
 [gui]
 

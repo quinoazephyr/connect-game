@@ -7,4 +7,4 @@ script = ExtResource( 1 )
 _target_node_path = "/root/TutorialScene/UI/Steps/SquareConnectionLabel"
 _method = "set_visible"
 _arguments = [ false ]
-_delay = 0.0
+_delay = 0.4

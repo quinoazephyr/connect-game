@@ -1,7 +1,7 @@
 class_name AudioWeb
 extends AudioBase
 
-onready var _howler = .get_tree().root.get_node(HowlerJSWrapper.SINGLETON_NAME)
+onready var _howler = .get_tree().root.get_node(HowlerJS.SINGLETON_NAME)
 
 func load_sounds():
 	.load_sounds()

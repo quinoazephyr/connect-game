@@ -1,0 +1,9 @@
+[gd_resource type="Resource" load_steps=2 format=2]
+
+[ext_resource path="res://source/scripts/quests/goals/clear_all_dots_goal.gd" type="Script" id=1]
+
+[resource]
+script = ExtResource( 1 )
+_title = ""
+_description = ""
+_gameplay_path = "/root/TutorialScene/Tutorial/HorizontalConnectionGameplay"

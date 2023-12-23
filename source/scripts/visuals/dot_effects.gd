@@ -1,23 +1,15 @@
 class_name DotEffects
 extends Node
 
-export(NodePath) var _dots_path
-
-onready var _dots = get_node(_dots_path)
 onready var _effects_ui_parent = $CanvasLayer/Control
+onready var _new_dots_positions_parent = $CanvasLayer/NewDotsPositions
 onready var _fullscreen_color_rect = $CanvasLayer/Control/ColorRect
-onready var _add_moves_labels = $CanvasLayer/Control/AdditionalMovesLabels
+onready var _add_moves_labels = $CanvasLayer2/Control/AdditionalMovesLabels
 
 func _ready():
-	_dots.connect("dot_connected", self, "_ripple_dot")
-	_dots.connect("dots_removed", self, "_disappear_dots")
-	_dots.connect("dots_selected", self, "_ripple_dots_with_color")
-	_dots.connect("dots_moved", self, "_move_dots_down")
-	_dots.connect("dots_connected_removed", self, "_on_loop_dots_removed")
-	_dots.connect("dot_disconnected", self, "_on_dot_disconnected")
 	_fullscreen_color_rect.visible = false
 
-func _wiggle_dot(dot : Dot):
+func wiggle_dot(dot : Dot):
 	var old_scale = dot.scale
 	var old_position = dot.position
 	var scale_addition = 0.2
@@ -38,9 +30,9 @@ func _wiggle_dot(dot : Dot):
 	tween_out.tween_property(dot, "position", old_position, half_time) \
 			.set_delay(half_time).from(new_position)
 
-func _ripple_dots_with_color(dots : Array):
+func ripple_dots_with_color(dots : Array):
 	for dot in dots:
-		_ripple_dot(dot)
+		ripple_dot(dot)
 	var dot_color = dots.front().color
 	var color_rect_color = Color(dot_color.r, dot_color.g, dot_color.b, 0.1)
 	_fullscreen_color_rect.visible = true
@@ -48,7 +40,7 @@ func _ripple_dots_with_color(dots : Array):
 	tween.tween_property(_fullscreen_color_rect, "color", \
 			color_rect_color, 0.2).from(Color(1.0, 1.0, 1.0, 0.0))
 
-func _ripple_dot(dot : Dot):
+func ripple_dot(dot : Dot):
 	var ripple_sprite = dot._sprite.duplicate()
 	dot.add_child(ripple_sprite)
 	
@@ -67,12 +59,12 @@ func _ripple_dot(dot : Dot):
 	tween.tween_property(ripple_sprite, "scale", final_scale, time)
 	tween.tween_callback(ripple_sprite, "queue_free").set_delay(time)
 
-func _disappear_dots(dots : Array):
+func disappear_dots(dots : Array):
 	for dot in dots:
-		_disappear_dot(dot)
+		disappear_dot(dot)
 	_fullscreen_color_rect.visible = false
 
-func _disappear_dot(dot : Dot):
+func disappear_dot(dot : Dot):
 	var scale_addition = -1.0
 	var final_scale = dot.scale * (1.0 + scale_addition)
 	var final_position = dot.position - \
@@ -86,15 +78,14 @@ func _disappear_dot(dot : Dot):
 	tween.tween_property(dot, "scale", final_scale, time)
 	tween.tween_callback(dot, "queue_free").set_delay(time)
 
-func _move_dots_down(existing_dots, new_dots):
-	var columns_count = _dots._columns_count
-	
+func move_dots_down(columns_count, existing_dots, existing_dots_target_positions,\
+		new_dots, new_dots_target_positions):
 	var movement_duration = 0.4
 	var movement_delay = 0.0
 	
-	var tween_disable_input = get_tree().create_tween()
-	tween_disable_input.tween_callback(_dots._game_input, \
-			"enable_input", [false]).set_delay(movement_delay)
+#	var tween_disable_input = get_tree().create_tween()
+#	tween_disable_input.tween_callback(_dots._game_input, \
+#			"enable_input", [false]).set_delay(movement_delay)
 	
 	var columns_empty_ids_counter : Array
 	for idx in columns_count:
@@ -103,9 +94,18 @@ func _move_dots_down(existing_dots, new_dots):
 		columns_empty_ids_counter[dot.column] += 1
 	
 	var dots_to_move : Array
+	var target_positions_and_rows : Array
 	dots_to_move.append_array(existing_dots)
 	
-	for dot in new_dots:
+	for idx in existing_dots.size():
+		target_positions_and_rows.append([
+			existing_dots[idx].row, 
+			existing_dots_target_positions[idx]
+			])
+	
+	for idx in new_dots.size():
+		var dot = new_dots[idx]
+		var target_position = new_dots_target_positions[idx]
 		var r = dot.row
 		var c = dot.column
 		var cur_empty_id = columns_empty_ids_counter[c]
@@ -113,50 +113,47 @@ func _move_dots_down(existing_dots, new_dots):
 		
 		_tween_dot_at_spawn_point(dot, delay)
 		dots_to_move.append(dot)
+		target_positions_and_rows.append([
+			dot.row,
+			target_position
+			])
 		
 		columns_empty_ids_counter[c] -= 1
 	
 	dots_to_move.sort_custom(self, "_sort_dots_by_row")
-	for dot in dots_to_move:
-		_move_dot_to_row(dot, dot.column, dot.row, movement_duration, 0.0, false)
+	target_positions_and_rows.sort_custom(self, "_sort_target_positions_by_row")
+	for idx in dots_to_move.size():
+		var dot = dots_to_move[idx]
+		var target_position = target_positions_and_rows[idx][1]
+		move_dot_to_row(dot, target_position, movement_duration, 0.0)
 	
-	var tween_enable_input = get_tree().create_tween()
-	tween_enable_input.tween_callback(_dots._game_input, \
-			"enable_input", [true]).set_delay(movement_duration + movement_delay)
+#	var tween_enable_input = get_tree().create_tween()
+#	tween_enable_input.tween_callback(_dots._game_input, \
+#			"enable_input", [true]).set_delay(movement_duration + movement_delay)
 
 func _sort_dots_by_row(a : Dot, b : Dot):
 	return a.row < b.row
 
-func _move_dot_to_row(dot : Dot, column : int, target_row : int, \
-		duration : float, delay : float = 0.0, is_from_current : bool = true):
-	var target_position = \
-			_dots._new_dots_positions_parent.get_child(column).rect_global_position
-	if target_row != -1:
-		var target_child = _dots._get_idx(target_row, column)
-		target_position = \
-				_dots._dots_positions_parent.get_child(target_child).rect_global_position
-	var new_global_position = target_position
+func _sort_target_positions_by_row(pos_a, pos_b):
+	return pos_a[0] < pos_b[0]
+
+func move_dot_to_row(dot : Dot, target_position : Vector2, \
+		duration : float, delay : float = 0.0):
 	var tween = get_tree().create_tween()
-	if is_from_current:
-		tween.tween_property(dot, "global_position", new_global_position, duration)\
-				.from_current()\
-				.set_trans(Tween.TRANS_BOUNCE)\
-				.set_ease(Tween.EASE_OUT)
-	else:
-		tween.tween_property(dot, "global_position", new_global_position, duration)\
-				.set_trans(Tween.TRANS_BOUNCE)\
-				.set_ease(Tween.EASE_OUT)
+	tween.tween_property(dot, "global_position", target_position, duration)\
+			.set_trans(Tween.TRANS_BOUNCE)\
+			.set_ease(Tween.EASE_OUT)
 
 func _tween_dot_at_spawn_point(dot : Dot, visibility_delay : float):
 	var target_position = \
-			_dots._new_dots_positions_parent.get_child(dot.column).rect_global_position
+			_new_dots_positions_parent.get_child(dot.column).rect_global_position
 	var tween = get_tree().create_tween()
 	tween.tween_property(dot, "visible", false, 0.0)
 	tween.tween_property(dot, "global_position", target_position, 0.0)
 	tween.tween_property(dot, "visible", true, 0.0).set_delay(visibility_delay)
 
-func _on_loop_dots_removed(dots : Array):
-	if !Dots.is_loop_exists(dots):
+func on_loop_dots_removed(dots : Array):
+	if !Dots.is_loop_special_exists(dots):
 		return
 	
 	var dot_count_in_loop = 0
@@ -164,10 +161,10 @@ func _on_loop_dots_removed(dots : Array):
 		dot_count_in_loop = \
 				max(dot_count_in_loop, \
 				Dots.get_dot_count_between_dots(dots, dot, dot))
-	
+
 	var labels = _add_moves_labels
 	labels.visible = true
-	labels.set_moves_count(dot_count_in_loop)
+	labels.set_moves_count(dot_count_in_loop - 1)
 	var last_dot = dots.back()
 	var labels_rect_position = last_dot.position + Vector2(38.0, -35.0 - 32.0 + 12.0)
 	if labels_rect_position.x + labels.rect_size.x > \
@@ -175,11 +172,11 @@ func _on_loop_dots_removed(dots : Array):
 		labels_rect_position = last_dot.position + \
 				Vector2(-labels.rect_size.x, -35.0 - 32.0 + 12.0)
 	labels.rect_position = labels_rect_position
-	
+
 	var tween = get_tree().create_tween()
 	tween.tween_property(labels, "rect_position", \
 			labels.rect_position + Vector2(0.0, -20.0), 1.0)
 	tween.tween_callback(labels, "set_visible", [false])
 
-func _on_dot_disconnected(dot : Dot):
+func on_dot_disconnected(dot : Dot):
 	_fullscreen_color_rect.visible = false

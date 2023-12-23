@@ -4,7 +4,7 @@
 
 [resource]
 script = ExtResource( 1 )
-_target_node_path = "/root/TutorialScene/UI/HeaderMoves/MovesContainer/MovesLabel"
+_target_node_path = "/root/TutorialScene/UI/HeaderMoves"
 _method = "set_moves"
 _arguments = [ 1 ]
 _delay = 0.0

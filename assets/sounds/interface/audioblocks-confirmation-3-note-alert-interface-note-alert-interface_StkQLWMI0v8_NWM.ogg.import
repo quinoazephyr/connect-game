@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/audioblocks-confirmation-3-note-alert-interface-note-alert-interface_StkQLWMI0v8_NWM.ogg-4c6fba8ffc2afabefbb0c8779067a3f5.oggstr"
+
+[deps]
+
+source_file="res://assets/sounds/interface/audioblocks-confirmation-3-note-alert-interface-note-alert-interface_StkQLWMI0v8_NWM.ogg"
+dest_files=[ "res://.import/audioblocks-confirmation-3-note-alert-interface-note-alert-interface_StkQLWMI0v8_NWM.ogg-4c6fba8ffc2afabefbb0c8779067a3f5.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

@@ -1,11 +1,26 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=3 format=2]
 
 [ext_resource path="res://source/nodes/scenes/game_scene_base.tscn" type="PackedScene" id=1]
-[ext_resource path="res://source/scripts/core/game_scene/game_scene_webgl.gd" type="Script" id=2]
 [ext_resource path="res://source/scripts/audio/audio_web.gd" type="Script" id=3]
 
 [node name="GameSceneWebGL" instance=ExtResource( 1 )]
-script = ExtResource( 2 )
 
 [node name="Audio" parent="." index="0"]
 script = ExtResource( 3 )
+
+[node name="TutorialLabelButton" parent="UI/MenuVisual/Menu/Options" index="1"]
+_next_scene_file_path = "res://source/nodes/scenes/webgl/tutorial_scene_webgl.tscn"
+
+[editable path="Gameplay"]
+[editable path="Gameplay/DotEffects/CanvasLayer/Control/AdditionalMovesLabels"]
+[editable path="UI/HeaderMoves"]
+[editable path="UI/ScoresContainer/ScoreContainer"]
+[editable path="UI/ScoresContainer/HighscoreContainer"]
+[editable path="UI/MenuVisual/Menu/Options/RestartLabelButton"]
+[editable path="UI/MenuVisual/Menu/Options/TutorialLabelButton"]
+[editable path="UI/MenuVisual/Menu/Options/ColorblindLabelButton"]
+[editable path="UI/MenuVisual/Menu/Options/ThemeLabelButton"]
+[editable path="UI/MenuVisual/Menu/Options/AudioLabelButton"]
+[editable path="UI/MenuLabelButton"]
+[editable path="UI/PopupConfirm"]
+[editable path="UI/PopupEndGame"]

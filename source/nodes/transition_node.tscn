@@ -5,7 +5,7 @@
 [node name="Transition" type="CanvasLayer"]
 layer = 100
 script = ExtResource( 1 )
-_transition_time = 2.0
+_transition_time = 0.8
 
 [node name="TransitionColorRect" type="ColorRect" parent="."]
 visible = false

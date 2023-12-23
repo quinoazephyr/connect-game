@@ -1,14 +1,16 @@
-[gd_resource type="Resource" load_steps=10 format=2]
+[gd_resource type="Resource" load_steps=12 format=2]
 
 [ext_resource path="res://source/scripts/quests/quest_base.gd" type="Script" id=1]
 [ext_resource path="res://source/resources/tutorial_steps/actions/act_set_step_6_invisible.tres" type="Resource" id=2]
-[ext_resource path="res://source/resources/tutorial_steps/actions/spawn_dots_step_6.tres" type="Resource" id=3]
+[ext_resource path="res://source/resources/tutorial_steps/actions/init_gameplay_step_6.tres" type="Resource" id=3]
 [ext_resource path="res://source/resources/tutorial_steps/actions/act_set_step_6_visible.tres" type="Resource" id=4]
-[ext_resource path="res://source/resources/tutorial_steps/actions/call_next_tut_step_no_trans.tres" type="Resource" id=5]
+[ext_resource path="res://source/resources/tutorial_steps/actions/call_next_tut_step_half_duration.tres" type="Resource" id=5]
 [ext_resource path="res://source/resources/tutorial_steps/goals/loop_connected_goal.tres" type="Resource" id=6]
 [ext_resource path="res://source/resources/tutorial_steps/actions/act_set_moves_visible.tres" type="Resource" id=7]
 [ext_resource path="res://source/resources/tutorial_steps/actions/act_set_moves.tres" type="Resource" id=8]
 [ext_resource path="res://source/resources/tutorial_steps/actions/act_connect_moves.tres" type="Resource" id=9]
+[ext_resource path="res://source/resources/tutorial_steps/actions/fade_out_square_conn_label.tres" type="Resource" id=10]
+[ext_resource path="res://source/resources/tutorial_steps/actions/play_tutorial_step_success_sound.tres" type="Resource" id=11]
 
 [resource]
 script = ExtResource( 1 )
@@ -17,4 +19,4 @@ _title = ""
 _description = ""
 _goals = [ ExtResource( 6 ) ]
 _actions_on_start = [ ExtResource( 4 ), ExtResource( 3 ), ExtResource( 8 ), ExtResource( 7 ), ExtResource( 9 ) ]
-_actions_on_finish = [ ExtResource( 2 ), ExtResource( 5 ) ]
+_actions_on_finish = [ ExtResource( 10 ), ExtResource( 11 ), ExtResource( 2 ), ExtResource( 5 ) ]

@@ -4,6 +4,6 @@
 
 [resource]
 script = ExtResource( 1 )
-_dots_path = "/root/TutorialScene/Core/Dots"
-_moves_path = "/root/TutorialScene/UI/HeaderMoves/MovesContainer/MovesLabel"
-_game_input_path = "/root/TutorialScene/Core/GameInput"
+_tutorial_scene_path = "/root/TutorialScene"
+_gameplay_path = "/root/TutorialScene/Tutorial/SquareConnectionsGameplay"
+_moves_path = "/root/TutorialScene/UI/HeaderMoves"

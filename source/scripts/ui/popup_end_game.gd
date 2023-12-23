@@ -12,11 +12,13 @@ onready var _watch_ad_button = $PopupDialog/VBoxContainer/VBoxButtons/WatchAdBut
 onready var _ad_icon = $PopupDialog/VBoxContainer/VBoxButtons/WatchAdButton/TextureRect
 onready var _ad_label = $PopupDialog/VBoxContainer/VBoxButtons/WatchAdButton/Label
 
-func set_new_game_button_callback(target : Object, method : String):
-	_new_game_button.connect("pressed", target, method)
+func set_new_game_button_callback(target : Object, method : String, \
+		binds : Array = [], flags : int = 0):
+	_new_game_button.connect("pressed", target, method, binds, flags)
 
-func set_watch_ad_button_callback(target : Object, method : String):
-	_watch_ad_button.connect("pressed", target, method)
+func set_watch_ad_button_callback(target : Object, method : String, \
+		binds : Array = [], flags : int = 0):
+	_watch_ad_button.connect("pressed", target, method, binds, flags)
 
 func set_score_label(score : int, is_highscore : bool):
 	_final_score_label.text = "%d" % score

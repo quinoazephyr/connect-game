@@ -8,8 +8,8 @@ const _MOVES_PREF = "moves"
 
 var _moves : int
 
-onready var _moves_label = $"."
-onready var _add_moves_label = $AddMovesLabel
+onready var _moves_label = $MovesContainer/MovesLabel
+onready var _add_moves_label = $MovesContainer/MovesLabel/AddMovesLabel
 onready var _moves_font = _moves_label.get("custom_fonts/font")
 onready var _add_moves_font = _add_moves_label.get("custom_fonts/font")
 
@@ -22,6 +22,19 @@ func set_moves(val : int):
 	if _moves == 0:
 		call_deferred("emit_signal", "no_moves_left")
 
+func get_moves():
+	return _moves
+
+func add_moves(count : int):
+	set_moves(get_moves() + count)
+
+func set_additional_moves(val : int):
+	if val < 0:
+		_add_moves_label.text = "%d" % val
+	elif val > 0:
+		_add_moves_label.text = "+%d" % val
+	_reposition_add_moves_rect()
+
 func save_me(player_prefs : PlayerPrefs):
 	player_prefs.set_pref(_MOVES_PREF, _moves)
 
@@ -31,34 +44,11 @@ func load_me(player_prefs : PlayerPrefs):
 	else:
 		reset_moves()
 
-func _on_dots_removed(dots : Array):
-	var new_moves = -1
-	if Dots.is_loop_exists(dots):
-		var dot_count_in_loop = 0
-		for dot in dots:
-			dot_count_in_loop = \
-					max(dot_count_in_loop, \
-					Dots.get_dot_count_between_dots(dots, dot, dot))
-		new_moves = max(new_moves, dot_count_in_loop)
-	set_moves(_moves + new_moves)
+func clear_saved_data(player_prefs : PlayerPrefs):
+	player_prefs.remove_pref(_MOVES_PREF)
 
-func _on_input_release(mouse_pos):
-	_show_add_moves_label(false)
-
-func _show_add_moves_label(show : bool):
+func show_add_moves_label(show : bool):
 	_add_moves_label.visible = show
-
-func _on_dot_connected(dot : Dot):
-	_show_add_moves_label(true)
-	_add_moves_label.text = "-%d" % 1
-	_reposition_add_moves_rect()
-#	_tween_add_moves_rect()
-
-func _on_dots_looped(dots : Array):
-	_show_add_moves_label(true)
-	_add_moves_label.text = "+%d" % dots.size()
-	_reposition_add_moves_rect()
-#	_tween_add_moves_rect()
 
 func _reposition_add_moves_rect():
 	var moves_font_rect_size = _moves_font.get_string_size(_moves_label.text)

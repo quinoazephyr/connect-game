@@ -1,15 +1,15 @@
 [gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://source/nodes/scenes/scene_base.tscn" type="PackedScene" id=1]
+[ext_resource path="res://source/nodes/ui/start_game_buttons/start_tutorial_button_base.tscn" type="PackedScene" id=2]
 [ext_resource path="res://source/scripts/language_changer.gd" type="Script" id=3]
 [ext_resource path="res://source/scripts/core/start_scene/start_scene_base.gd" type="Script" id=4]
+[ext_resource path="res://source/nodes/ui/start_game_buttons/start_game_button_base.tscn" type="PackedScene" id=5]
 [ext_resource path="res://assets/images/ui/uk.png" type="Texture" id=6]
 [ext_resource path="res://assets/images/ui/change_language_button.png" type="Texture" id=7]
-[ext_resource path="res://assets/images/ui/popup_play_again_button.png" type="Texture" id=8]
 [ext_resource path="res://assets/images/icon_rounded.png" type="Texture" id=9]
 [ext_resource path="res://source/scripts/ui/locale_change_ui_effect.gd" type="Script" id=10]
 [ext_resource path="res://source/scripts/ui/language_button.gd" type="Script" id=11]
-[ext_resource path="res://source/scripts/ui/play_game_button.gd" type="Script" id=12]
 [ext_resource path="res://source/resources/fonts/title_font.tres" type="DynamicFont" id=13]
 [ext_resource path="res://source/resources/fonts/header_font.tres" type="DynamicFont" id=14]
 
@@ -17,9 +17,11 @@
 
 [node name="StartSceneBase" instance=ExtResource( 1 )]
 script = ExtResource( 4 )
+_start_game_button = ExtResource( 5 )
+_start_tutorial_button = ExtResource( 2 )
 
 [node name="ThemeNodesCollection" parent="." index="1"]
-_labels_paths = [ NodePath("../Control/VBoxContainer/PlayButton/Label"), NodePath("../Control/VBoxContainer/LanguageButton/Label"), NodePath("../Control/HBoxContainer/Label") ]
+_labels_paths = [ NodePath("../Control/HBoxContainer/Label") ]
 _backgrounds_paths = [ NodePath("../Control/ColorRect") ]
 
 [node name="LanguageChanger" type="Node" parent="." index="2"]
@@ -40,46 +42,19 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 margin_left = -196.0
-margin_top = 260.0
+margin_top = 200.0
 margin_right = 196.0
-margin_bottom = 452.0
+margin_bottom = 392.0
 custom_constants/separation = 20
 alignment = 1
 script = ExtResource( 10 )
-_ui_elements_paths = [ NodePath("PlayButton/Label"), NodePath("LanguageButton/TextureRect"), NodePath("LanguageButton/Label"), NodePath("../HBoxContainer/Label") ]
-_language_changer_path = NodePath("../../LanguageChanger")
+_ui_elements_paths = [ NodePath("LanguageButton/TextureRect"), NodePath("LanguageButton/Label"), NodePath("../HBoxContainer/Label") ]
 
-[node name="PlayButton" type="Button" parent="Control/VBoxContainer" index="0"]
+[node name="PlayButtonContainer" type="Control" parent="Control/VBoxContainer" index="0"]
 margin_right = 392.0
 margin_bottom = 86.0
-custom_colors/font_color_disabled = Color( 1, 1, 1, 1 )
-custom_colors/font_color_focus = Color( 1, 1, 1, 1 )
-custom_colors/font_color = Color( 1, 1, 1, 1 )
-custom_colors/font_color_hover = Color( 1, 1, 1, 1 )
-custom_colors/font_color_pressed = Color( 1, 1, 1, 1 )
-custom_fonts/font = ExtResource( 13 )
-custom_styles/focus = SubResource( 1 )
-icon = ExtResource( 8 )
-flat = true
-icon_align = 1
-script = ExtResource( 12 )
-_current_scene_root_path = NodePath("../../..")
-_next_scene_file_path = "res://source/nodes/scenes/game_scene_base.tscn"
-
-[node name="Label" type="Label" parent="Control/VBoxContainer/PlayButton" index="0"]
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-margin_left = -156.0
-margin_top = -23.0
-margin_right = 156.0
-margin_bottom = 23.0
-rect_pivot_offset = Vector2( 156, 23 )
-custom_fonts/font = ExtResource( 13 )
-text = "KEY_START_GAME"
-align = 1
-valign = 1
+size_flags_horizontal = 3
+size_flags_vertical = 3
 
 [node name="LanguageButton" type="Button" parent="Control/VBoxContainer" index="1"]
 margin_top = 106.0
@@ -120,6 +95,7 @@ margin_right = 135.0
 margin_bottom = 23.0
 rect_min_size = Vector2( 270, 46 )
 rect_pivot_offset = Vector2( 135, 23 )
+custom_colors/font_color = Color( 0.32549, 0.34902, 0.415686, 1 )
 custom_fonts/font = ExtResource( 13 )
 text = "KEY_LANGUAGE"
 align = 1
@@ -156,3 +132,5 @@ custom_fonts/font = ExtResource( 14 )
 text = "KEY_GAME_TITLE"
 align = 1
 valign = 1
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." index="4"]

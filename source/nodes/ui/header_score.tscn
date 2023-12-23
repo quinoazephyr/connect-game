@@ -1,0 +1,42 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://source/scripts/dots/score.gd" type="Script" id=1]
+[ext_resource path="res://source/resources/fonts/title_font.tres" type="DynamicFont" id=2]
+[ext_resource path="res://source/resources/fonts/header_font.tres" type="DynamicFont" id=3]
+[ext_resource path="res://source/resources/fonts/digits_small_font.tres" type="DynamicFont" id=4]
+
+[node name="ScoreContainer" type="VBoxContainer"]
+margin_right = 195.0
+margin_bottom = 106.0
+alignment = 1
+script = ExtResource( 1 )
+_scores_and_colors_count = [ [ -1, 4 ], [ 200, 5 ], [ 700, 6 ], [ 2000, 7 ] ]
+
+[node name="ScoreLabel" type="Label" parent="."]
+self_modulate = Color( 0.368627, 0.396078, 0.47451, 1 )
+margin_top = 1.0
+margin_right = 195.0
+margin_bottom = 56.0
+custom_fonts/font = ExtResource( 3 )
+text = "7000"
+align = 1
+
+[node name="AddScoreLabel" type="Label" parent="ScoreLabel"]
+self_modulate = Color( 0.368627, 0.396078, 0.47451, 1 )
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -27.0
+margin_top = -32.0
+margin_right = 27.0
+margin_bottom = 6.0
+custom_fonts/font = ExtResource( 4 )
+align = 2
+
+[node name="ScoreTitleLabel" type="Label" parent="."]
+self_modulate = Color( 0.368627, 0.396078, 0.47451, 1 )
+margin_top = 60.0
+margin_right = 195.0
+margin_bottom = 105.0
+custom_fonts/font = ExtResource( 2 )
+text = "KEY_SCORE"
+align = 1

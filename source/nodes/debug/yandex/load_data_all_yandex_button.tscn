@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://source/scripts/debug/yandex/load_data_all_yandex_button.gd" type="Script" id=1]
+
+[node name="LoadDataAllYandexButton" type="Button"]
+margin_right = 133.0
+margin_bottom = 50.0
+rect_min_size = Vector2( 150, 50 )
+text = "LoadDataAllYandex"
+script = ExtResource( 1 )

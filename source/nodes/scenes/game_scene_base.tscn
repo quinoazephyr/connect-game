@@ -1,7 +1,7 @@
-[gd_scene load_steps=34 format=2]
+[gd_scene load_steps=35 format=2]
 
-[ext_resource path="res://source/nodes/scenes/scene_base.tscn" type="PackedScene" id=1]
-[ext_resource path="res://source/scripts/dots/score.gd" type="Script" id=2]
+[ext_resource path="res://source/nodes/scenes/gameplay_scene_base.tscn" type="PackedScene" id=1]
+[ext_resource path="res://source/nodes/ui/header_score.tscn" type="PackedScene" id=2]
 [ext_resource path="res://source/scripts/ui/label_buttons/audio_label_button.gd" type="Script" id=3]
 [ext_resource path="res://source/scripts/ui/label_buttons/theme_label_button.gd" type="Script" id=4]
 [ext_resource path="res://source/scripts/ui/label_buttons/tutorial_label_button.gd" type="Script" id=5]
@@ -9,27 +9,82 @@
 [ext_resource path="res://source/scripts/ui/menu_visual.gd" type="Script" id=7]
 [ext_resource path="res://source/scripts/ui/label_buttons/restart_label_button.gd" type="Script" id=8]
 [ext_resource path="res://source/scripts/core/game_scene/game_scene_base.gd" type="Script" id=9]
-[ext_resource path="res://source/scripts/dots/highscore.gd" type="Script" id=10]
+[ext_resource path="res://source/nodes/ui/header_highscore.tscn" type="PackedScene" id=10]
 [ext_resource path="res://assets/images/ui/restart_icon.png" type="Texture" id=11]
 [ext_resource path="res://assets/images/ui/sound_on_icon.png" type="Texture" id=12]
 [ext_resource path="res://assets/images/ui/tutorial_icon.png" type="Texture" id=13]
 [ext_resource path="res://assets/images/ui/colorblind_icon.png" type="Texture" id=14]
-[ext_resource path="res://source/scripts/ui/menu_label_button.gd" type="Script" id=15]
+[ext_resource path="res://source/scripts/ui/label_buttons/menu_label_button.gd" type="Script" id=15]
 [ext_resource path="res://assets/images/ui/theme_light_icon.png" type="Texture" id=16]
-[ext_resource path="res://source/scripts/dots/moves.gd" type="Script" id=17]
-[ext_resource path="res://source/resources/fonts/title_font.tres" type="DynamicFont" id=18]
-[ext_resource path="res://source/resources/fonts/digits_font.tres" type="DynamicFont" id=19]
-[ext_resource path="res://source/resources/fonts/digits_small_font.tres" type="DynamicFont" id=20]
+[ext_resource path="res://source/nodes/ui/header_moves.tscn" type="PackedScene" id=17]
+[ext_resource path="res://source/resources/animations/animation_ui_wiggle.tres" type="Animation" id=18]
+[ext_resource path="res://source/resources/animations/animation_ui_scale_in_out.tres" type="Animation" id=19]
 [ext_resource path="res://source/nodes/popup_end_game.tscn" type="PackedScene" id=21]
 [ext_resource path="res://source/nodes/popup_confirm.tscn" type="PackedScene" id=22]
-[ext_resource path="res://assets/images/ui/header_moves.png" type="Texture" id=23]
 [ext_resource path="res://assets/images/ui/settings_icon.png" type="Texture" id=24]
 [ext_resource path="res://assets/images/ui/sound_off_icon.png" type="Texture" id=25]
-[ext_resource path="res://source/resources/animations/animation_ui_bounce_rotate.tres" type="Animation" id=26]
 [ext_resource path="res://source/nodes/ui/animated_label_button.tscn" type="PackedScene" id=27]
 [ext_resource path="res://assets/images/ui/theme_dark_icon.png" type="Texture" id=28]
+[ext_resource path="res://source/nodes/gameplay.tscn" type="PackedScene" id=30]
 
-[sub_resource type="Animation" id=13]
+[sub_resource type="Animation" id=1]
+resource_name = "rotate_icon"
+length = 0.3
+step = 0.05
+tracks/0/type = "bezier"
+tracks/0/path = NodePath("Button:rect_rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"points": PoolRealArray( 0, -0.25, 0, 0.05, -0.285706, -180, -0.05, -0.125885, 0.25, 0 ),
+"times": PoolRealArray( 0, 0.3 )
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Button:rect_scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.15, 0.3 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 1, 1 ), Vector2( 1.2, 1.2 ), Vector2( 1, 1 ) ]
+}
+
+[sub_resource type="Animation" id=7]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("AnimationPlayer:playback_speed")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 1.0 ]
+}
+
+[sub_resource type="Animation" id=8]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("AnimationPlayer:playback_speed")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 1.0 ]
+}
+
+[sub_resource type="Animation" id=2]
 length = 0.001
 tracks/0/type = "value"
 tracks/0/path = NodePath("Menu:rect_position")
@@ -68,7 +123,7 @@ tracks/2/keys = {
 "values": [ false ]
 }
 
-[sub_resource type="Animation" id=14]
+[sub_resource type="Animation" id=3]
 resource_name = "menu_show"
 length = 0.6
 tracks/0/type = "value"
@@ -96,7 +151,7 @@ tracks/1/keys = {
 "values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
 }
 
-[sub_resource type="Animation" id=15]
+[sub_resource type="Animation" id=4]
 length = 0.001
 tracks/0/type = "value"
 tracks/0/path = NodePath("Label:modulate")
@@ -123,7 +178,7 @@ tracks/1/keys = {
 "values": [ 0.0 ]
 }
 
-[sub_resource type="Animation" id=17]
+[sub_resource type="Animation" id=5]
 resource_name = "rotate_gear"
 length = 0.6
 tracks/0/type = "value"
@@ -139,7 +194,7 @@ tracks/0/keys = {
 "values": [ 0.0, 180.0 ]
 }
 
-[sub_resource type="Animation" id=16]
+[sub_resource type="Animation" id=6]
 resource_name = "show_label"
 length = 0.6
 tracks/0/type = "value"
@@ -159,64 +214,381 @@ tracks/0/keys = {
 script = ExtResource( 9 )
 
 [node name="ThemeNodesCollection" parent="." index="1"]
-_accent_labels_paths = [ NodePath("../UI/HeaderMoves/MovesContainer/MovesLabel"), NodePath("../UI/HeaderMoves/MovesContainer/MovesTitleLabel"), NodePath("../UI/HeaderMoves/MovesContainer/MovesLabel/AddMovesLabel") ]
-_labels_paths = [ NodePath("../UI/ScoresContainer/ScoreContainer/ScoreLabel"), NodePath("../UI/ScoresContainer/ScoreContainer/ScoreLabel/AddScoreLabel"), NodePath("../UI/ScoresContainer/ScoreContainer/ScoreTitleLabel"), NodePath("../UI/ScoresContainer/HighscoreContainer/HighscoreLabel"), NodePath("../UI/ScoresContainer/HighscoreContainer/HighscoreTitleLabel"), NodePath("../UI/MenuVisual/Menu/Options/RestartLabelButton/Label"), NodePath("../UI/MenuVisual/Menu/Options/TutorialLabelButton/Label"), NodePath("../UI/MenuVisual/Menu/Options/ColorblindLabelButton/Label"), NodePath("../UI/MenuVisual/Menu/Options/ThemeLabelButton/Label"), NodePath("../UI/MenuVisual/Menu/Options/AudioLabelButton/Label"), NodePath("../UI/MenuLabelButton/Label") ]
-_backgrounds_paths = [ NodePath("../Background/ColorRect"), NodePath("../UI/MenuVisual/Menu") ]
+_accent_labels_paths = [ NodePath("../UI/HeaderMoves/MovesContainer/MovesLabel"), NodePath("../UI/HeaderMoves/MovesContainer/MovesLabel/AddMovesLabel"), NodePath("../UI/HeaderMoves/MovesContainer/MovesTitleLabel"), NodePath("../UI/PopupConfirm/PopupDialog/VBoxContainer/VBoxContainer/AcceptButton/Label"), NodePath("../UI/PopupEndGame/PopupDialog/VBoxContainer/VBoxButtons/NewGameButton/Label") ]
+_labels_paths = [ NodePath("../UI/ScoresContainer/ScoreContainer/ScoreLabel"), NodePath("../UI/ScoresContainer/ScoreContainer/ScoreLabel/AddScoreLabel"), NodePath("../UI/ScoresContainer/ScoreContainer/ScoreTitleLabel"), NodePath("../UI/ScoresContainer/HighscoreContainer/HighscoreLabel"), NodePath("../UI/ScoresContainer/HighscoreContainer/HighscoreTitleLabel"), NodePath("../UI/MenuVisual/Menu/Options/RestartLabelButton/Label"), NodePath("../UI/MenuVisual/Menu/Options/TutorialLabelButton/Label"), NodePath("../UI/MenuVisual/Menu/Options/ColorblindLabelButton/Label"), NodePath("../UI/MenuVisual/Menu/Options/ThemeLabelButton/Label"), NodePath("../UI/MenuVisual/Menu/Options/AudioLabelButton/Label"), NodePath("../UI/MenuLabelButton/Label"), NodePath("../Gameplay/DotEffects/CanvasLayer2/Control/AdditionalMovesLabels/PlusLabel"), NodePath("../Gameplay/DotEffects/CanvasLayer2/Control/AdditionalMovesLabels/CountLabel"), NodePath("../Gameplay/DotEffects/CanvasLayer2/Control/AdditionalMovesLabels/MovesLabel"), NodePath("../UI/PopupConfirm/PopupDialog/VBoxContainer/Label"), NodePath("../UI/PopupEndGame/PopupDialog/Label"), NodePath("../UI/PopupEndGame/PopupDialog/VBoxContainer/VBoxScore/FinalScore"), NodePath("../UI/PopupEndGame/PopupDialog/VBoxContainer/VBoxScore/ScoreLabel") ]
+_accent_textures_paths = [ NodePath("../UI/HeaderMoves"), NodePath("../UI/MenuLabelButton/Button"), NodePath("../UI/MenuVisual/Menu/Options/RestartLabelButton/Button"), NodePath("../UI/MenuVisual/Menu/Options/TutorialLabelButton/Button"), NodePath("../UI/MenuVisual/Menu/Options/ColorblindLabelButton/Button"), NodePath("../UI/MenuVisual/Menu/Options/ThemeLabelButton/Button"), NodePath("../UI/MenuVisual/Menu/Options/AudioLabelButton/Button"), NodePath("../UI/PopupConfirm/PopupDialog/VBoxContainer/VBoxContainer/AcceptButton"), NodePath("../UI/PopupEndGame/PopupDialog/VBoxContainer/VBoxButtons/NewGameButton") ]
+_backgrounds_paths = [ NodePath("../Background/ColorRect"), NodePath("../UI/MenuVisual/Menu"), NodePath("../UI/PopupEndGame/PopupDialog"), NodePath("../UI/PopupEndGame/ColorRect"), NodePath("../UI/PopupConfirm/PopupDialog"), NodePath("../UI/PopupConfirm/ColorRect") ]
 
-[node name="Background" type="CanvasLayer" parent="." index="2"]
+[node name="Gameplay" parent="." index="4" instance=ExtResource( 30 )]
+
+[node name="Control" type="Control" parent="Gameplay/Dots/CanvasLayer/DotsPositions" index="0"]
+margin_right = 51.2
+margin_bottom = 51.2
+rect_min_size = Vector2( 51.2, 51.2 )
+
+[node name="Control2" type="Control" parent="Gameplay/Dots/CanvasLayer/DotsPositions" index="1"]
+margin_left = 109.0
+margin_right = 160.2
+margin_bottom = 51.2
+rect_min_size = Vector2( 51.2, 51.2 )
+
+[node name="Control3" type="Control" parent="Gameplay/Dots/CanvasLayer/DotsPositions" index="2"]
+margin_left = 218.0
+margin_right = 269.2
+margin_bottom = 51.2
+rect_min_size = Vector2( 51.2, 51.2 )
+
+[node name="Control4" type="Control" parent="Gameplay/Dots/CanvasLayer/DotsPositions" index="3"]
+margin_left = 327.0
+margin_right = 378.2
+margin_bottom = 51.2
+rect_min_size = Vector2( 51.2, 51.2 )
+
+[node name="Control5" type="Control" parent="Gameplay/Dots/CanvasLayer/DotsPositions" index="4"]
+margin_left = 436.0
+margin_right = 487.2
+margin_bottom = 51.2
+rect_min_size = Vector2( 51.2, 51.2 )
+
+[node name="Control6" type="Control" parent="Gameplay/Dots/CanvasLayer/DotsPositions" index="5"]
+margin_left = 545.0
+margin_right = 596.2
+margin_bottom = 51.2
+rect_min_size = Vector2( 51.2, 51.2 )
+
+[node name="Control7" type="Control" parent="Gameplay/Dots/CanvasLayer/DotsPositions" index="6"]
+margin_top = 109.0
+margin_right = 51.2
+margin_bottom = 160.2
+rect_min_size = Vector2( 51.2, 51.2 )
+
+[node name="Control8" type="Control" parent="Gameplay/Dots/CanvasLayer/DotsPositions" index="7"]
+margin_left = 109.0
+margin_top = 109.0
+margin_right = 160.2
+margin_bottom = 160.2
+rect_min_size = Vector2( 51.2, 51.2 )
+
+[node name="Control9" type="Control" parent="Gameplay/Dots/CanvasLayer/DotsPositions" index="8"]
+margin_left = 218.0
+margin_top = 109.0
+margin_right = 269.2
+margin_bottom = 160.2
+rect_min_size = Vector2( 51.2, 51.2 )
+
+[node name="Control10" type="Control" parent="Gameplay/Dots/CanvasLayer/DotsPositions" index="9"]
+margin_left = 327.0
+margin_top = 109.0
+margin_right = 378.2
+margin_bottom = 160.2
+rect_min_size = Vector2( 51.2, 51.2 )
+
+[node name="Control11" type="Control" parent="Gameplay/Dots/CanvasLayer/DotsPositions" index="10"]
+margin_left = 436.0
+margin_top = 109.0
+margin_right = 487.2
+margin_bottom = 160.2
+rect_min_size = Vector2( 51.2, 51.2 )
+
+[node name="Control12" type="Control" parent="Gameplay/Dots/CanvasLayer/DotsPositions" index="11"]
+margin_left = 545.0
+margin_top = 109.0
+margin_right = 596.2
+margin_bottom = 160.2
+rect_min_size = Vector2( 51.2, 51.2 )
+
+[node name="Control13" type="Control" parent="Gameplay/Dots/CanvasLayer/DotsPositions" index="12"]
+margin_top = 218.0
+margin_right = 51.2
+margin_bottom = 269.2
+rect_min_size = Vector2( 51.2, 51.2 )
+
+[node name="Control14" type="Control" parent="Gameplay/Dots/CanvasLayer/DotsPositions" index="13"]
+margin_left = 109.0
+margin_top = 218.0
+margin_right = 160.2
+margin_bottom = 269.2
+rect_min_size = Vector2( 51.2, 51.2 )
+
+[node name="Control15" type="Control" parent="Gameplay/Dots/CanvasLayer/DotsPositions" index="14"]
+margin_left = 218.0
+margin_top = 218.0
+margin_right = 269.2
+margin_bottom = 269.2
+rect_min_size = Vector2( 51.2, 51.2 )
+
+[node name="Control16" type="Control" parent="Gameplay/Dots/CanvasLayer/DotsPositions" index="15"]
+margin_left = 327.0
+margin_top = 218.0
+margin_right = 378.2
+margin_bottom = 269.2
+rect_min_size = Vector2( 51.2, 51.2 )
+
+[node name="Control17" type="Control" parent="Gameplay/Dots/CanvasLayer/DotsPositions" index="16"]
+margin_left = 436.0
+margin_top = 218.0
+margin_right = 487.2
+margin_bottom = 269.2
+rect_min_size = Vector2( 51.2, 51.2 )
+
+[node name="Control18" type="Control" parent="Gameplay/Dots/CanvasLayer/DotsPositions" index="17"]
+margin_left = 545.0
+margin_top = 218.0
+margin_right = 596.2
+margin_bottom = 269.2
+rect_min_size = Vector2( 51.2, 51.2 )
+
+[node name="Control19" type="Control" parent="Gameplay/Dots/CanvasLayer/DotsPositions" index="18"]
+margin_top = 327.0
+margin_right = 51.2
+margin_bottom = 378.2
+rect_min_size = Vector2( 51.2, 51.2 )
+
+[node name="Control20" type="Control" parent="Gameplay/Dots/CanvasLayer/DotsPositions" index="19"]
+margin_left = 109.0
+margin_top = 327.0
+margin_right = 160.2
+margin_bottom = 378.2
+rect_min_size = Vector2( 51.2, 51.2 )
+
+[node name="Control21" type="Control" parent="Gameplay/Dots/CanvasLayer/DotsPositions" index="20"]
+margin_left = 218.0
+margin_top = 327.0
+margin_right = 269.2
+margin_bottom = 378.2
+rect_min_size = Vector2( 51.2, 51.2 )
+
+[node name="Control22" type="Control" parent="Gameplay/Dots/CanvasLayer/DotsPositions" index="21"]
+margin_left = 327.0
+margin_top = 327.0
+margin_right = 378.2
+margin_bottom = 378.2
+rect_min_size = Vector2( 51.2, 51.2 )
+
+[node name="Control23" type="Control" parent="Gameplay/Dots/CanvasLayer/DotsPositions" index="22"]
+margin_left = 436.0
+margin_top = 327.0
+margin_right = 487.2
+margin_bottom = 378.2
+rect_min_size = Vector2( 51.2, 51.2 )
+
+[node name="Control24" type="Control" parent="Gameplay/Dots/CanvasLayer/DotsPositions" index="23"]
+margin_left = 545.0
+margin_top = 327.0
+margin_right = 596.2
+margin_bottom = 378.2
+rect_min_size = Vector2( 51.2, 51.2 )
+
+[node name="Control25" type="Control" parent="Gameplay/Dots/CanvasLayer/DotsPositions" index="24"]
+margin_top = 436.0
+margin_right = 51.2
+margin_bottom = 487.2
+rect_min_size = Vector2( 51.2, 51.2 )
+
+[node name="Control26" type="Control" parent="Gameplay/Dots/CanvasLayer/DotsPositions" index="25"]
+margin_left = 109.0
+margin_top = 436.0
+margin_right = 160.2
+margin_bottom = 487.2
+rect_min_size = Vector2( 51.2, 51.2 )
+
+[node name="Control27" type="Control" parent="Gameplay/Dots/CanvasLayer/DotsPositions" index="26"]
+margin_left = 218.0
+margin_top = 436.0
+margin_right = 269.2
+margin_bottom = 487.2
+rect_min_size = Vector2( 51.2, 51.2 )
+
+[node name="Control28" type="Control" parent="Gameplay/Dots/CanvasLayer/DotsPositions" index="27"]
+margin_left = 327.0
+margin_top = 436.0
+margin_right = 378.2
+margin_bottom = 487.2
+rect_min_size = Vector2( 51.2, 51.2 )
+
+[node name="Control29" type="Control" parent="Gameplay/Dots/CanvasLayer/DotsPositions" index="28"]
+margin_left = 436.0
+margin_top = 436.0
+margin_right = 487.2
+margin_bottom = 487.2
+rect_min_size = Vector2( 51.2, 51.2 )
+
+[node name="Control30" type="Control" parent="Gameplay/Dots/CanvasLayer/DotsPositions" index="29"]
+margin_left = 545.0
+margin_top = 436.0
+margin_right = 596.2
+margin_bottom = 487.2
+rect_min_size = Vector2( 51.2, 51.2 )
+
+[node name="Control31" type="Control" parent="Gameplay/Dots/CanvasLayer/DotsPositions" index="30"]
+margin_top = 545.0
+margin_right = 51.2
+margin_bottom = 596.2
+rect_min_size = Vector2( 51.2, 51.2 )
+
+[node name="Control32" type="Control" parent="Gameplay/Dots/CanvasLayer/DotsPositions" index="31"]
+margin_left = 109.0
+margin_top = 545.0
+margin_right = 160.2
+margin_bottom = 596.2
+rect_min_size = Vector2( 51.2, 51.2 )
+
+[node name="Control33" type="Control" parent="Gameplay/Dots/CanvasLayer/DotsPositions" index="32"]
+margin_left = 218.0
+margin_top = 545.0
+margin_right = 269.2
+margin_bottom = 596.2
+rect_min_size = Vector2( 51.2, 51.2 )
+
+[node name="Control34" type="Control" parent="Gameplay/Dots/CanvasLayer/DotsPositions" index="33"]
+margin_left = 327.0
+margin_top = 545.0
+margin_right = 378.2
+margin_bottom = 596.2
+rect_min_size = Vector2( 51.2, 51.2 )
+
+[node name="Control35" type="Control" parent="Gameplay/Dots/CanvasLayer/DotsPositions" index="34"]
+margin_left = 436.0
+margin_top = 545.0
+margin_right = 487.2
+margin_bottom = 596.2
+rect_min_size = Vector2( 51.2, 51.2 )
+
+[node name="Control36" type="Control" parent="Gameplay/Dots/CanvasLayer/DotsPositions" index="35"]
+margin_left = 545.0
+margin_top = 545.0
+margin_right = 596.2
+margin_bottom = 596.2
+rect_min_size = Vector2( 51.2, 51.2 )
+
+[node name="Control37" type="Control" parent="Gameplay/Dots/CanvasLayer/DotsPositions" index="36"]
+margin_top = 654.0
+margin_right = 51.2
+margin_bottom = 705.2
+rect_min_size = Vector2( 51.2, 51.2 )
+
+[node name="Control38" type="Control" parent="Gameplay/Dots/CanvasLayer/DotsPositions" index="37"]
+margin_left = 109.0
+margin_top = 654.0
+margin_right = 160.2
+margin_bottom = 705.2
+rect_min_size = Vector2( 51.2, 51.2 )
+
+[node name="Control39" type="Control" parent="Gameplay/Dots/CanvasLayer/DotsPositions" index="38"]
+margin_left = 218.0
+margin_top = 654.0
+margin_right = 269.2
+margin_bottom = 705.2
+rect_min_size = Vector2( 51.2, 51.2 )
+
+[node name="Control40" type="Control" parent="Gameplay/Dots/CanvasLayer/DotsPositions" index="39"]
+margin_left = 327.0
+margin_top = 654.0
+margin_right = 378.2
+margin_bottom = 705.2
+rect_min_size = Vector2( 51.2, 51.2 )
+
+[node name="Control41" type="Control" parent="Gameplay/Dots/CanvasLayer/DotsPositions" index="40"]
+margin_left = 436.0
+margin_top = 654.0
+margin_right = 487.2
+margin_bottom = 705.2
+rect_min_size = Vector2( 51.2, 51.2 )
+
+[node name="Control42" type="Control" parent="Gameplay/Dots/CanvasLayer/DotsPositions" index="41"]
+margin_left = 545.0
+margin_top = 654.0
+margin_right = 596.2
+margin_bottom = 705.2
+rect_min_size = Vector2( 51.2, 51.2 )
+
+[node name="Control43" type="Control" parent="Gameplay/Dots/CanvasLayer/DotsPositions" index="42"]
+margin_top = 763.0
+margin_right = 51.2
+margin_bottom = 814.2
+rect_min_size = Vector2( 51.2, 51.2 )
+
+[node name="Control44" type="Control" parent="Gameplay/Dots/CanvasLayer/DotsPositions" index="43"]
+margin_left = 109.0
+margin_top = 763.0
+margin_right = 160.2
+margin_bottom = 814.2
+rect_min_size = Vector2( 51.2, 51.2 )
+
+[node name="Control45" type="Control" parent="Gameplay/Dots/CanvasLayer/DotsPositions" index="44"]
+margin_left = 218.0
+margin_top = 763.0
+margin_right = 269.2
+margin_bottom = 814.2
+rect_min_size = Vector2( 51.2, 51.2 )
+
+[node name="Control46" type="Control" parent="Gameplay/Dots/CanvasLayer/DotsPositions" index="45"]
+margin_left = 327.0
+margin_top = 763.0
+margin_right = 378.2
+margin_bottom = 814.2
+rect_min_size = Vector2( 51.2, 51.2 )
+
+[node name="Control47" type="Control" parent="Gameplay/Dots/CanvasLayer/DotsPositions" index="46"]
+margin_left = 436.0
+margin_top = 763.0
+margin_right = 487.2
+margin_bottom = 814.2
+rect_min_size = Vector2( 51.2, 51.2 )
+
+[node name="Control48" type="Control" parent="Gameplay/Dots/CanvasLayer/DotsPositions" index="47"]
+margin_left = 545.0
+margin_top = 763.0
+margin_right = 596.2
+margin_bottom = 814.2
+rect_min_size = Vector2( 51.2, 51.2 )
+
+[node name="Control" type="Control" parent="Gameplay/DotEffects/CanvasLayer/NewDotsPositions" index="0"]
+margin_left = 62.0
+margin_right = 113.2
+margin_bottom = 51.2
+rect_min_size = Vector2( 51.2, 51.2 )
+
+[node name="Control2" type="Control" parent="Gameplay/DotEffects/CanvasLayer/NewDotsPositions" index="1"]
+margin_left = 171.0
+margin_right = 222.2
+margin_bottom = 51.2
+rect_min_size = Vector2( 51.2, 51.2 )
+
+[node name="Control3" type="Control" parent="Gameplay/DotEffects/CanvasLayer/NewDotsPositions" index="2"]
+margin_left = 280.0
+margin_right = 331.2
+margin_bottom = 51.2
+rect_min_size = Vector2( 51.2, 51.2 )
+
+[node name="Control4" type="Control" parent="Gameplay/DotEffects/CanvasLayer/NewDotsPositions" index="3"]
+margin_left = 389.0
+margin_right = 440.2
+margin_bottom = 51.2
+rect_min_size = Vector2( 51.2, 51.2 )
+
+[node name="Control5" type="Control" parent="Gameplay/DotEffects/CanvasLayer/NewDotsPositions" index="4"]
+margin_left = 498.0
+margin_right = 549.2
+margin_bottom = 51.2
+rect_min_size = Vector2( 51.2, 51.2 )
+
+[node name="Control6" type="Control" parent="Gameplay/DotEffects/CanvasLayer/NewDotsPositions" index="5"]
+margin_left = 607.0
+margin_right = 658.2
+margin_bottom = 51.2
+rect_min_size = Vector2( 51.2, 51.2 )
+
+[node name="Background" type="CanvasLayer" parent="." index="5"]
 layer = -1
 
 [node name="ColorRect" type="ColorRect" parent="Background" index="0"]
-self_modulate = Color( 0.992157, 0.988235, 0.988235, 1 )
 anchor_right = 1.0
 anchor_bottom = 1.0
 
-[node name="UI" type="CanvasLayer" parent="." index="3"]
+[node name="UI" type="CanvasLayer" parent="." index="6"]
 
-[node name="HeaderMoves" type="TextureRect" parent="UI" index="0"]
-anchor_left = 0.5
-anchor_right = 0.5
-margin_left = -376.0
-margin_top = -25.0
-margin_right = -120.0
-margin_bottom = 231.0
-texture = ExtResource( 23 )
-
-[node name="MovesContainer" type="VBoxContainer" parent="UI/HeaderMoves" index="0"]
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-margin_left = -89.6
-margin_top = -100.5
-margin_right = 89.6
-margin_bottom = 99.5
-alignment = 1
-
-[node name="MovesLabel" type="Label" parent="UI/HeaderMoves/MovesContainer" index="0"]
-margin_top = 47.0
-margin_right = 204.0
-margin_bottom = 104.0
-custom_fonts/font = ExtResource( 19 )
-text = "61728"
-align = 1
-script = ExtResource( 17 )
-
-[node name="AddMovesLabel" type="Label" parent="UI/HeaderMoves/MovesContainer/MovesLabel" index="0"]
-anchor_left = 0.5
-anchor_right = 0.5
-margin_top = -32.0
-margin_bottom = 6.0
-custom_fonts/font = ExtResource( 20 )
-align = 2
-
-[node name="MovesTitleLabel" type="Label" parent="UI/HeaderMoves/MovesContainer" index="1"]
-margin_top = 108.0
-margin_right = 204.0
-margin_bottom = 153.0
-custom_fonts/font = ExtResource( 18 )
-text = "KEY_MOVES"
-align = 1
+[node name="HeaderMoves" parent="UI" index="0" instance=ExtResource( 17 )]
 
 [node name="ScoresContainer" type="HBoxContainer" parent="UI" index="1"]
 anchor_left = 0.5
@@ -228,69 +600,15 @@ margin_bottom = 155.0
 custom_constants/separation = 60
 alignment = 1
 
-[node name="ScoreContainer" type="VBoxContainer" parent="UI/ScoresContainer" index="0"]
-margin_right = 195.0
-margin_bottom = 106.0
-alignment = 1
+[node name="ScoreContainer" parent="UI/ScoresContainer" index="0" instance=ExtResource( 2 )]
 
-[node name="ScoreLabel" type="Label" parent="UI/ScoresContainer/ScoreContainer" index="0"]
-self_modulate = Color( 0.368627, 0.396078, 0.47451, 1 )
-margin_right = 195.0
-margin_bottom = 57.0
-custom_fonts/font = ExtResource( 19 )
-text = "7000"
-align = 1
-script = ExtResource( 2 )
-
-[node name="AddScoreLabel" type="Label" parent="UI/ScoresContainer/ScoreContainer/ScoreLabel" index="0"]
-self_modulate = Color( 0.368627, 0.396078, 0.47451, 1 )
-anchor_left = 0.5
-anchor_right = 0.5
-margin_left = -27.0
-margin_top = -32.0
-margin_right = 27.0
-margin_bottom = 6.0
-custom_fonts/font = ExtResource( 20 )
-align = 2
-
-[node name="ScoreTitleLabel" type="Label" parent="UI/ScoresContainer/ScoreContainer" index="1"]
-self_modulate = Color( 0.368627, 0.396078, 0.47451, 1 )
-margin_top = 61.0
-margin_right = 195.0
-margin_bottom = 106.0
-custom_fonts/font = ExtResource( 18 )
-text = "KEY_SCORE"
-align = 1
-
-[node name="HighscoreContainer" type="VBoxContainer" parent="UI/ScoresContainer" index="1"]
-margin_left = 255.0
-margin_right = 537.0
-margin_bottom = 106.0
-alignment = 1
-
-[node name="HighscoreLabel" type="Label" parent="UI/ScoresContainer/HighscoreContainer" index="0"]
-self_modulate = Color( 0.368627, 0.396078, 0.47451, 1 )
-margin_right = 282.0
-margin_bottom = 57.0
-custom_fonts/font = ExtResource( 19 )
-text = "76123"
-align = 1
-script = ExtResource( 10 )
-_highscore_label_path = NodePath(".")
-
-[node name="HighscoreTitleLabel" type="Label" parent="UI/ScoresContainer/HighscoreContainer" index="1"]
-self_modulate = Color( 0.368627, 0.396078, 0.47451, 1 )
-margin_top = 61.0
-margin_right = 282.0
-margin_bottom = 106.0
-custom_fonts/font = ExtResource( 18 )
-text = "KEY_HIGHSCORE"
-align = 1
+[node name="HighscoreContainer" parent="UI/ScoresContainer" index="1" instance=ExtResource( 10 )]
 
 [node name="MenuVisual" type="Node" parent="UI" index="2"]
 script = ExtResource( 7 )
 
 [node name="Menu" type="ColorRect" parent="UI/MenuVisual" index="0"]
+visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 color = Color( 1, 1, 1, 0.980392 )
@@ -309,21 +627,22 @@ alignment = 2
 
 [node name="RestartLabelButton" parent="UI/MenuVisual/Menu/Options" index="0" instance=ExtResource( 27 )]
 script = ExtResource( 8 )
+_anim_pressed_name = "animation_ui_bounce_rotate"
 
 [node name="Label" parent="UI/MenuVisual/Menu/Options/RestartLabelButton" index="0"]
 text = "KEY_RESTART"
 
 [node name="Button" parent="UI/MenuVisual/Menu/Options/RestartLabelButton" index="1"]
-rect_rotation = -180.0
 icon = ExtResource( 11 )
 
 [node name="AnimationPlayer" parent="UI/MenuVisual/Menu/Options/RestartLabelButton" index="2"]
-anims/animation_ui_bounce_rotate = ExtResource( 26 )
+anims/animation_ui_bounce_rotate = SubResource( 1 )
 
 [node name="TutorialLabelButton" parent="UI/MenuVisual/Menu/Options" index="1" instance=ExtResource( 27 )]
 margin_top = 644.0
 margin_bottom = 714.0
 script = ExtResource( 5 )
+_anim_pressed_name = "animation_ui_wiggle"
 _current_scene_root_path = NodePath("../../../../..")
 _next_scene_file_path = "res://source/nodes/scenes/tutorial_scene_base.tscn"
 
@@ -333,10 +652,16 @@ text = "KEY_TUTORIAL"
 [node name="Button" parent="UI/MenuVisual/Menu/Options/TutorialLabelButton" index="1"]
 icon = ExtResource( 13 )
 
+[node name="AnimationPlayer" parent="UI/MenuVisual/Menu/Options/TutorialLabelButton" index="2"]
+anims/RESET = SubResource( 7 )
+anims/animation_ui_wiggle = ExtResource( 18 )
+
 [node name="ColorblindLabelButton" parent="UI/MenuVisual/Menu/Options" index="2" instance=ExtResource( 27 )]
 margin_top = 734.0
 margin_bottom = 804.0
 script = ExtResource( 6 )
+_anim_pressed_name = "animation_ui_scale_in_out"
+_colorblind_mode_path = NodePath("../../../../../ColorblindMode")
 
 [node name="Label" parent="UI/MenuVisual/Menu/Options/ColorblindLabelButton" index="0"]
 text = "KEY_COLORBLIND"
@@ -344,10 +669,15 @@ text = "KEY_COLORBLIND"
 [node name="Button" parent="UI/MenuVisual/Menu/Options/ColorblindLabelButton" index="1"]
 icon = ExtResource( 14 )
 
+[node name="AnimationPlayer" parent="UI/MenuVisual/Menu/Options/ColorblindLabelButton" index="2"]
+anims/RESET = SubResource( 8 )
+anims/animation_ui_scale_in_out = ExtResource( 19 )
+
 [node name="ThemeLabelButton" parent="UI/MenuVisual/Menu/Options" index="3" instance=ExtResource( 27 )]
 margin_top = 824.0
 margin_bottom = 894.0
 script = ExtResource( 4 )
+_anim_pressed_name = "animation_ui_scale_in_out"
 _light_mode_texture = ExtResource( 16 )
 _dark_mode_texture = ExtResource( 28 )
 
@@ -358,10 +688,15 @@ text = "KEY_THEME"
 self_modulate = Color( 0.945098, 0.733333, 0.0627451, 1 )
 icon = ExtResource( 16 )
 
+[node name="AnimationPlayer" parent="UI/MenuVisual/Menu/Options/ThemeLabelButton" index="2"]
+playback_speed = 6.0
+anims/animation_ui_scale_in_out = ExtResource( 19 )
+
 [node name="AudioLabelButton" parent="UI/MenuVisual/Menu/Options" index="4" instance=ExtResource( 27 )]
 margin_top = 914.0
 margin_bottom = 984.0
 script = ExtResource( 3 )
+_anim_pressed_name = "animation_ui_scale_in_out"
 _audio_path = NodePath("../../../../../Audio")
 _audio_unmuted_texture = ExtResource( 12 )
 _audio_muted_texture = ExtResource( 25 )
@@ -373,10 +708,14 @@ text = "KEY_SOUND"
 self_modulate = Color( 0.945098, 0.733333, 0.0627451, 1 )
 icon = ExtResource( 12 )
 
+[node name="AnimationPlayer" parent="UI/MenuVisual/Menu/Options/AudioLabelButton" index="2"]
+playback_speed = 6.0
+anims/animation_ui_scale_in_out = ExtResource( 19 )
+
 [node name="AnimationPlayer" type="AnimationPlayer" parent="UI/MenuVisual" index="1"]
 reset_on_save = false
-anims/RESET = SubResource( 13 )
-anims/menu_show = SubResource( 14 )
+anims/RESET = SubResource( 2 )
+anims/menu_show = SubResource( 3 )
 
 [node name="MenuLabelButton" parent="UI" index="3" instance=ExtResource( 27 )]
 anchor_left = 0.5
@@ -392,21 +731,29 @@ _menu_node_path = NodePath("../MenuVisual")
 text = "KEY_QUIT_MENU"
 
 [node name="Button" parent="UI/MenuLabelButton" index="1"]
+self_modulate = Color( 0.976471, 0.694118, 0.192157, 1 )
 rect_scale = Vector2( 1.2, 1.2 )
 icon = ExtResource( 24 )
 
 [node name="AnimationPlayer" parent="UI/MenuLabelButton" index="2"]
-anims/RESET = SubResource( 15 )
-anims/rotate_gear = SubResource( 17 )
-anims/show_label = SubResource( 16 )
+anims/RESET = SubResource( 4 )
+anims/rotate_gear = SubResource( 5 )
+anims/show_label = SubResource( 6 )
 
 [node name="PopupConfirm" parent="UI" index="4" instance=ExtResource( 22 )]
 
 [node name="PopupEndGame" parent="UI" index="5" instance=ExtResource( 21 )]
 
+[editable path="Gameplay"]
+[editable path="Gameplay/DotEffects/CanvasLayer2/Control/AdditionalMovesLabels"]
+[editable path="UI/HeaderMoves"]
+[editable path="UI/ScoresContainer/ScoreContainer"]
+[editable path="UI/ScoresContainer/HighscoreContainer"]
 [editable path="UI/MenuVisual/Menu/Options/RestartLabelButton"]
 [editable path="UI/MenuVisual/Menu/Options/TutorialLabelButton"]
 [editable path="UI/MenuVisual/Menu/Options/ColorblindLabelButton"]
 [editable path="UI/MenuVisual/Menu/Options/ThemeLabelButton"]
 [editable path="UI/MenuVisual/Menu/Options/AudioLabelButton"]
 [editable path="UI/MenuLabelButton"]
+[editable path="UI/PopupConfirm"]
+[editable path="UI/PopupEndGame"]

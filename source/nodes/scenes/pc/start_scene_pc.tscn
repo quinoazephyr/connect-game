@@ -1,12 +1,13 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://source/scripts/audio/audio_pc.gd" type="Script" id=1]
 [ext_resource path="res://source/nodes/scenes/start_scene_base.tscn" type="PackedScene" id=2]
+[ext_resource path="res://source/nodes/ui/start_game_buttons/pc/start_tutorial_button_pc.tscn" type="PackedScene" id=3]
+[ext_resource path="res://source/nodes/ui/start_game_buttons/pc/start_game_button_pc.tscn" type="PackedScene" id=4]
 
 [node name="StartScenePC" instance=ExtResource( 2 )]
+_start_game_button = ExtResource( 4 )
+_start_tutorial_button = ExtResource( 3 )
 
 [node name="Audio" parent="." index="0"]
 script = ExtResource( 1 )
-
-[node name="PlayButton" parent="Control/VBoxContainer" index="0"]
-_next_scene_file_path = "res://source/nodes/scenes/pc/game_scene_pc.tscn"

@@ -1,0 +1,30 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://source/nodes/debug/yandex/save_prefs_to_yandex_button.tscn" type="PackedScene" id=1]
+[ext_resource path="res://source/nodes/debug/yandex/load_data_all_yandex_button.tscn" type="PackedScene" id=2]
+[ext_resource path="res://source/nodes/debug/debug_buttons_container.tscn" type="PackedScene" id=3]
+[ext_resource path="res://source/nodes/debug/yandex/set_data_empty_yandex_button.tscn" type="PackedScene" id=4]
+[ext_resource path="res://source/nodes/debug/yandex/set_data_ss_empty_yandex_button.tscn" type="PackedScene" id=5]
+
+[node name="YandexDebugButtons" instance=ExtResource( 3 )]
+
+[node name="Label" parent="." index="0"]
+margin_right = 174.0
+text = "Yandex"
+
+[node name="Buttons" parent="." index="1"]
+margin_right = 174.0
+margin_bottom = 266.0
+
+[node name="LoadDataAllYandexButton" parent="Buttons" index="0" instance=ExtResource( 2 )]
+margin_right = 174.0
+
+[node name="SavePrefsToYandexButton" parent="Buttons" index="1" instance=ExtResource( 1 )]
+margin_top = 54.0
+margin_right = 174.0
+margin_bottom = 104.0
+
+[node name="SetDataEmptyYandexButton" parent="Buttons" index="2" instance=ExtResource( 4 )]
+margin_right = 174.0
+
+[node name="SetDataSafeStorageEmptyYandexButton" parent="Buttons" index="3" instance=ExtResource( 5 )]

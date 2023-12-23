@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://source/scripts/ui/popup_confirm.gd" type="Script" id=1]
 [ext_resource path="res://assets/images/ui/popup_cancel_button.png" type="Texture" id=2]
@@ -6,6 +6,7 @@
 [ext_resource path="res://assets/images/ui/popup_accept_button.png" type="Texture" id=4]
 [ext_resource path="res://source/resources/fonts/digits_small_font.tres" type="DynamicFont" id=5]
 [ext_resource path="res://source/resources/fonts/title_font.tres" type="DynamicFont" id=6]
+[ext_resource path="res://source/resources/style_themes/label_theme.tres" type="Theme" id=7]
 
 [sub_resource type="StyleBoxEmpty" id=1]
 
@@ -40,10 +41,18 @@ custom_colors/font_color_hover = Color( 1, 1, 1, 1 )
 custom_colors/font_color_pressed = Color( 1, 1, 1, 1 )
 custom_fonts/font = ExtResource( 5 )
 custom_styles/focus = SubResource( 1 )
-text = "KEY_CONFIRM"
 icon = ExtResource( 4 )
 flat = true
 icon_align = 1
+
+[node name="Label" type="Label" parent="PopupDialog/VBoxContainer/VBoxContainer/AcceptButton" index="0"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+theme = ExtResource( 7 )
+custom_fonts/font = ExtResource( 5 )
+text = "KEY_CONFIRM"
+align = 1
+valign = 1
 
 [node name="CancelButton" type="Button" parent="PopupDialog/VBoxContainer/VBoxContainer" index="1"]
 margin_top = 96.0
